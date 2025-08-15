@@ -59,4 +59,4 @@ dkms.conf
 *.pdf
 
 #design
-*.drawio
+*.d
