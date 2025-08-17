@@ -93,75 +93,7 @@ void mEXTI2_Enable()
     // Handle Error
 #endif
 }
-/*----------------------------------------------*/
-/**
- * @brief       Enabling the EXTI peripheral Configured in config.h
- * @param       [no parameters]
- * @return      None
- */
-void mEXTI_EnableALLWanted()
-{
-#if INT0_Enable == 1
-    mEXTI0_Enable();
-#endif
-#if INT1_Enable == 1
-    mEXTI1_Enable();
-#endif
-#if INT2_Enable == 1
-    mEXTI2_Enable();
-#endif
-}
-/*----------------------------------------------*/
-/**
- * @brief       Disable All the External Interrupts
- * @param       [no parameters]
- * @return      None
- */
-void mEXTI_DisableALL()
-{
-    // SIE disable
-    ClearBit(GICR_Reg, INTF0);
-    ClearBit(GICR_Reg, INTF1);
-    ClearBit(GICR_Reg, INTF2);
-    
-}
-/*----------------------------------------------*/
 
-/**
- * @brief       Disable the External Interrupt INT0
- * @param       [no parameters]
- * @return      None
- */
-void mEXTI0_Disable()
-{
-        ClearBit(GICR_Reg, INTF0);
-    
-    
-}
-/*----------------------------------------------*/
-
-/**
- * @brief       Disable the External Interrupt INT1
- * @param [no parameters]
- * @return      None
- */
-void mEXTI1_Disable()
-{
-    
-        ClearBit(GICR_Reg, INTF1);
-}
-/*----------------------------------------------*/
-/**
- * @brief       Disable the External Interrupt INT2
- * @param [no parameters]
- * @return      None
- */
-void mEXTI2_Disable()
-{
-    
-        ClearBit(GICR_Reg, INTF2);
-}
-/*----------------------------------------------*/
 
 
 /*---------------------------------------Waiting LDR-------------------------*/

@@ -37,52 +37,7 @@ void mEXTI1_Enable();
  */
 
 void mEXTI2_Enable();
-
-/*----------------------------------------------*/
-
-/**
- * @brief       Enabling the EXTI peripheral Configured in config.h
- * @param       [no parameters]
- * @return      None
- */
-void mEXTI_EnableALLWanted();
-
-/*----------------------------------------------*/
-
-/**
- * @brief       Disable All the External Interrupts
- * @param       [no parameters]
- * @return      None
- */
-void mEXTI_DisableALL();
-/*----------------------------------------------*/
-
-/**
- * @brief       Disable the External Interrupt INT0
- * @param       [no parameters]
- * @return      None
- */
-void mEXTI0_Disable();
-/*----------------------------------------------*/
-
-/**
- * @brief       Disable the External Interrupt INT1
- * @param [no parameters]
- * @return      None
- */
-void mEXTI1_Disable();
-/*----------------------------------------------*/
-
-
-/**
- * @brief       Disable the External Interrupt INT2
- * @param [no parameters]
- * @return      None
- */
-void mEXTI2_Disable();
-/*----------------------------------------------*/
-
-
+//--------------------------------------
 
 
 /**
