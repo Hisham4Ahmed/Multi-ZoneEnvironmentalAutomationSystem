@@ -1,6 +1,6 @@
 /**
  * @file     EXTI_Config.h
- * @author   <Developer>
+ * @author   <Developer: Mohamed Diaa>
  * @author   <Reviewer>
  * @brief 
  * @version   0.1
@@ -14,4 +14,4 @@
 #define _EXTI_CONFIG_H_
 
 
-#endif  /*_EXTI_CONFIG_H*/
+#endif  
