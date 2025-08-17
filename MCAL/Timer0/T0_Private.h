@@ -34,6 +34,7 @@
 #define inverting 2
 
 /*-----------------------------------------------------------*/
+#define TimerPrescaller0             Timer0Prescaller_64
 #define Timer0Disabled               0
 #define Timer0Prescaller_1           1
 #define Timer0Prescaller_8           2

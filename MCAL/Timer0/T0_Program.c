@@ -20,8 +20,9 @@
     // we need to enable interrupt for compare match -> OCIE0=1
     SetBit(TIMSK_Reg,OCIE0_Bit);
  // we need to select the pre-scalar -> TCCR0_Reg &=0b11111000 don't affect the other bits , Timer0 | prescalar value
+ // to choose the prescaller change the (TimerPrescaller) from the interface to whatever prescaller you want 
  TCCR0_Reg &=248;
- TCCR0_Reg |= (Timer0Prescaller_64) ;
+ TCCR0_Reg |= (TimerPrescaller0) ;
  }
 
  
