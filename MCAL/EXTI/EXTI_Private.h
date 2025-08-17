@@ -17,7 +17,7 @@
  * @def  ISC10  
  * @def  ISC11
  * @def  ISC2 
- * @brief Defining Bits in MCUCR and MCUCST registers To use in choosing (ISC) Interrupt Sense Control Logic For INT0, INT1 and INT2
+ * @brief Defining Bits in MCUCR and MCUCSR registers To use in choosing (ISC) Interrupt Sense Control Logic For INT0, INT1 and INT2
  */
 //INT0
 #define ISC00_Bit    0
@@ -33,7 +33,7 @@
  * @def  INT0  
  * @def  INT1  
  * @def  INT2 
- * @brief Defining Bits in GIFR register To use in choosing (PIE) Peripheral Interrupt Enable For INT0 , INT1 and INT2
+ * @brief Defining Bits in GIFR register To use in choosing (PIE) Peripheral Interrupt Enable For INT0 , INT1 and INT2 (Done by  program)
  */
 #define INT1   7
 #define INT0   6

@@ -15,17 +15,17 @@
 
 
 /**
- * @def SenseControl_Low
- * @def SenseControl_AnyChange
- * @def SenseControl_Falling
- * @def SenseControl_Rising
+ * @def SC_Choice_Low
+ * @def SC_Choice_AnyChange
+ * @def SC_Choice_Falling
+ * @def SC_Choice_Rising
  * @brief Configuring SenseControl Logic Conditions for Each ISR
  */
 
-#define SenseControl_Low        0
-#define SenseControl_AnyChange  1
-#define SenseControl_Falling    2
-#define SenseControl_Rising     3
+#define SC_Choice_Low        0
+#define SC_Choice_AnyChange  1
+#define SC_Choice_Falling    2
+#define SC_Choice_Rising     3
 /**
  * @def SenseControl_INT0
  * @def SenseControl_INT1
@@ -33,9 +33,9 @@
  * @brief Configuring SenseControl value for Each ISR
  */
 
-#define SenseControl_INT0 SenseControl_Low
-#define SenseControl_INT1 SenseControl_Low
-#define SenseControl_INT2 SenseControl_Low
+#define SenseControl_INT0 SC_Choice_Low
+#define SenseControl_INT1 SC_Choice_Low
+#define SenseControl_INT2 SC_Choice_Low
 
 /**
  * @def INT0_Enable
