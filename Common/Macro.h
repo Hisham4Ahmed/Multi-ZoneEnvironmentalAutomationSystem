@@ -45,7 +45,7 @@
 #define ClearFlag(Reg,FlagBit)         SetBit(Reg,FlagBit)
 
 /**
- * @def    ClearFlag
+ * @def    ReadFlag
  * @brief  This Macro is Responsible for 
  */
 #define  ReadFlag(Reg,FlagBit)         GetBit(Reg,FlagBit)  
@@ -94,6 +94,14 @@
 #define FlagDown   0 
 #define FlagUp     1
 
+/**
+ * @def     Enable
+ * @brief   This Macro is Responsible for
+ * @def     Disable
+ * @brief   This Macro is Responsible for
+ */
+#define Enable      1
+#define Disable     0
 
 #endif /* _MACRO_H_ */
 /**
