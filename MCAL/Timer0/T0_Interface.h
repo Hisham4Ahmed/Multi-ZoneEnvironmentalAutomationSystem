@@ -35,7 +35,7 @@ void T0_FastPWM_Mode_Init();
 
 #define CompareValue 250
 
-#define Num_of_Compare_Match 150
+#define Num_of_Compare_Match 1000
 #define Prescalar_value 64
 
 #endif /*_T0_INTERFACE_H_*/

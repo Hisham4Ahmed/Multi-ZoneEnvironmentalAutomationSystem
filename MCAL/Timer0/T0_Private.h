@@ -33,9 +33,14 @@
 #define Non-inverting 1
 #define inverting 2
 
-
-
-
-
+/*-----------------------------------------------------------*/
+#define Timer0Disabled               0
+#define Timer0Prescaller_1           1
+#define Timer0Prescaller_8           2
+#define Timer0Prescaller_64          3
+#define Timer0Prescaller_256         4
+#define Timer0Prescaller_1024        5
+#define Timer0ExternalCLK_Falling	 6
+#define Timer0ExternalCLK_Rising 	 7
 
 #endif /*_T0_PRIVATE_H_*/

@@ -21,7 +21,7 @@
     SetBit(TIMSK_Reg,OCIE0_Bit);
  // we need to select the pre-scalar -> TCCR0_Reg &=0b11111000 don't affect the other bits , Timer0 | prescalar value
  TCCR0_Reg &=248;
- TCCR0_Reg |=Prescalar_value;
+ TCCR0_Reg |= (Timer0Prescaller_64) ;
  }
 
  
@@ -31,7 +31,8 @@ static uint32_t Counts_of_CompareMatch = 0;
 Counts_of_CompareMatch++;
 if (Counts_of_CompareMatch ==Num_of_Compare_Match)
 {
-    // Enter An Action
+    
+    ToggleBit(PINA_Reg,0);
     // clear counts of compare match
     Counts_of_CompareMatch = 0;
 }
