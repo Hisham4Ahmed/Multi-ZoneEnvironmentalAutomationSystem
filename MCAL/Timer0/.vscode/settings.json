@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "registersaddress.h": "c",
+        "macro.h": "c",
+        "t0_private.h": "c",
+        "t0_interface.h": "c",
+        "t0_config.h": "c"
+    }
+}
