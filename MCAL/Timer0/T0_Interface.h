@@ -20,9 +20,22 @@
 /*-------------------------------------------------------------------------------------*/
 /* CTC Mode */
 void T0_CTC_Mode_Init();
+/*
+* @fn       T0_CTC_Mode_Init
+* @brief    This Function is used to initialize CTC Mode , Note1 : Remember To Enable Global Interrupt ,
+* @Note     You can change the prescaler or compare value from the interface 
+* @param    None
+* @return   None
+*/
 
 /*ISR For Compare Match*/
 void __vector_10(void)  __attribute__((signal));
+/*
+* @fn(ISR)    void __vector_10(void)
+* @brief      This Fn(ISR) is used to perform the a speceific action Contained in the Fn implemenetation
+* @param      None
+* @return     None
+*/
 
 /*-------------------------------------------------------------------------------------- */
 /*Fast PWM Mode*/

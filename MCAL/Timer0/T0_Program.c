@@ -10,6 +10,8 @@
  */
 
  #include "T0_Interface.h"
+
+
  void T0_CTC_Mode_Init()
  {
     /* Set the timer mode to CTC-> WGM01=1 and WGM00=0 */
@@ -33,7 +35,9 @@ Counts_of_CompareMatch++;
 if (Counts_of_CompareMatch ==Num_of_Compare_Match)
 {
     
-    ToggleBit(PINA_Reg,0);
+    //Please Enter a Specific Action
+
+    
     // clear counts of compare match
     Counts_of_CompareMatch = 0;
 }
