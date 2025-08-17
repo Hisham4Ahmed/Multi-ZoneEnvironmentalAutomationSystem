@@ -1,33 +1,69 @@
 /**
- * @file     EXTI_Interface.h
- * @author   <Developer>
- * @author   <Reviewer>
- * @brief
- * @version   0.1
- * @date      2025-08-15
+ * @file        EXTI_Interface.h
+ * @author      Develpoer:  Mohamed Diaa
+ * @author      Reviewer:   Hozaifa Ahmed
+ * @brief       External Interrupt Interfacing components
+ * @version     0.2
+ * @date        2025-08-17
  *
  * @copyright Copyright (c) 2025 , Gestell Company
  */
 
-#ifndef _EXTI_INTERFACE_H_  
+#ifndef _EXTI_INTERFACE_H_
 #define _EXTI_INTERFACE_H_
 
+/**
+ * @brief       Enabling the EXTI peripheral Configured in first
+ * @param [no parameters]
+ * @return      None
+ */
+void mEXTI_EnableALLWanted();
 
+/**
+ * @brief       Enabling the EXTI peripheral Configured in first
+ * @param [no parameters]
+ * @return      None
+ */
 
+void mEXTI0_Enable();
+/**
+ * @brief       Enabling the EXTI peripheral Configured in first
+ * @param [no parameters]
+ * @return      None
+ */
+void mEXTI1_Enable();
+/**
+ * @brief       Enabling the EXTI peripheral Configured in first
+ * @param [no parameters]
+ * @return      None
+ */
+void mEXTI2_Enable();
 
+/**
+ * @brief       Disable All the EXTI
+ * @param [no parameters]
+ * @return      None
+ */
+void mEXTI_DisableALL();
+/**
+ * @brief       Disable All the EXTI INT
+ * @param [no parameters]
+ * @return      None
+ */
+void mEXTI0_Disable();
+/**
+ * @brief       Disable All the EXTI INT
+ * @param [no parameters]
+ * @return      None
+ */
+void mEXTI1_Disable();
 
-void mEXTI_EnableALLWanted(); 
-void mEXTI0_Enable(); 
-void mEXTI1_Enable(); 
-void mEXTI2_Enable(); 
-
-
-void mEXTI_DisableALL(); 
-void mEXTI0_Disable(); 
-void mEXTI1_Disable(); 
-void mEXTI2_Disable(); 
-
-
+/**
+ * @brief       Disable All the EXTI INT
+ * @param [no parameters]
+ * @return      None
+ */
+void mEXTI2_Disable();
 
 /**
  * @brief External Interrupt( INT0)
@@ -35,7 +71,6 @@ void mEXTI2_Disable();
  * @return Void
  */
 void __vector_1(void) __attribute__((signal));
-
 
 /**
  * @brief External Interrupt (INT1)
