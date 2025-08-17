@@ -13,75 +13,94 @@
 #define _EXTI_INTERFACE_H_
 
 /**
- * @brief       Enabling the EXTI peripheral Configured in first
- * @param [no parameters]
- * @return      None
- */
-void mEXTI_EnableALLWanted();
-
-/**
- * @brief       Enabling the EXTI peripheral Configured in first
- * @param [no parameters]
+ * @brief       Enabling the External Interrupt INT0
+ * @param       [no parameters]
  * @return      None
  */
 
 void mEXTI0_Enable();
-/**
- * @brief       Enabling the EXTI peripheral Configured in first
- * @param [no parameters]
- * @return      None
- */
-void mEXTI1_Enable();
-/**
- * @brief       Enabling the EXTI peripheral Configured in first
- * @param [no parameters]
- * @return      None
- */
-void mEXTI2_Enable();
+/*----------------------------------------------*/
 
 /**
- * @brief       Disable All the EXTI
- * @param [no parameters]
+ * @brief       Enabling the External Interrupt INT1
+ * @param       [no parameters]
+ * @return      None
+ */
+
+void mEXTI1_Enable();
+/*----------------------------------------------*/
+
+/**
+ * @brief       Enabling the External Interrupt INT2
+ * @param       [no parameters]
+ * @return      None
+ */
+
+void mEXTI2_Enable();
+
+/*----------------------------------------------*/
+
+/**
+ * @brief       Enabling the EXTI peripheral Configured in config.h
+ * @param       [no parameters]
+ * @return      None
+ */
+void mEXTI_EnableALLWanted();
+
+/*----------------------------------------------*/
+
+/**
+ * @brief       Disable All the External Interrupts
+ * @param       [no parameters]
  * @return      None
  */
 void mEXTI_DisableALL();
+/*----------------------------------------------*/
+
 /**
- * @brief       Disable All the EXTI INT
- * @param [no parameters]
+ * @brief       Disable the External Interrupt INT0
+ * @param       [no parameters]
  * @return      None
  */
 void mEXTI0_Disable();
+/*----------------------------------------------*/
+
 /**
- * @brief       Disable All the EXTI INT
+ * @brief       Disable the External Interrupt INT1
  * @param [no parameters]
  * @return      None
  */
 void mEXTI1_Disable();
+/*----------------------------------------------*/
+
 
 /**
- * @brief       Disable All the EXTI INT
+ * @brief       Disable the External Interrupt INT2
  * @param [no parameters]
  * @return      None
  */
 void mEXTI2_Disable();
+/*----------------------------------------------*/
+
+
+
 
 /**
- * @brief External Interrupt( INT0)
+ * @brief External Interrupt( INT0) ISR
  * @param [no parameters]
  * @return Void
  */
 void __vector_1(void) __attribute__((signal));
 
 /**
- * @brief External Interrupt (INT1)
+ * @brief External Interrupt (INT1) ISR
  * @param [no parameters]
  * @return Void
  */
 void __vector_2(void) __attribute__((signal));
 
-
 /**
- * @brief External Interrupt (INT2)
+ * @brief External Interrupt (INT2) ISR
  * @param [no parameters]
  * @return Void
  */

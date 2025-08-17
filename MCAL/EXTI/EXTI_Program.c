@@ -15,6 +15,13 @@
 #include "EXTI_Config.h"
 #include <stdint.h>
 
+/**
+ * @brief       Enabling the External Interrupt INT0
+ * @param       [no parameters]
+ * @return      None
+ */
+
+
 void mEXTI0_Enable()
 {
     // SIE
@@ -37,6 +44,13 @@ void mEXTI0_Enable()
     // Handle Error
 #endif
 }
+/*----------------------------------------------*/
+/**
+ * @brief       Enabling the External Interrupt INT1
+ * @param       [no parameters]
+ * @return      None
+ */
+
 void mEXTI1_Enable()
 {
     // SIE
@@ -59,6 +73,12 @@ void mEXTI1_Enable()
     // Handle Error
 #endif
 }
+/*----------------------------------------------*/
+/**
+ * @brief       Enabling the External Interrupt INT2
+ * @param       [no parameters]
+ * @return      None
+ */
 void mEXTI2_Enable()
 {
     // SIE
@@ -73,7 +93,12 @@ void mEXTI2_Enable()
     // Handle Error
 #endif
 }
-
+/*----------------------------------------------*/
+/**
+ * @brief       Enabling the EXTI peripheral Configured in config.h
+ * @param       [no parameters]
+ * @return      None
+ */
 void mEXTI_EnableALLWanted()
 {
 #if INT0_Enable == 1
@@ -86,6 +111,12 @@ void mEXTI_EnableALLWanted()
     mEXTI2_Enable();
 #endif
 }
+/*----------------------------------------------*/
+/**
+ * @brief       Disable All the External Interrupts
+ * @param       [no parameters]
+ * @return      None
+ */
 void mEXTI_DisableALL()
 {
     // SIE disable
@@ -94,37 +125,80 @@ void mEXTI_DisableALL()
     ClearBit(GICR_Reg, INTF2);
     
 }
+/*----------------------------------------------*/
+
+/**
+ * @brief       Disable the External Interrupt INT0
+ * @param       [no parameters]
+ * @return      None
+ */
 void mEXTI0_Disable()
 {
         ClearBit(GICR_Reg, INTF0);
     
     
 }
+/*----------------------------------------------*/
+
+/**
+ * @brief       Disable the External Interrupt INT1
+ * @param [no parameters]
+ * @return      None
+ */
 void mEXTI1_Disable()
 {
     
         ClearBit(GICR_Reg, INTF1);
 }
+/*----------------------------------------------*/
+/**
+ * @brief       Disable the External Interrupt INT2
+ * @param [no parameters]
+ * @return      None
+ */
 void mEXTI2_Disable()
 {
     
         ClearBit(GICR_Reg, INTF2);
 }
+/*----------------------------------------------*/
 
 
-
+/*---------------------------------------Waiting LDR-------------------------*/
+/**
+ * @brief External Interrupt( INT0) ISR
+ * @param [no parameters]
+ * @return Void
+ */
 void __vector_1(void)
 {
     //action when LDR is finished
-
+/**
+ * @brief External Interrupt( INT0) ISR
+ * @param [no parameters]
+ * @return Void
+ */
 }
+/*----------------------------------------------*/
+/**
+ * @brief External Interrupt( INT1) ISR
+ * @param [no parameters]
+ * @return Void
+ */
 void __vector_2(void)
 {
         //action when LDR is finished
 
 }
+/*----------------------------------------------*/
+/**
+ * @brief External Interrupt( INT2) ISR
+ * @param [no parameters]
+ * @return Void
+ */
 void __vector_3(void)
 {
         //action when LDR is finished
 
 }
+/*----------------------------------------------*/
