@@ -30,9 +30,9 @@
  */
 void mADC_Init() {
     // ADC Interrupt 
-    #if ADC_Interrupt_Status == ADC_INT_Enabled
+    #if ADC_Interrupt_Status == Enabled
         SetBit(ADCSRA_Reg, ADIE_Bit);
-    #elif ADC_Interrupt_Status == ADC_INT_Disabled
+    #elif ADC_Interrupt_Status == Disabled
         ClearBit(ADCSRA_Reg, ADIE_Bit);
     #endif
 

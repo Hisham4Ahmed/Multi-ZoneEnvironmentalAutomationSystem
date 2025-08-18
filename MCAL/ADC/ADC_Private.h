@@ -13,9 +13,6 @@
 #ifndef  _ADC_PRIVATE_H_
 #define  _ADC_PRIVATE_H_
 
-#define ADC_INT_Enabled     1
-#define ADC_INT_Disabled    0
-
 #define AutoTriggerMode     1
 #define SingleMode          0
 

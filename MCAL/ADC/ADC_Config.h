@@ -30,12 +30,12 @@
  * @brief Enable/Disable  ADC Interrupt
  *
  * Options (set this macro to one of them):
- * - ADC_INT_Enabled   : Enable ADC Interrupt
- * - ADC_INT_Disabled  : Disable ADC Interrupt
+ * - Enabled   : Enable ADC Interrupt
+ * - Disabled  : Disable ADC Interrupt
  * 
  * @note also enable GIE to use ADC Interrupt
  */
-#define ADC_Interrupt_Status    ADC_INT_Disabled
+#define ADC_Interrupt_Status    Disabled
 
 /**
  * @def ADC_ModeSelect
