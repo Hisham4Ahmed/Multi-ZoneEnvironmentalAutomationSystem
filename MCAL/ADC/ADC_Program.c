@@ -10,7 +10,8 @@
  * - Initialization of the ADC with user-defined configurations
  * - Single conversion mode function
  * - ADC disable function
- *
+ * - ADC Conversion Complete Interrupt Service Routine (ISR)
+ * 
  * The functions are designed to work with configuration macros defined
  * in the corresponding header files.
  * 
@@ -128,4 +129,18 @@ uint16_t mADC_SingleModeConversion(uint8_t Channel) {
  */
 void mADC_Disable() {
     ClearBit(ADCSRA_Reg, ADEN_Bit);
+}
+
+/**
+ * @fn void __vector_16(void)
+ * @brief ADC Conversion Complete Interrupt Service Routine.
+ *
+ * This ISR is triggered when the ADC finishes a conversion.
+ * It handles the ADC interrupt for channel readings or 
+ * any user-defined ADC-related actions.
+ *
+ * @note This corresponds to vector 16 in the interrupt table.
+ */
+void __vector_16(void) {
+    // Action
 }

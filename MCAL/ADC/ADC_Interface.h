@@ -11,6 +11,7 @@
  * - Initialize the ADC with user-defined configurations
  * - Perform single conversion mode readings
  * - Enable or disable the ADC peripheral
+ * - Handle ADC Conversion Complete interrupts via the ISR prototype
  * 
  * @note This is the only ADC header file that should be included
  *       in application-level code. Other headers 
@@ -30,5 +31,6 @@
 void mADC_Init();
 void mADC_Disable();
 uint16_t mADC_SingleModeConversion(uint8_t Channel);
+void __vector_16(void) __attribute__((signal));
 
 #endif /*_ADC_INTERFACE_H_*/
