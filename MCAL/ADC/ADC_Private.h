@@ -2,7 +2,7 @@
  * @file     ADC_Private.h
  * @author   Mohammed Atif
  * @author   Mohammed Diaa
- * @brief 
+ * @brief    Internal definitions and register mappings for the ADC driver.
  * @version   0.1
  * @date      2025-08-15
  * 

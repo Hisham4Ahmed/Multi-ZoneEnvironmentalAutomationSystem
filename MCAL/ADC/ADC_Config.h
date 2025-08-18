@@ -2,7 +2,7 @@
  * @file     ADC_Config.h
  * @author   Mohammed Atif
  * @author   Mohammed Diaa
- * @brief     
+ * @brief    User configuration file for the ADC driver.
  * @version   0.1
  * @date      2025-08-15
  * 

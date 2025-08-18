@@ -2,16 +2,22 @@
  * @file     ADC_Program.c
  * @author   Mohammed Atif
  * @author   Mohammed Diaa
- * @brief 
- * @version   0.1
- * @date      2025-08-15
+ * @brief    ADC driver implementation for AVR microcontrollers (ATmega32).
+ * @version  0.1
+ * @date     2025-08-15
+ *
+ * This file provides the implementation of the ADC driver, including:
+ * - Initialization of the ADC with user-defined configurations
+ * - Single conversion mode function
+ * - ADC disable function
+ *
+ * The functions are designed to work with configuration macros defined
+ * in the corresponding header files.
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
 
 #include "ADC_Interface.h"
-
-
 
 /**
  * @fn void mADC_Init(void)
@@ -66,11 +72,49 @@ void mADC_Init() {
     SetBit(ADCSRA_Reg, ADEN_Bit);
 }
 
+/**
+ * @fn uint16_t mADC_SingleModeConversion(uint8_t Channel)
+ * 
+ * @brief Performs a single ADC conversion on a given channel.
+ *
+ * This function selects the desired ADC channel, starts a single 
+ * conversion, waits until the conversion is complete, and then 
+ * returns the digital result.
+ *
+ * @param Channel ADC input channel number (0–7).
+ *                Only the lower 3 bits are considered.
+ *
+ * @return uint16_t 
+ *         The digital value of the conversion (10-bit result).
+ *
+ * @note The function clears the ADC interrupt flag (ADIF) manually 
+ *       if ADC interrupts are disabled.
+ *
+ * @warning The ADC must be initialized and enabled before calling 
+ *          this function.
+ */
 uint16_t mADC_SingleModeConversion(uint8_t Channel) {
-    // Select Channel
+    // Select Channel (Must be set before starting conversion)
         // MUX4:0 in ADMUX
-}
+    Channel &= (0x07);
+    ADMUX_Reg &= (0xE0);
+    ADMUX_Reg |= Channel;
 
+    // Start Conversion
+        // ADSC in ADCSRA
+    SetBit(ADCSRA_Reg, ADSC_Bit);
+
+    // Wait until ADIF is set (crucial for changing channels)
+    while (GetBit(ADCSRA_Reg, ADIF_Bit) == FlagDown){}
+    
+    // Clear flag
+    #if ADC_Interrupt_Status == Disabled
+        ClearFlag(ADCSRA_Reg, ADIF_Bit);
+    #endif
+
+    // Read ADCH and ADCL
+    return ADCData_Reg;    
+}
 
 /**
  * @fn void mADC_Disable(void)
