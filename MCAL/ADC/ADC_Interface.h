@@ -27,11 +27,12 @@
 #include "../RegistersAddress.h"
 #include "../../Common/Macro.h"
 #include "ADC_Config.h"
-
+  
 void mADC_Init();
 void mADC_Disable();
 void mADC_Enable();
 uint16_t mADC_SingleModeConversion(uint8_t Channel);
+uint16_t mADC_ReadValue();
 void __vector_16(void) __attribute__((signal));
 
 #endif /*_ADC_INTERFACE_H_*/

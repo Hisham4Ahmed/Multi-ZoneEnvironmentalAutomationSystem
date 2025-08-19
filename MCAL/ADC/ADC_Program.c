@@ -47,7 +47,7 @@ void mADC_Init() {
         // REFSn bits in the ADMUX
     ADMUX_Reg &= (ADMUX_Reg_REFSnBits_Mask);
     ADMUX_Reg |= Volt_Ref_Select;
-    
+      
     // Select Mode : single/auto trigger mode
         // ADATE in ADCSRA
     #if ADC_ModeSelect == SingleMode
@@ -97,7 +97,7 @@ void mADC_Init() {
 uint16_t mADC_SingleModeConversion(uint8_t Channel) {
     // Select Channel (Must be set before starting conversion)
         // MUX4:0 in ADMUX
-    Channel &= (0x07);
+    Channel &= (ChannelBitMask);
     ADMUX_Reg &= (ADMUX_Reg_MUXnBits_Mask); 
     ADMUX_Reg |= Channel;
     // Start Conversion
@@ -113,6 +113,15 @@ uint16_t mADC_SingleModeConversion(uint8_t Channel) {
 
     // Read ADCH and ADCL
     return ADCData_Reg;    
+}
+
+/**
+ * @fn uint16_t mADC_ReadValue()
+ * @brief Read the Converted Data from the ADC Data register
+ *
+ */
+uint16_t mADC_ReadValue(){
+    return ADCData_Reg;
 }
 
 /**
