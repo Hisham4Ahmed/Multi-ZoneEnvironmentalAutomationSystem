@@ -30,8 +30,7 @@
 #define TOV0_Bit   0
 #define OCF0_Bit   1
 
-#define Non_inverting 1
-#define inverting 2
+
 
 /*-----------------------------------------------------------*/
 

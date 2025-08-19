@@ -22,7 +22,7 @@
 /** 
 * @fn       T0_CTC_Mode_Init
 * @brief    This Function is used to initialize Timer0 on CTC Mode 
-* @Note     You can change the prescaler or compare value from the Config.h 
+* @note     You can change the prescaler or compare value from the Config.h 
 */
 
 void T0_CTC_Mode_Init();
@@ -34,17 +34,15 @@ void T0_CTC_Mode_Init();
 * @note       Remember To Enable Global Interrupt 
 */
 
-
-/*ISR For Compare Match*/
 void __vector_10(void)  __attribute__((signal));
 
 /*-------------------------------------------------------------------------------------- */
 /** 
 * @fn       T0_FastPWM_Mode_Init
 * @brief    This Function is used to initialize Timer0 on Fast PWM Mode
-* @Note     You can change the prescaler or duty cycle or output type from the interface 
+* @note     You can change the prescaler or duty cycle or output type from the interface 
 */
-/*Fast PWM Mode*/
+
 void T0_FastPWM_Mode_Init();
 
 /*------------------------------------------------*/

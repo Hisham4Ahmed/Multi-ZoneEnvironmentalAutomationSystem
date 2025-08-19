@@ -30,25 +30,45 @@
 /*----------------------------------------------------*/
 
 /*T0_FastPWM_Mode*/
+
+#define Non_inverting 1
+#define inverting 2
 #define FastPWM_OutputType   Non_inverting
 #define Timer0_InitDutyCycle  80
+/**
+ * @def inverting
+ * @brief Sets the timer output type to inverting mode
+ */
+
+
+
 /**  
-*@param outputtype: determines whether the output type is (inverting or non inverting)
-*@options : Non_inverting , inverting
+*@def Non_inverting
+*@brief Sets the timer output type to Non inverting mode
 */
+
 /*T0_CTC_Mode*/
 
 /** 
 *@brief These Macros are used to calculate the time that the timer works
-*@clk time = 1/F_CPU =0.125*(10^-6)
-*@devide your time on a number between 50~250 which gets you an integer
-*@set the comparevalue to the divided by value (the value between 50~250)
-*@set Num_of_Compare_Match to the division Result
+*@details :
+clk time = 1/F_CPU =0.125*(10^-6)
+devide your time on a number between 50~250 which gets you an integer
+set the comparevalue to the divided by value (the value between 50~250)
+set Num_of_Compare_Match to the division Result
 */
-#define CompareValue 250
 
+/**
+ * @def CompareValue 
+ * @brief number of clocks must be spent before the flag is set
+ */
+#define CompareValue 250
+/**
+ * @def Num_of_Compare_Match
+ * @brief Number of times the timer flag must be set 
+ */
 #define Num_of_Compare_Match 1000
-#define Prescalar_value 64
+
 
 
 #endif /*_T0_CONFIG_H_*/
