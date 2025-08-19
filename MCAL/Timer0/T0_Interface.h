@@ -53,14 +53,9 @@ void mTimer0_ChangeDutyCycle(uint8_t DutyCycle,uint8_t ActionType );
 *
 */ 
 
-#define FastPWM_OutputType   Non_inverting
-#define Timer0_InitDutyCycle  80
 
 /*---------------------------------------------------------------------------------------*/
 
-#define CompareValue 250
 
-#define Num_of_Compare_Match 1000
-#define Prescalar_value 64
 
 #endif /*_T0_INTERFACE_H_*/

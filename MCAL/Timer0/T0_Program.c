@@ -91,7 +91,7 @@ void mTimer0_ChangeDutyCycle(uint8_t DutyCycle,uint8_t ActionType )
 	{
 		// Compare High on OC0 & Top Low On OC0 > inverting
 		// Compare Value = 2^n*(1-DutyCycle/100)
-		CompareValue_PWM= 256 * (1-DutyCycle/100);
+		CompareValue_PWM= 256 * (1-DutyCycle/100.0);
 	}
 	OCR0_Reg = CompareValue_PWM;
 
