@@ -110,12 +110,6 @@ uint16_t mADC_SingleModeConversion(uint8_t Channel) {
         // ADSC in ADCSRA
     SetBit(ADCSRA_Reg, ADSC_Bit);
 
-    // Wait until ADIF is set (crucial for changing channels)
-     /**
-     * @author  Mohammed Diaa
-     * @bug the while loop condition is set to flagdown and it must wait while it is up not while it is down
-     * 
-     *  */ 
     while (GetBit(ADCSRA_Reg, ADIF_Bit) == FlagDown){}
     
     // Clear flag
