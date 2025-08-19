@@ -97,11 +97,6 @@ void mADC_Init() {
 uint16_t mADC_SingleModeConversion(uint8_t Channel) {
     // Select Channel (Must be set before starting conversion)
         // MUX4:0 in ADMUX
-    /**
-     * @author  Mohammed Diaa
-     * @bug you made it single ended only in this way and You are using magic number
-     * better to make the number ==0x1F to make all mux availble Do not use magic Number you can call it bit mask for channel and 0xE0 bitmaskforADMUX
-     *  */ 
     Channel &= (0x07);
     ADMUX_Reg &= (ADMUX_Reg_MUXnBits_Mask); 
     ADMUX_Reg |= Channel;
@@ -119,8 +114,6 @@ uint16_t mADC_SingleModeConversion(uint8_t Channel) {
     // Read ADCH and ADCL
     return ADCData_Reg;    
 }
-
-// AutoTrigger Function
 
 /**
  * @fn void mADC_Disable(void)
