@@ -30,6 +30,7 @@
 
 void mADC_Init();
 void mADC_Disable();
+void mADC_Enable();
 uint16_t mADC_SingleModeConversion(uint8_t Channel);
 void __vector_16(void) __attribute__((signal));
 

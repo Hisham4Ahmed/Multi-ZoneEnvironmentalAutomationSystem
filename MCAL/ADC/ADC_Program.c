@@ -38,7 +38,6 @@
 void mADC_Init() {
     // ADC Interrupt 
     #if ADC_Interrupt_Status == Enabled 
-    
         SetBit(ADCSRA_Reg, ADIE_Bit);
     #elif ADC_Interrupt_Status == Disabled 
         ClearBit(ADCSRA_Reg, ADIE_Bit);
@@ -103,7 +102,7 @@ uint16_t mADC_SingleModeConversion(uint8_t Channel) {
      * @bug you made it single ended only in this way and You are using magic number
      * better to make the number ==0x1F to make all mux availble Do not use magic Number you can call it bit mask for channel and 0xE0 bitmaskforADMUX
      *  */ 
-    Channel &= (0x07); 
+    Channel &= (0x07);
     ADMUX_Reg &= (0xE0); 
     ADMUX_Reg |= Channel;
     // Start Conversion
@@ -121,6 +120,8 @@ uint16_t mADC_SingleModeConversion(uint8_t Channel) {
     return ADCData_Reg;    
 }
 
+// AutoTrigger Function
+
 /**
  * @fn void mADC_Disable(void)
  *
@@ -133,6 +134,17 @@ uint16_t mADC_SingleModeConversion(uint8_t Channel) {
  */
 void mADC_Disable() {
     ClearBit(ADCSRA_Reg, ADEN_Bit);
+}
+
+/**
+ * @fn void mADC_Enable(void)
+ *
+ * @brief Enable the ADC .
+ *        Sets the ADEN_Bit in ADCSRA_Reg to disable the ADC.
+ * 
+ */
+void mADC_Enable() {
+    SetBit(ADCSRA_Reg, ADEN_Bit);
 }
 
 /**
