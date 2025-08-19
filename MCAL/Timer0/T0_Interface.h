@@ -19,30 +19,36 @@
 #include <stdint.h>
 /*-------------------------------------------------------------------------------------*/
 /* CTC Mode */
-void T0_CTC_Mode_Init();
-/*
+/** 
 * @fn       T0_CTC_Mode_Init
 * @brief    This Function is used to initialize Timer0 on CTC Mode 
 * @Note     You can change the prescaler or compare value from the interface , Remember To Enable Global Interrupt 
 */
 
-/*ISR For Compare Match*/
-void __vector_10(void)  __attribute__((signal));
-/*
+void T0_CTC_Mode_Init();
+/*--------------------------------------------------*/
+
+/** 
 * @fn(ISR)    void __vector_10(void)
 * @brief      This Fn(ISR) is used to perform the a speceific action Contained in the Fn implemenetation
 */
 
+
+/*ISR For Compare Match*/
+void __vector_10(void)  __attribute__((signal));
+
 /*-------------------------------------------------------------------------------------- */
-/*Fast PWM Mode*/
-void T0_FastPWM_Mode_Init();
-/*
+/** 
 * @fn       T0_FastPWM_Mode_Init
 * @brief    This Function is used to initialize Timer0 on Fast PWM Mode
 * @Note     You can change the prescaler or duty cycle or output type from the interface 
 */
-void mTimer0_ChangeDutyCycle(uint8_t DutyCycle,uint8_t ActionType );
-/*
+/*Fast PWM Mode*/
+void T0_FastPWM_Mode_Init();
+
+/*------------------------------------------------*/
+
+/** 
 * @fn       mTimer0_ChangeDutyCycle
 * @brief    This Function is used to Change The Duty Cycle of the timer
 * @param    DutyCycle : The Value Of The Duty Cycle , options (0~100)
@@ -52,6 +58,9 @@ void mTimer0_ChangeDutyCycle(uint8_t DutyCycle,uint8_t ActionType );
                                     -Non-inverting
 *
 */ 
+
+void mTimer0_ChangeDutyCycle(uint8_t DutyCycle,uint8_t ActionType );
+
 
 
 /*---------------------------------------------------------------------------------------*/
