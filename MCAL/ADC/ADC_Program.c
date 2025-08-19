@@ -37,9 +37,10 @@
  */
 void mADC_Init() {
     // ADC Interrupt 
-    #if ADC_Interrupt_Status == Enabled
+    #if ADC_Interrupt_Status == Enabled 
+    
         SetBit(ADCSRA_Reg, ADIE_Bit);
-    #elif ADC_Interrupt_Status == Disabled
+    #elif ADC_Interrupt_Status == Disabled 
         ClearBit(ADCSRA_Reg, ADIE_Bit);
     #endif
 
@@ -52,7 +53,7 @@ void mADC_Init() {
         // ADATE in ADCSRA
     #if ADC_ModeSelect == SingleMode
         ClearBit(ADCSRA_Reg, ADATE_Bit);
-    #elif ADC_ModeSelect == AutoTriggerMode
+    #elif ADC_ModeSelect == AutoTriggerMode 
         SetBit(ADCSRA_Reg, ADATE_Bit);
         // Set Auto Trigger Source
         SFIOR_Reg &= (0x1F);
@@ -65,7 +66,7 @@ void mADC_Init() {
         
     // Prescaler
         //  ADPS bits in ADCSRA
-    ADCSRA_Reg &= (0xF8);
+    ADCSRA_Reg &= (0xF8); // okay 
     ADCSRA_Reg |= ADC_PrescalerSelection;    
     
     // ADC Enable 
@@ -97,15 +98,24 @@ void mADC_Init() {
 uint16_t mADC_SingleModeConversion(uint8_t Channel) {
     // Select Channel (Must be set before starting conversion)
         // MUX4:0 in ADMUX
-    Channel &= (0x07);
-    ADMUX_Reg &= (0xE0);
+    /**
+     * @author  Mohammed Diaa
+     * @bug you made it single ended only in this way and You are using magic number
+     * better to make the number ==0x1F to make all mux availble Do not use magic Number you can call it bit mask for channel and 0xE0 bitmaskforADMUX
+     *  */ 
+    Channel &= (0x07); 
+    ADMUX_Reg &= (0xE0); 
     ADMUX_Reg |= Channel;
-
     // Start Conversion
         // ADSC in ADCSRA
     SetBit(ADCSRA_Reg, ADSC_Bit);
 
     // Wait until ADIF is set (crucial for changing channels)
+     /**
+     * @author  Mohammed Diaa
+     * @bug the while loop condition is set to flagdown and it must wait while it is up not while it is down
+     * 
+     *  */ 
     while (GetBit(ADCSRA_Reg, ADIF_Bit) == FlagDown){}
     
     // Clear flag
