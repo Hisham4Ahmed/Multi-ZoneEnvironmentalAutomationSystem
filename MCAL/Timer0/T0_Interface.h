@@ -1,7 +1,7 @@
 /**
  * @file     T0_Interface.h
- * @author   <Developer>
- * @author   <Reviewer>
+ * @author   Ahmed Ashraf
+ * @author   Mohamed Atif
  * @brief 
  * @version   0.1
  * @date      2025-08-15
@@ -22,7 +22,7 @@
 /** 
 * @fn       T0_CTC_Mode_Init
 * @brief    This Function is used to initialize Timer0 on CTC Mode 
-* @Note     You can change the prescaler or compare value from the interface , Remember To Enable Global Interrupt 
+* @Note     You can change the prescaler or compare value from the Config.h 
 */
 
 void T0_CTC_Mode_Init();
@@ -31,6 +31,7 @@ void T0_CTC_Mode_Init();
 /** 
 * @fn(ISR)    void __vector_10(void)
 * @brief      This Fn(ISR) is used to perform the a speceific action Contained in the Fn implemenetation
+* @note       Remember To Enable Global Interrupt 
 */
 
 

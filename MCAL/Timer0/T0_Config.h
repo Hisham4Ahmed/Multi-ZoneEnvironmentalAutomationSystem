@@ -1,7 +1,7 @@
 /**
  * @file     T0_Config.h
- * @author   <Developer>
- * @author   <Reviewer>
+ * @author   Ahmed Ashraf
+ * @author   Mohamed Atif
  * @brief 
  * @version   0.1
  * @date      2025-08-15
