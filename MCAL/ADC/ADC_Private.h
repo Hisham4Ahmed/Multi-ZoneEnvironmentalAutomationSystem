@@ -113,4 +113,13 @@ typedef enum {
 #define ADTS1_Bit   6
 #define ADTS2_Bit   7
 
+/**
+ * @brief Specific Bits Mask
+ */
+#define ADMUX_Reg_REFSnBits_Mask 0xFC
+#define ADMUX_Reg_MUXnBits_Mask 0xE0
+#define SFIOR_RegBitMask 0x1F
+#define ADCSRA_RegBitMask 0xF8
+#define ChannelBitMask 0x07
+
 #endif  /*_ADC_PRIVATE_H_*/

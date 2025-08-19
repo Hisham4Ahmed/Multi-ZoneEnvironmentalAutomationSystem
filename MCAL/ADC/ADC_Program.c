@@ -45,7 +45,7 @@ void mADC_Init() {
 
     // Select Ref source
         // REFSn bits in the ADMUX
-    ADMUX_Reg &= (0xFC);
+    ADMUX_Reg &= (ADMUX_Reg_REFSnBits_Mask);
     ADMUX_Reg |= Volt_Ref_Select;
     
     // Select Mode : single/auto trigger mode
@@ -55,7 +55,7 @@ void mADC_Init() {
     #elif ADC_ModeSelect == AutoTriggerMode 
         SetBit(ADCSRA_Reg, ADATE_Bit);
         // Set Auto Trigger Source
-        SFIOR_Reg &= (0x1F);
+        SFIOR_Reg &= (SFIOR_RegBitMask);
         SFIOR_Reg |= (ADC_TriggerSrcSelection << 5);
     #endif
         
@@ -65,7 +65,7 @@ void mADC_Init() {
         
     // Prescaler
         //  ADPS bits in ADCSRA
-    ADCSRA_Reg &= (0xF8); // okay 
+    ADCSRA_Reg &= (ADCSRA_RegBitMask);
     ADCSRA_Reg |= ADC_PrescalerSelection;    
     
     // ADC Enable 
@@ -103,7 +103,7 @@ uint16_t mADC_SingleModeConversion(uint8_t Channel) {
      * better to make the number ==0x1F to make all mux availble Do not use magic Number you can call it bit mask for channel and 0xE0 bitmaskforADMUX
      *  */ 
     Channel &= (0x07);
-    ADMUX_Reg &= (0xE0); 
+    ADMUX_Reg &= (ADMUX_Reg_MUXnBits_Mask); 
     ADMUX_Reg |= Channel;
     // Start Conversion
         // ADSC in ADCSRA
