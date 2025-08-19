@@ -31,21 +31,19 @@
 
 /*T0_FastPWM_Mode*/
 
-#define Non_inverting 1
-#define inverting 2
-#define FastPWM_OutputType   Non_inverting
-#define Timer0_InitDutyCycle  80
 /**
- * @def inverting
- * @brief Sets the timer output type to inverting mode
+ * @def FastPWM_OutputType
+ * @brief determines the output type and the options are
+            1-inverting
+            2-Non_inverting
  */
+#define FastPWM_OutputType   Non_inverting
+/**
+ * @def Timer0_InitDutyCycle
+ * @brief presents the percentage of the value of the signal transmitted in Fast PWM
+ */
+#define Timer0_InitDutyCycle  80
 
-
-
-/**  
-*@def Non_inverting
-*@brief Sets the timer output type to Non inverting mode
-*/
 
 /*T0_CTC_Mode*/
 

@@ -42,5 +42,22 @@
 #define Timer0Prescaller_1024        5
 #define Timer0ExternalCLK_Falling	 6
 #define Timer0ExternalCLK_Rising 	 7
+/*----------------------------------------------------------*/
+
+/**
+ * @def inverting
+ * @brief Sets the timer output type to inverting mode
+ */
+
+
+
+/**  
+*@def Non_inverting
+*@brief Sets the timer output type to Non inverting mode
+*/
+
+#define Non_inverting 1
+#define inverting 2
+
 
 #endif /*_T0_PRIVATE_H_*/
