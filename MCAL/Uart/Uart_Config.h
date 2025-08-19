@@ -74,6 +74,7 @@
  *     Normal speed: UBRR=((Freq)/16*BaudRate)-1
  *     double speed: UBRR=((Freq)/8*BaudRate)-1
  * According to Double Speed, UBRR value = 103.1667
+ * According to Normal Speed, UBRR value = 51
  */
 #define UBRR_Value   103
 
@@ -81,6 +82,6 @@
  * @note this drive supports only polling for Tx
  *       while it supports polling or interrupt for Rx
  */
-#define RxHandling   RxInterrupt
+#define RxHandling   RxPolling
 
 #endif /*_UART_CONFIG_H_*/
