@@ -1,10 +1,10 @@
 /**
  * @file     EXTI_Program.c
- * @author   <Developer>
- * @author   <Reviewer>
+ * @author   <Developer: Mohamed Diaa>
+ * @author   <Reviewer:  Hozifah Ahmed>
  * @brief
- * @version   0.1
- * @date      2025-08-15
+ * @version   0.2
+ * @date      2025-08-21
  *
  * @copyright Copyright (c) 2025 , Gestell Company
  */
@@ -15,10 +15,10 @@
 #include "EXTI_Config.h"
 #include <stdint.h>
 
-static void (*mEXTI0_Global)(void)=NULL;
+static void (*mEXTI0_Global)(void)=Null;
 void mEXTI0_CallBack(void (*PF)(void))
 {
-    if (PF!=NULL)
+    if (PF!=Null)
     {
         mEXTI0_Global=PF;
     }
@@ -28,10 +28,10 @@ void mEXTI0_CallBack(void (*PF)(void))
     }
     
 }
-static void (*mEXTI1_Global)(void)=NULL;
+static void (*mEXTI1_Global)(void)=Null;
 void mEXTI1_CallBack(void (*PF)(void))
 {
-    if (PF!=NULL)
+    if (PF!=Null)
     {
         mEXTI1_Global=PF;
     }
@@ -41,10 +41,10 @@ void mEXTI1_CallBack(void (*PF)(void))
     }
     
 }
-static void (*mEXTI2_Global)(void)=NULL;
+static void (*mEXTI2_Global)(void)=Null;
 void mEXTI2_CallBack(void (*PF)(void))
 {
-    if (PF!=NULL)
+    if (PF!=Null)
     {
         mEXTI2_Global=PF;
     }
