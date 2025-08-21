@@ -13,11 +13,29 @@
  #include "../../Common/Macro.h"
  #include "../RegistersAddress.h"
 
+
  /**
-  * @note This is a declaration of a global variable 
-  *       That will be used in RX complete interrupt.
-  */
-volatile uint16_t RxBuffer=0;
+ * @note this is a Global pointer to function to carry 
+ *       the PointerFunc called by ISR
+ */
+static void (*RxGlobal)(uint16_t Data)= Null;
+
+/**
+ * @fn This is the call back function for Uart driver.
+ */
+void mUart_CallBack(void(*PointerFunc)())
+{
+	if (PointerFunc!=Null)
+	{
+		RxGlobal=PointerFunc;
+		SetBit(UCSRB_Reg, RXCIE_Bit);
+	}
+	else 
+	{
+		// Do Nothing
+	}
+	
+}
 
 /**
  * @fn this function will initialize USART
@@ -244,7 +262,7 @@ volatile uint16_t RxBuffer=0;
  *                    1) wait until data is received (RXC flag in UCSRA)
  *                    2) read data from UDR register
  *         if interrupt
- *                    1) Data will be read inside ISR and stored in a global buffer (RxBuffer)
+ *                    1) ISR will be executed by call back function
  */
 
  uint16_t USART_Receive()
@@ -261,8 +279,6 @@ volatile uint16_t RxBuffer=0;
 
       return RxData;
    #elif RxHandling==RxInterrupt
-
-      return RxBuffer; 
 
    #endif
  }
@@ -284,6 +300,7 @@ void __vector_13(void)
       RxData = UDR_Reg;
    #endif
 
-    RxBuffer = RxData;
+    RxGlobal(RxData);
+    ClearBit(UCSRB_Reg, RXCIE_Bit);
 }
 
