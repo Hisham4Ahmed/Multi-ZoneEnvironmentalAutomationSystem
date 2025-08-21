@@ -1,7 +1,7 @@
 /**
  * @file     DIO_Program.c
- * @author   <Hozifa Ahmed>
- * @author   <Naira Mohamed>
+ * @author   Hozifa Ahmed
+ * @author   Naira Mohamed
  * @brief    Digital Input/Output Driver Implementation
  * @version  0.2
  * @date     2025-08-21
@@ -9,10 +9,15 @@
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
 #include "DIO_Interface.h"
+#include "DIO_Private.h"
 #include "../../Common/Macro.h"
 #include "../../MCAL/RegistersAddress.h"
 
 /* ========== PIN APIs ========== */
+
+/**
+ * @brief  Configure single pin direction
+ */
 void DIO_Direction_Pin(uint8_t GroupName , uint8_t PinNumber , uint8_t DirectionState)
 {
     if (PinNumber >= Pin0 && PinNumber <= Pin7)
@@ -25,6 +30,7 @@ void DIO_Direction_Pin(uint8_t GroupName , uint8_t PinNumber , uint8_t Direction
                 case GroupB: SetBit(DDRB_Reg, PinNumber); break;
                 case GroupC: SetBit(DDRC_Reg, PinNumber); break;
                 case GroupD: SetBit(DDRD_Reg, PinNumber); break;
+                default: break;
             }
         }
         else if (DirectionState == DIO_Input)
@@ -35,11 +41,23 @@ void DIO_Direction_Pin(uint8_t GroupName , uint8_t PinNumber , uint8_t Direction
                 case GroupB: ClearBit(DDRB_Reg, PinNumber); break;
                 case GroupC: ClearBit(DDRC_Reg, PinNumber); break;
                 case GroupD: ClearBit(DDRD_Reg, PinNumber); break;
+                default: break;
             }
         }
+        else
+        {
+            /* Do nothing */
+        }
+    }
+    else
+    {
+        /* Do nothing */
     }
 }
 
+/**
+ * @brief  Write logic value to single pin
+ */
 void DIO_Write_Pin(uint8_t GroupName ,  uint8_t PinNumber , uint8_t OutputType)
 {
     if (PinNumber >= Pin0 && PinNumber <= Pin7)
@@ -52,6 +70,7 @@ void DIO_Write_Pin(uint8_t GroupName ,  uint8_t PinNumber , uint8_t OutputType)
                 case GroupB: SetBit(PORTB_Reg, PinNumber); break;
                 case GroupC: SetBit(PORTC_Reg, PinNumber); break;
                 case GroupD: SetBit(PORTD_Reg, PinNumber); break;
+                default: break;
             }
         }
         else if (OutputType == DIO_Low)
@@ -62,11 +81,23 @@ void DIO_Write_Pin(uint8_t GroupName ,  uint8_t PinNumber , uint8_t OutputType)
                 case GroupB: ClearBit(PORTB_Reg, PinNumber); break;
                 case GroupC: ClearBit(PORTC_Reg, PinNumber); break;
                 case GroupD: ClearBit(PORTD_Reg, PinNumber); break;
+                default: break;
             }
         }
+        else
+        {
+            /* Do nothing */
+        }
+    }
+    else
+    {
+        /* Do nothing */
     }
 }
 
+/**
+ * @brief  Read logic value from single pin
+ */
 uint8_t DIO_Read_Pin(uint8_t GroupName, uint8_t PinNumber)
 {
     uint8_t InputValue = 0;
@@ -78,13 +109,18 @@ uint8_t DIO_Read_Pin(uint8_t GroupName, uint8_t PinNumber)
             case GroupB: InputValue = GetBit(PINB_Reg, PinNumber); break;
             case GroupC: InputValue = GetBit(PINC_Reg, PinNumber); break;
             case GroupD: InputValue = GetBit(PIND_Reg, PinNumber); break;
+            default: break;
         }
+    }
+    else
+    {
+        /* Do nothing */
     }
     return InputValue;
 }
 
 /**
- * @brief Toggle pin logic value
+ * @brief  Toggle pin logic value
  */
 void DIO_Toggle_Pin(uint8_t GroupName , uint8_t PinNumber)
 {
@@ -96,11 +132,20 @@ void DIO_Toggle_Pin(uint8_t GroupName , uint8_t PinNumber)
             case GroupB: ToggleBit(PORTB_Reg, PinNumber); break;
             case GroupC: ToggleBit(PORTC_Reg, PinNumber); break;
             case GroupD: ToggleBit(PORTD_Reg, PinNumber); break;
+            default: break;
         }
+    }
+    else
+    {
+        /* Do nothing */
     }
 }
 
 /* ========== GROUP APIs ========== */
+
+/**
+ * @brief  Set direction for whole port
+ */
 void DIO_Direction_Group(uint8_t GroupName , uint8_t DirectionValue)
 {
     switch (GroupName)
@@ -109,9 +154,13 @@ void DIO_Direction_Group(uint8_t GroupName , uint8_t DirectionValue)
         case GroupB: DDRB_Reg = DirectionValue; break;
         case GroupC: DDRC_Reg = DirectionValue; break;
         case GroupD: DDRD_Reg = DirectionValue; break;
+        default: break;
     }
 }
 
+/**
+ * @brief  Write value to whole port
+ */
 void DIO_Write_Group(uint8_t GroupName ,  uint8_t OutputValue)
 {
     switch (GroupName)
@@ -120,9 +169,13 @@ void DIO_Write_Group(uint8_t GroupName ,  uint8_t OutputValue)
         case GroupB: PORTB_Reg = OutputValue; break;
         case GroupC: PORTC_Reg = OutputValue; break;
         case GroupD: PORTD_Reg = OutputValue; break;
+        default: break;
     }
 }
 
+/**
+ * @brief  Read value from whole port
+ */
 uint8_t DIO_Read_Group(uint8_t GroupName)
 {
     uint8_t InputValue = 0;
@@ -132,6 +185,7 @@ uint8_t DIO_Read_Group(uint8_t GroupName)
         case GroupB: InputValue = PINB_Reg; break;
         case GroupC: InputValue = PINC_Reg; break;
         case GroupD: InputValue = PIND_Reg; break;
+        default: break;
     }
     return InputValue;
 }

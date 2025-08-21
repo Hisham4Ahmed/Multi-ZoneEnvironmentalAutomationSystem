@@ -1,7 +1,7 @@
 /**
  * @file     DIO_Interface.h
- * @author   <Hozifa Ahmed>
- * @author   <Naira Mohamed>
+ * @author   Hozifa Ahmed
+ * @author   Naira Mohamed
  * @brief    Digital Input/Output Driver Interface
  * @version  0.2
  * @date     2025-08-21
@@ -14,29 +14,7 @@
 
 #include <stdint.h>
 
-/* ------------------- Group Macros ------------------- */
-#define GroupA   1
-#define GroupB   2
-#define GroupC   3
-#define GroupD   4
 
-/* ------------------- Pin Macros ------------------- */
-#define Pin0       0
-#define Pin1       1
-#define Pin2       2
-#define Pin3       3
-#define Pin4       4
-#define Pin5       5
-#define Pin6       6
-#define Pin7       7
-
-/* ------------------- Direction Macros ------------------- */
-#define DIO_Input  0
-#define DIO_Output 1
-
-/* ------------------- Value Macros ------------------- */
-#define DIO_Low    0
-#define DIO_High   1
 
 /* ------------------- APIs ------------------- */
 
@@ -76,7 +54,7 @@ void DIO_Toggle_Pin(uint8_t GroupName , uint8_t PinNumber);
  * @param  GroupName        Port group
  * @param  DirecationValue  Port direction (0x00 input, 0xFF output, or mixed)
  */
-void DIO_Direction_Group(uint8_t GroupName , uint8_t DirecationValue);
+void DIO_Direction_Group(uint8_t GroupName , uint8_t DirectionValue);
 
 /**
  * @brief  Write value to whole port

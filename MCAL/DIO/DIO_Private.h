@@ -1,52 +1,53 @@
 /**
  * @file     DIO_Private.h
- * @author   <Hozifa Ahmed>
- * @author   <Reviewer>
- * @brief 
- * @version   0.2
- * @date      2025-08-17
+ * @author   Hozifa Ahmed
+ * @author   Naira Mohamed
+ * @brief    Private macros for Digital I/O (DIO) driver.
+ * @version  0.2
+ * @date     2025-08-21
  * 
- * @copyright Copyright (c) 2025 , Gestell Company 
+ * @copyright Copyright (c) 2025 , Gestell Company
  */
 
 #ifndef _DIO_PRIVATE_H_
 #define _DIO_PRIVATE_H_
+
 #include <stdint.h>
 
+/* ================== Group Macros ================== */
+/**
+ * @brief Port group identifiers
+ */
+#define GroupA   1    /**< Port A */
+#define GroupB   2    /**< Port B */
+#define GroupC   3    /**< Port C */
+#define GroupD   4    /**< Port D */
 
-//Direction Pins
-#define DDRA_REG  *((volatile uint8_t*)0x3A)
-#define DDRB_REG  *((volatile uint8_t*)0x37)
-#define DDRC_REG  *((volatile uint8_t*)0x34)
-#define DDRD_REG  *((volatile uint8_t*)0x31)
+/* ================== Pin Macros ================== */
+/**
+ * @brief Pin numbers for each port
+ */
+#define Pin0       0
+#define Pin1       1
+#define Pin2       2
+#define Pin3       3
+#define Pin4       4
+#define Pin5       5
+#define Pin6       6
+#define Pin7       7
 
+/* ================== Direction Macros ================== */
+/**
+ * @brief Pin direction options
+ */
+#define DIO_Input   0    /**< Configure pin as input */
+#define DIO_Output  1    /**< Configure pin as output */
 
+/* ================== Value Macros ================== */
+/**
+ * @brief Pin value states
+ */
+#define DIO_Low     0    /**< Pin low state (0V) */
+#define DIO_High    1    /**< Pin high state (Vcc) */
 
-
-//Input Pins
-#define PORTA_REG *((volatile uint8_t*)0x3B)
-#define PORTB_REG *((volatile uint8_t*)0x38)
-#define PORTC_REG *((volatile uint8_t*)0x35)
-#define PORTD_REG *((volatile uint8_t*)0x32)
-
-
-
-
-//Output pins
-#define PINA_REG  *((volatile uint8_t*)0x39)
-#define PINB_REG  *((volatile uint8_t*)0x36)
-#define PINC_REG  *((volatile uint8_t*)0x33)
-#define PIND_REG  *((volatile uint8_t*)0x30)
-
-
-
-
-
-
-
-
-
-
-
-#endif /*_DIO_PRIVATE_H_*/
-
+#endif /* _DIO_PRIVATE_H_ */
