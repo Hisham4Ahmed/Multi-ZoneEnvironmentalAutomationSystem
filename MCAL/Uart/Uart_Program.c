@@ -21,14 +21,20 @@
 static void (*RxGlobal)(uint16_t Data)= Null;
 
 /**
- * @fn This is the call back function for Uart driver.
+ * @brief A callback function to be executed when UART receives data.
+ *
+ * @note This function sets callback function that will be called 
+ *       when the UART receive complete interrupt occurs. It also enables the 
+ *       corresponding interrupt.
+ *
+ * @param PointerFunc A pointer to the callback function. 
+ *        must not be NULL, otherwise no action will be taken.
  */
 void mUart_CallBack(void(*PointerFunc)())
 {
 	if (PointerFunc!=Null)
 	{
 		RxGlobal=PointerFunc;
-		SetBit(UCSRB_Reg, RXCIE_Bit);
 	}
 	else 
 	{
@@ -279,6 +285,7 @@ void mUart_CallBack(void(*PointerFunc)())
 
       return RxData;
    #elif RxHandling==RxInterrupt
+	SetBit(UCSRB_Reg, RXCIE_Bit);
 
    #endif
  }
