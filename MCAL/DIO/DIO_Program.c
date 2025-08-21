@@ -1,16 +1,16 @@
 /**
  * @file     DIO_Program.c
  * @author   <Hozifa Ahmed>
- * @author   <Reviewer>
- * @brief 
- * @version   0.2
- * @date      2025-08-20
+ * @author   <Naira Mohamed>
+ * @brief    Digital Input/Output Driver Implementation
+ * @version  0.2
+ * @date     2025-08-21
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
 #include "DIO_Interface.h"
 #include "../../Common/Macro.h"
-#include "DIO_Private.h"
+#include "../../MCAL/RegistersAddress.h"
 
 /* ========== PIN APIs ========== */
 void DIO_Direction_Pin(uint8_t GroupName , uint8_t PinNumber , uint8_t DirectionState)
@@ -21,20 +21,20 @@ void DIO_Direction_Pin(uint8_t GroupName , uint8_t PinNumber , uint8_t Direction
         {
             switch (GroupName)
             {
-                case GroupA: SetBit(DDRA_REG, PinNumber); break;
-                case GroupB: SetBit(DDRA_REG, PinNumber); break;
-                case GroupC: SetBit(DDRC_REG, PinNumber); break;
-                case GroupD: SetBit(DDRD_REG, PinNumber); break;
+                case GroupA: SetBit(DDRA_Reg, PinNumber); break;
+                case GroupB: SetBit(DDRB_Reg, PinNumber); break;
+                case GroupC: SetBit(DDRC_Reg, PinNumber); break;
+                case GroupD: SetBit(DDRD_Reg, PinNumber); break;
             }
         }
         else if (DirectionState == DIO_Input)
         {
             switch (GroupName)
             {
-                case GroupA: ClearBit(DDRA_REG, PinNumber); break;
-                case GroupB: ClearBit(DDRA_REG, PinNumber); break;
-                case GroupC: ClearBit(DDRC_REG, PinNumber); break;
-                case GroupD: ClearBit(DDRD_REG, PinNumber); break;
+                case GroupA: ClearBit(DDRA_Reg, PinNumber); break;
+                case GroupB: ClearBit(DDRB_Reg, PinNumber); break;
+                case GroupC: ClearBit(DDRC_Reg, PinNumber); break;
+                case GroupD: ClearBit(DDRD_Reg, PinNumber); break;
             }
         }
     }
@@ -48,20 +48,20 @@ void DIO_Write_Pin(uint8_t GroupName ,  uint8_t PinNumber , uint8_t OutputType)
         {
             switch (GroupName)
             {
-                case GroupA: SetBit(PORTA_REG, PinNumber); break;
-                case GroupB: SetBit(PORTB_REG, PinNumber); break;
-                case GroupC: SetBit(PORTC_REG, PinNumber); break;
-                case GroupD: SetBit(PORTD_REG, PinNumber); break;
+                case GroupA: SetBit(PORTA_Reg, PinNumber); break;
+                case GroupB: SetBit(PORTB_Reg, PinNumber); break;
+                case GroupC: SetBit(PORTC_Reg, PinNumber); break;
+                case GroupD: SetBit(PORTD_Reg, PinNumber); break;
             }
         }
         else if (OutputType == DIO_Low)
         {
             switch (GroupName)
             {
-                case GroupA: ClearBit(PORTA_REG, PinNumber); break;
-                case GroupB: ClearBit(PORTB_REG, PinNumber); break;
-                case GroupC: ClearBit(PORTC_REG, PinNumber); break;
-                case GroupD: ClearBit(PORTD_REG, PinNumber); break;
+                case GroupA: ClearBit(PORTA_Reg, PinNumber); break;
+                case GroupB: ClearBit(PORTB_Reg, PinNumber); break;
+                case GroupC: ClearBit(PORTC_Reg, PinNumber); break;
+                case GroupD: ClearBit(PORTD_Reg, PinNumber); break;
             }
         }
     }
@@ -74,13 +74,30 @@ uint8_t DIO_Read_Pin(uint8_t GroupName, uint8_t PinNumber)
     {
         switch (GroupName)
         {
-            case GroupA: InputValue = GetBit(PINA_REG, PinNumber); break;
-            case GroupB: InputValue = GetBit(PINB_REG, PinNumber); break;
-            case GroupC: InputValue = GetBit(PINC_REG, PinNumber); break;
-            case GroupD: InputValue = GetBit(PIND_REG, PinNumber); break;
+            case GroupA: InputValue = GetBit(PINA_Reg, PinNumber); break;
+            case GroupB: InputValue = GetBit(PINB_Reg, PinNumber); break;
+            case GroupC: InputValue = GetBit(PINC_Reg, PinNumber); break;
+            case GroupD: InputValue = GetBit(PIND_Reg, PinNumber); break;
         }
     }
     return InputValue;
+}
+
+/**
+ * @brief Toggle pin logic value
+ */
+void DIO_Toggle_Pin(uint8_t GroupName , uint8_t PinNumber)
+{
+    if (PinNumber >= Pin0 && PinNumber <= Pin7)
+    {
+        switch (GroupName)
+        {
+            case GroupA: ToggleBit(PORTA_Reg, PinNumber); break;
+            case GroupB: ToggleBit(PORTB_Reg, PinNumber); break;
+            case GroupC: ToggleBit(PORTC_Reg, PinNumber); break;
+            case GroupD: ToggleBit(PORTD_Reg, PinNumber); break;
+        }
+    }
 }
 
 /* ========== GROUP APIs ========== */
@@ -88,10 +105,10 @@ void DIO_Direction_Group(uint8_t GroupName , uint8_t DirectionValue)
 {
     switch (GroupName)
     {
-        case GroupA: DDRA_REG = DirectionValue; break;
-        case GroupB: DDRA_REG = DirectionValue; break;
-        case GroupC: DDRC_REG = DirectionValue; break;
-        case GroupD: DDRD_REG = DirectionValue; break;
+        case GroupA: DDRA_Reg = DirectionValue; break;
+        case GroupB: DDRB_Reg = DirectionValue; break;
+        case GroupC: DDRC_Reg = DirectionValue; break;
+        case GroupD: DDRD_Reg = DirectionValue; break;
     }
 }
 
@@ -99,10 +116,10 @@ void DIO_Write_Group(uint8_t GroupName ,  uint8_t OutputValue)
 {
     switch (GroupName)
     {
-        case GroupA: PORTA_REG = OutputValue; break;
-        case GroupB: PORTB_REG = OutputValue; break;
-        case GroupC: PORTC_REG = OutputValue; break;
-        case GroupD: PORTD_REG = OutputValue; break;
+        case GroupA: PORTA_Reg = OutputValue; break;
+        case GroupB: PORTB_Reg = OutputValue; break;
+        case GroupC: PORTC_Reg = OutputValue; break;
+        case GroupD: PORTD_Reg = OutputValue; break;
     }
 }
 
@@ -111,10 +128,10 @@ uint8_t DIO_Read_Group(uint8_t GroupName)
     uint8_t InputValue = 0;
     switch (GroupName)
     {
-        case GroupA: InputValue = PINA_REG; break;
-        case GroupB: InputValue = PINB_REG; break;
-        case GroupC: InputValue = PINC_REG; break;
-        case GroupD: InputValue = PIND_REG; break;
+        case GroupA: InputValue = PINA_Reg; break;
+        case GroupB: InputValue = PINB_Reg; break;
+        case GroupC: InputValue = PINC_Reg; break;
+        case GroupD: InputValue = PIND_Reg; break;
     }
     return InputValue;
 }
