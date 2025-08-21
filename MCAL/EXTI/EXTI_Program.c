@@ -15,6 +15,45 @@
 #include "EXTI_Config.h"
 #include <stdint.h>
 
+static void (*mEXTI0_Global)(void)=NULL;
+void mEXTI0_CallBack(void (*PF)(void))
+{
+    if (PF!=NULL)
+    {
+        mEXTI0_Global=PF;
+    }
+    else
+    {
+        
+    }
+    
+}
+static void (*mEXTI1_Global)(void)=NULL;
+void mEXTI1_CallBack(void (*PF)(void))
+{
+    if (PF!=NULL)
+    {
+        mEXTI1_Global=PF;
+    }
+    else
+    {
+        
+    }
+    
+}
+static void (*mEXTI2_Global)(void)=NULL;
+void mEXTI2_CallBack(void (*PF)(void))
+{
+    if (PF!=NULL)
+    {
+        mEXTI2_Global=PF;
+    }
+    else
+    {
+        
+    }
+    
+}
 /**
  * @brief       Enabling the External Interrupt INT0
  * @param       [no parameters]
@@ -93,6 +132,20 @@ void mEXTI2_Enable()
     // Handle Error
 #endif
 }
+void mEXTI_Enable()
+{
+    #if INT0_Enable==1
+        mEXTI0_Enable();
+    #endif
+
+    #if INT1_Enable==1
+        mEXTI1_Enable();
+    #endif
+
+    #if INT2_Enable==1
+        mEXTI2_Enable();
+    #endif
+}
 
 
 
@@ -104,12 +157,8 @@ void mEXTI2_Enable()
  */
 void __vector_1(void)
 {
-    //action when LDR is finished
-/**
- * @brief External Interrupt( INT0) ISR
- * @param [no parameters]
- * @return Void
- */
+    mEXTI0_Global();
+
 }
 /*----------------------------------------------*/
 /**
@@ -119,7 +168,7 @@ void __vector_1(void)
  */
 void __vector_2(void)
 {
-        //action when LDR is finished
+    mEXTI1_Global();
 
 }
 /*----------------------------------------------*/
@@ -130,7 +179,7 @@ void __vector_2(void)
  */
 void __vector_3(void)
 {
-        //action when LDR is finished
+    mEXTI2_Global();
 
 }
 /*----------------------------------------------*/
