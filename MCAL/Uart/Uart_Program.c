@@ -30,7 +30,7 @@ static void (*RxGlobal)(uint16_t Data)= Null;
  * @param PointerFunc A pointer to the callback function. 
  *        must not be NULL, otherwise no action will be taken.
  */
-void mUart_CallBack(void(*PointerFunc)())
+void mUart_CallBack(void(*PointerFunc)(uint16_t Data))
 {
 	if (PointerFunc!=Null)
 	{
@@ -293,7 +293,8 @@ void mUart_CallBack(void(*PointerFunc)())
  /**
   * @note the following is the ISR for RX complete interrupt, with a vector number of 13.
   *         * Automatically executed when a new frame is received
- *          * Reads UDR and saves data in RxBuffer global variable
+ *          * Reads UDR and Stores the received data through the callback function.  
+ * -        * Clears the RX Complete Interrupt Enable bit (RXCIE) after execution.  
  */
 
 void __vector_13(void)
