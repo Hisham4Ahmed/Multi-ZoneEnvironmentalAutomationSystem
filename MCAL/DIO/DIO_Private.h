@@ -50,4 +50,5 @@
 #define DIO_Low     0    /**< Pin low state (0V) */
 #define DIO_High    1    /**< Pin high state (Vcc) */
 
+
 #endif /* _DIO_PRIVATE_H_ */
