@@ -1,7 +1,7 @@
 /**
  * @file     EXTI_Program.c
- * @author   <Developer: Mohamed Diaa>
- * @author   <Reviewer:  Hozifah Ahmed>
+ * @author   Developer: Mohamed Diaa
+ * @author   Reviewer:  Hozifah Ahmed
  * @brief
  * @version   0.2
  * @date      2025-08-21

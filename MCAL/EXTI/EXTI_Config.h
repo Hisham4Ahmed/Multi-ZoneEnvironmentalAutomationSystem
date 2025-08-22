@@ -43,8 +43,8 @@
  * @def INT2_Enable
  * @brief Configuring what pins to enable of Interrupt peripherals I can Use
  */
-#define INT0_Enable Enable
-#define INT1_Enable Enable 
-#define INT2_Enable Disable
+#define INT0_Enable Enabled
+#define INT1_Enable Enabled 
+#define INT2_Enable Disabled
 
 #endif
