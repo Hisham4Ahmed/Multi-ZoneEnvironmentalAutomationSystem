@@ -45,7 +45,7 @@
 #define ClearFlag(Reg,FlagBit)         SetBit(Reg,FlagBit)
 
 /**
- * @def    ClearFlag
+ * @def    ReadFlag
  * @brief  This Macro is Responsible for 
  */
 #define  ReadFlag(Reg,FlagBit)         GetBit(Reg,FlagBit)  
@@ -104,3 +104,8 @@
 #define Disabled    0 
 
 #endif /* _MACRO_H_ */
+/**
+ * @brief
+ * @author
+ * 
+ */
