@@ -94,5 +94,13 @@
 #define FlagDown   0 
 #define FlagUp     1
 
+/**
+ * @def     Enabled
+ * @brief   This Macro is Responsible for
+ * @def     Disabled
+ * @brief   This Macro is Responsible for
+ */
+#define Enabled     1
+#define Disabled    0 
 
 #endif /* _MACRO_H_ */
