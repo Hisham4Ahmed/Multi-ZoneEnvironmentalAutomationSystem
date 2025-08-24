@@ -24,3 +24,12 @@ void hRelay_On(uint8_t ZoneNumber) {
 void hRelay_Off(uint8_t ZoneNumber) {
     DIO_Write_Pin(Relays_Group, Relays_Zone[ZoneNumber - 1], DIO_Low);
 }
+
+void hRelay_Toggle(uint8_t ZoneNumber) {
+    if (DIO_Read_Pin(Relays_Group, Relays_Zone[ZoneNumber - 1]) == DIO_High) {
+        DIO_Write_Pin(Relays_Group, Relays_Zone[ZoneNumber - 1], DIO_Low);
+    }
+    else if (DIO_Read_Pin(Relays_Group, Relays_Zone[ZoneNumber - 1]) == DIO_Low) {
+        DIO_Write_Pin(Relays_Group, Relays_Zone[ZoneNumber - 1], DIO_High);
+    }
+}

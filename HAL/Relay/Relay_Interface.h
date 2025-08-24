@@ -41,4 +41,11 @@ void hRelay_On(uint8_t ZoneNumber);
  */
 void hRelay_Off(uint8_t ZoneNumber);
 
+/**
+ * @fn      void hRelay_Toggle(uint8_t ZoneNumber)
+ * @brief   Toggle the relay for a given zone.
+ * @param ZoneNumber Zone number of the relay to be Toggled
+ */
+void hRelay_Toggle(uint8_t ZoneNumber);
+
 #endif /*_RELAY_INTERFACE_H_*/
