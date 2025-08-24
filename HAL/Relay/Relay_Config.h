@@ -2,7 +2,7 @@
  * @file     Relay_Config.h
  * @author   Developer Mohammed Atif      (Email: medoatifatif@gmail.com)
  * @author   <Reviewer>
- * @brief 
+ * @brief    Unsed in version 0.1
  * @version   0.1
  * @date      2025-08-24
  * 
