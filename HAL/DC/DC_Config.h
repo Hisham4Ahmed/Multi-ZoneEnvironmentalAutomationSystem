@@ -11,8 +11,14 @@
 
 #ifndef _DC_CONFIG_H_
 #define _DC_CONFIG_H_
+/**
+ * @def     ON
+ * @def     OFF
+ * @def     Starting State
+ * @brief   States of the DC MOTOR ON and OFF and setting the starting state
+ */
 #define ON  1
 #define OFF 0
-#define Starting_State ON
+#define Starting_State OFF
 
 #endif /*_DC_CONFIG_H_*/

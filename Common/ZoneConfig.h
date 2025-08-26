@@ -59,6 +59,7 @@
  * @def Zone3Num
  * @def Zone4Num
  * @brief Zone numbers to use them in the functions directly
+ * @author Mohamed Diaa "mohammeddiaato@gmail.com"
  */
 #define Zone1Num 1
 #define Zone2Num 2
