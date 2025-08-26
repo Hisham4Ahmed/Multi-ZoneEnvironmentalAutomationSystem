@@ -12,8 +12,46 @@
 
 #ifndef _ZONECONFIG_H_
 #define _ZONECONFIG_H_
+/*--------------------------------------------------------------*/
+
+
+// DC MOTOR(Fans) Macros
+/**
+ * @def Zone1_DCpin
+ * @def Zone1_DCpin
+ * @def Zone1_DCpin
+ * @def Zone1_DCpin
+ * @brief Pins of MCU we use on different zones of the PWM
+ * @author Mohamed Diaa "mohammeddiaato@gmail.com"
+ *  */
+#define Zone1_DCpin    3
+#define Zone2_DCpin    5
+#define Zone3_DCpin    4
+#define Zone4_DCpin    7
+
+/**
+ * @def Zone1_DCGroup
+ * @def Zone1_DCGroup
+ * @def Zone1_DCGroup
+ * @def Zone1_DCGroup
+ * @brief Groups on MCU of the Pins we use on different Zones 
+ * @author Mohamed Diaa "mohammeddiaato@gmail.com"
+ *  */
+#define Zone1_DCGroup  GroupB
+#define Zone2_DCGroup  GroupD
+#define Zone3_DCGroup  GroupD
+#define Zone4_DCGroup  GroupD
 
 
 
+/**
+ * @def Zones_DCGroups
+ * @def Zones_DCPins
+ * @brief Collecting the Pins into one entity to use them freely
+ * @author Mohamed Diaa "mohammeddiaato@gmail.com"
+ * */
+#define Zones_DCGroups   {Zone1_DCGroup,Zone2_DCGroup,Zone3_DCGroup,Zone4_DCGroup}
+#define Zones_DCPins     {Zone1_DCPin,Zone2_DCPin,Zone3_DCPin,Zone4_DCPin}
+/*--------------------------------------------------------------*/
 
 #endif /* _ZONECONFIG_H_ */

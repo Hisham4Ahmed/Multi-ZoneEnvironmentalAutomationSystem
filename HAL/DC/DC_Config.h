@@ -1,7 +1,7 @@
 /**
  * @file     DC_Config.h
- * @author   <Developer>
- * @author   <Reviewer>
+ * @author   Developer: MohamedDiaa Mohammeddiaato@gmail.com
+ * @author   Reviewer:    
  * @brief 
  * @version   0.1
  * @date      2025-08-15

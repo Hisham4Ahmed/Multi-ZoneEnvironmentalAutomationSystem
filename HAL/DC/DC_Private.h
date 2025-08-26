@@ -1,7 +1,7 @@
 /**
  * @file     DC_Private.h
- * @author   <Developer>
- * @author   <Reviewer>
+ * @author   Developer:  Mohamed Diaa "mohammeddiaato@gmail.com"
+ * @author   Reviewer:    
  * @brief 
  * @version   0.1
  * @date      2025-08-15
