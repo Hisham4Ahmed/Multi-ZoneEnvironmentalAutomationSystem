@@ -15,6 +15,7 @@
 #include <stdint.h>
 #include "../../Common/ZoneConfig.h"
 #include "../../Common/Macro.h"
+#include "DC_Config.h"
 
 void hFan_Init(uint8_t ZoneNumber);
 void hFan_On(uint8_t ZoneNumber);

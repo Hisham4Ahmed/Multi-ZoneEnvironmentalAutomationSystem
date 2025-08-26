@@ -53,5 +53,16 @@
 #define Zones_DCGroups   {Zone1_DCGroup,Zone2_DCGroup,Zone3_DCGroup,Zone4_DCGroup}
 #define Zones_DCPins     {Zone1_DCPin,Zone2_DCPin,Zone3_DCPin,Zone4_DCPin}
 /*--------------------------------------------------------------*/
+/**
+ * @def Zone1Num
+ * @def Zone2Num
+ * @def Zone3Num
+ * @def Zone4Num
+ * @brief Zone numbers to use them in the functions directly
+ */
+#define Zone1Num 1
+#define Zone2Num 2
+#define Zone3Num 3
+#define Zone4Num 4
 
 #endif /* _ZONECONFIG_H_ */

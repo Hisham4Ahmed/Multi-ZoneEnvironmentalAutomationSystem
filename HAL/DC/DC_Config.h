@@ -11,7 +11,8 @@
 
 #ifndef _DC_CONFIG_H_
 #define _DC_CONFIG_H_
-
-
+#define ON  1
+#define OFF 0
+#define Starting_State ON
 
 #endif /*_DC_CONFIG_H_*/
