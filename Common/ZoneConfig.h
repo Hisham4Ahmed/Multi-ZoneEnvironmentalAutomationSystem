@@ -12,8 +12,10 @@
 
 #ifndef _ZONECONFIG_H_
 #define _ZONECONFIG_H_
+#include "Macro.h"
 
-
+#define Zones_BtnGroup   GroupD
+#define Zones_BtnPin     Pin2
 
 
 #endif /* _ZONECONFIG_H_ */
