@@ -14,6 +14,9 @@
 #define _ZONECONFIG_H_
 #include "Macro.h"
 
+/**
+ * @brief these macros define button group and pin connected in microcontroller.
+ */
 #define Zones_BtnGroup   GroupD
 #define Zones_BtnPin     Pin2
 
