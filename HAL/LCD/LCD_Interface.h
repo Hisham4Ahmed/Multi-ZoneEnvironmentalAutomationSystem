@@ -82,5 +82,5 @@ void hLCD_ClearFirstLine();
 
 void hLCD_ClearSecondLine();
 
-
+/*----------------------------------------------------*/
 #endif /*_LCD_INTERFACE_H_*/
