@@ -36,10 +36,11 @@ Counts_of_CompareMatch++;
 if (Counts_of_CompareMatch ==Num_of_Compare_Match)
 {
     
-    //Please Enter a Specific Action
+if (TIMER0_PF!=NULL)
+{
+	TIMER0_PF();
+}
 
-
-    // clear counts of compare match
     Counts_of_CompareMatch = 0;
 }
 
@@ -97,6 +98,19 @@ void mTimer0_ChangeDutyCycle(uint8_t DutyCycle,uint8_t ActionType )
 
 }
 
+static void (*TIMER0_PF)(void)=NULL;
 
+void T0_Call_Back_fn(void(*PF)(void))
+{
+	if(PF!=NULL)
+	{
+		TIMER0_PF=PF;
+	}
+
+else 
+{
+// do nothing
+}
+}
 
  
