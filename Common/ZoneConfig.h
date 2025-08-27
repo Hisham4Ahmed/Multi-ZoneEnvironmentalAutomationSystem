@@ -13,7 +13,7 @@
 #ifndef _ZONECONFIG_H_
 #define _ZONECONFIG_H_
 /*--------------------------------------------------------------*/
-
+#include "../MCAL/DIO/DIO_Interface.h"
 
 // DC MOTOR(Fans) Macros
 /**
@@ -24,10 +24,10 @@
  * @brief Pins of MCU we use on different zones of the PWM
  * @author Mohamed Diaa "mohammeddiaato@gmail.com"
  *  */
-#define Zone1_DCpin    3
-#define Zone2_DCpin    5
-#define Zone3_DCpin    4
-#define Zone4_DCpin    7
+#define Zone1_DCpin    Pin3
+#define Zone2_DCpin    Pin5
+#define Zone3_DCpin    Pin4
+#define Zone4_DCpin    Pin7
 
 /**
  * @def Zone1_DCGroup
@@ -58,6 +58,7 @@
  * @def Zone2Num
  * @def Zone3Num
  * @def Zone4Num
+ * @def NumberOfZones 
  * @brief Zone numbers to use them in the functions directly
  * @author Mohamed Diaa "mohammeddiaato@gmail.com"
  */
@@ -65,5 +66,5 @@
 #define Zone2Num 2
 #define Zone3Num 3
 #define Zone4Num 4
-
+#define NumberOfZones 4
 #endif /* _ZONECONFIG_H_ */

@@ -1,8 +1,8 @@
 /**
  * @file     DC_Interface.h
- * @author   Developer: Mohamed Diaa Mohammeddiaato@gmail.com
- * @author   Reviewer:  Mohamed Atef  
- * @brief 
+ * @author      Developer: Mohamed Diaa "mohammeddiaato@gmail.com"
+ * @author      Reviewer: Mohammed Atef "medoatifatif@gmail.com"
+ * @brief       DC_Motor Interfacing functions 
  * @version   0.1
  * @date      2025-08-15
  * 
