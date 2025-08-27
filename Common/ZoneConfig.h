@@ -13,6 +13,7 @@
 #ifndef _ZONECONFIG_H_
 #define _ZONECONFIG_H_
 
+#include "MCAL/DIO/DIO_Private.h"
 
 /**
  * @defgroup Relay_Config Relay Configuration
@@ -26,10 +27,10 @@
 
 #define Relays_Group   GroupC
 
-#define Zone1_RelayPin  1
-#define Zone2_RelayPin  3
-#define Zone3_RelayPin  5
-#define Zone4_RelayPin  7
+#define Zone1_RelayPin  Pin1
+#define Zone2_RelayPin  Pin3
+#define Zone3_RelayPin  Pin5
+#define Zone4_RelayPin  Pin7
 
 #define Zones_Relay_Pin {Zone1_RelayPin, Zone2_RelayPin, Zone3_RelayPin, Zone4_RelayPin}
 /**@}*/
