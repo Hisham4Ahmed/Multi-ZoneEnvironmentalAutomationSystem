@@ -11,10 +11,11 @@
 
 #include "Relay_Interface.h"
 
+/** Relay pin mapping for each zone. */
 static uint8_t Relays_Zone[MaxZones] = Zones_Relay_Pin;
 
 void hRelay_Init(uint8_t ZoneNumber) {
-    if (ZoneNumber >= 1 && ZoneNumber <= 4) {
+    if (ZoneNumber >= 1 && ZoneNumber <= MaxZones) {
         DIO_Direction_Pin(Relays_Group, Relays_Zone[ZoneNumber - 1], DIO_Output);
     }
     else {
@@ -23,7 +24,7 @@ void hRelay_Init(uint8_t ZoneNumber) {
 }
 
 void hRelay_On(uint8_t ZoneNumber) {
-    if (ZoneNumber >= 1 && ZoneNumber <= 4) {
+    if (ZoneNumber >= 1 && ZoneNumber <= MaxZones) {
         DIO_Write_Pin(Relays_Group, Relays_Zone[ZoneNumber - 1], DIO_High);
     }
     else {
@@ -32,7 +33,7 @@ void hRelay_On(uint8_t ZoneNumber) {
 }
 
 void hRelay_Off(uint8_t ZoneNumber) {
-    if (ZoneNumber >= 1 && ZoneNumber <= 4) {
+    if (ZoneNumber >= 1 && ZoneNumber <= MaxZones) {
         DIO_Write_Pin(Relays_Group, Relays_Zone[ZoneNumber - 1], DIO_Low);
     }
     else {
@@ -41,7 +42,7 @@ void hRelay_Off(uint8_t ZoneNumber) {
 }
 
 void hRelay_Toggle(uint8_t ZoneNumber) {
-    if (ZoneNumber >= 1 && ZoneNumber <= 4) {
+    if (ZoneNumber >= 1 && ZoneNumber <= MaxZones) {
         if (DIO_Read_Pin(Relays_Group, Relays_Zone[ZoneNumber - 1]) == DIO_High) {
             DIO_Write_Pin(Relays_Group, Relays_Zone[ZoneNumber - 1], DIO_Low);
         }
