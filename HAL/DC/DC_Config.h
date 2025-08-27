@@ -19,6 +19,6 @@
  */
 #define ON  1
 #define OFF 0
-#define Starting_State OFF
+#define NumberOfZones 4
 
 #endif /*_DC_CONFIG_H_*/

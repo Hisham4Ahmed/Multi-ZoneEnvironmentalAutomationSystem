@@ -11,104 +11,32 @@
 #include "DC_Interface.h"
 #include "../../MCAL/DIO/DIO_Interface.h"
 #include "../../MCAL/DIO/DIO_Private.h"
-
+static uint8_t ZonesGroups [NumberOfZones]=Zones_DCGroups;
+static uint8_t ZonesPins [NumberOfZones]=Zones_DCPins;
 void hFan_Init(uint8_t ZoneNumber)
 {
-    if (ZoneNumber == Zone1Num)
+    if (ZoneNumber <=NumberOfZones&&ZoneNumber >0)
     {
-        DIO_Direction_Pin(Zone1_DCGroup, Zone1_DCpin, Output);
-            #if Startin_State == ON
-            hFan_On(Zone1Num);
-            #elif Startin_State == OFF
-            hFan_Off(Zone1Num);
-            #endif
+        DIO_Direction_Pin( ZonesGroups[ZoneNumber-1], ZonesPins[ZoneNumber-1], Output);
+        hFan_Off(ZoneNumber);
     }
-    else if (ZoneNumber == Zone2Num)
-    {
-        DIO_Direction_Pin(Zone2_DCGroup, Zone2_DCpin, Output);
-            #if Startin_State == ON
-            hFan_On(Zone2Num);
-            #elif Startin_State == OFF
-            hFan_Off(Zone2Num);
-            #endif
-    }
-    else if (ZoneNumber == Zone3Num)
-    {
-        DIO_Direction_Pin(Zone3_DCGroup, Zone3_DCpin, Output);
-
-        #if Startin_State == ON
-        hFan_On(Zone3Num);
-        #elif Startin_State == OFF
-        hFan_Off(Zone3Num);
-        #endif
-    }
-    else if (ZoneNumber == Zone4Num)
-    {
-        DIO_Direction_Pin(Zone4_DCGroup, Zone4_DCpin, Output);
-
-        #if Startin_State == ON
-        hFan_On(Zone4Num);
-        #elif Startin_State == OFF
-        hFan_Off(Zone4Num);
-        #endif
-    }
-    else
-    {
-        return;
-    }
+    
 }
 void hFan_On(uint8_t ZoneNumber)
 {
   
-    if (ZoneNumber == Zone1Num)
+     if (ZoneNumber <=NumberOfZones&&ZoneNumber >0)
     {
-        DIO_Write_Pin(Zone1_DCGroup, Zone1_DCpin, High);
+        DIO_Write_Pin(ZonesGroups[ZoneNumber-1], ZonesPins[ZoneNumber-1], High);
     }
-    else if (ZoneNumber == Zone2Num)
-    {
-        DIO_Write_Pin(Zone2_DCGroup, Zone2_DCpin, High);
     
-    }
-    else if (ZoneNumber == Zone3Num)
-    {
-        DIO_Write_Pin(Zone3_DCGroup, Zone3_DCpin, High);
-    
-    }
-    else if (ZoneNumber == Zone4Num)
-    {
-        DIO_Write_Pin(Zone4_DCGroup, Zone4_DCpin, High);
-    
-    }
-    else
-    {
-        return ;
-    }
 }
 void hFan_Off(uint8_t ZoneNumber)
 {
 
   
-    if (ZoneNumber == Zone1Num)
+     if (ZoneNumber <=NumberOfZones&&ZoneNumber >0)
     {
-        DIO_Write_Pin(Zone1_DCGroup, Zone1_DCpin, Low);
-    }
-    else if (ZoneNumber == Zone2Num)
-    {
-        DIO_Write_Pin(Zone2_DCGroup, Zone2_DCpin, Low);
-    
-    }
-    else if (ZoneNumber == Zone3Num)
-    {
-        DIO_Write_Pin(Zone3_DCGroup, Zone3_DCpin, Low);
-    
-    }
-    else if (ZoneNumber == Zone4Num)
-    {
-        DIO_Write_Pin(Zone4_DCGroup, Zone4_DCpin, Low);
-    
-    }
-    else
-    {
-        return ;
+        DIO_Write_Pin(ZonesGroups[ZoneNumber-1], ZonesPins[ZoneNumber-1], Low);
     }
 }

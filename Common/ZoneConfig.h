@@ -51,7 +51,7 @@
  * @author Mohamed Diaa "mohammeddiaato@gmail.com"
  * */
 #define Zones_DCGroups   {Zone1_DCGroup,Zone2_DCGroup,Zone3_DCGroup,Zone4_DCGroup}
-#define Zones_DCPins     {Zone1_DCPin,Zone2_DCPin,Zone3_DCPin,Zone4_DCPin}
+#define Zones_DCPins     {Zone1_DCpin,Zone2_DCpin,Zone3_DCpin,Zone4_DCpin}
 /*--------------------------------------------------------------*/
 /**
  * @def Zone1Num
