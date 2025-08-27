@@ -27,11 +27,11 @@ void hLCD_Init ()
     _delay_ms(35);
     
     /* Function Set: 4-bit mode */
-    hLCD_SetInstruction(0x38); // Initialize to 8-bit mode first
+    hLCD_SetInstruction(_8bit_Mode); // Initialize to 8-bit mode first
     _delay_ms(1); // Wait for more than 39 us
-    hLCD_SetInstruction(0x32); // Switch to 4-bit mode
+    hLCD_SetInstruction(_4bit_Mode); // Switch to 4-bit mode
      _delay_ms(1); // Wait for more than 39 us
-    hLCD_SetInstruction(0x28); // Function set: 4-bit, 2 lines, 5x8 dots
+    hLCD_SetInstruction(_2Line_Mode); // Function set: 4-bit, 2 lines, 5x8 dots
     
     /* Display ON/OFF Control: Display ON, Cursor OFF, Blink OFF */
     hLCD_SetInstruction(LCD_DISPLAY_ON);
@@ -52,8 +52,8 @@ DIO_Write_Pin(LCD_E_Group, LCD_E_Pin, DIO_High);
     _delay_us(1);
     // Send high nibble
     uint8_t Temp_Byte=Byte ;
-    Temp_Byte&=0xF0;
-    LCD_PORT&=0x0F;
+    Temp_Byte&=Higher_Nibble_Mask;
+    LCD_PORT&=Lower_Nibble_Mask;
     LCD_PORT|=Temp_Byte;
     // Pulse Enable
     
@@ -65,8 +65,8 @@ DIO_Write_Pin(LCD_E_Group, LCD_E_Pin, DIO_High);
     _delay_us(1);
 
     Temp_Byte=Byte<<4;
-    Temp_Byte&=0xF0;
-    LCD_PORT&=0x0F;
+    Temp_Byte&=Higher_Nibble_Mask;
+    LCD_PORT&=Lower_Nibble_Mask;
     LCD_PORT|=Temp_Byte;
 
     // Pulse Enable again
@@ -85,8 +85,8 @@ DIO_Write_Pin(LCD_E_Group, LCD_E_Pin, DIO_High);
     _delay_us(1);
     // Send high nibble
     uint8_t Temp=Command ;
-    Temp&=0xF0;
-    LCD_PORT&=0x0F;
+    Temp&=Higher_Nibble_Mask;
+    LCD_PORT&=Lower_Nibble_Mask;
     LCD_PORT|=Temp;
     // Pulse Enable
     
@@ -98,8 +98,8 @@ DIO_Write_Pin(LCD_E_Group, LCD_E_Pin, DIO_High);
     _delay_us(1);
 
     Temp=Command<<4;
-    Temp&=0xF0;
-    LCD_PORT&=0x0F;
+    Temp&=Higher_Nibble_Mask;
+    LCD_PORT&=Lower_Nibble_Mask;
     LCD_PORT|=Temp;
 
     // Pulse Enable again
