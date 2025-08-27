@@ -1,13 +1,10 @@
-## Multi-Zone Environmental Automation System
+# Multi-Zone Environmental Automation System
 
-
-### Objective
+## Objective
 
 Create a system to automate environment control across multiple zones (e.g., two rooms) using sensors and actuators for each zone.
 
-
-
-### Features Covered
+## Features Covered
 
 * LDR and Thermistor Sensor Readings
 * ADC Channel Switching
@@ -16,9 +13,7 @@ Create a system to automate environment control across multiple zones (e.g., two
 * LCD Display
 * Layered Architecture (MCAL, HAL, APP)
 
-
-
-### Hardware Components
+## Hardware Components
 
 * ATmega32 Microcontroller
 * 2x LDR Sensors
@@ -28,24 +23,62 @@ Create a system to automate environment control across multiple zones (e.g., two
 * Push Buttons for Mode Selection
 * 16x2 LCD
 
+## Pin Mapping
 
-### Pin Mapping
+### LCD Mapping
 
-* LDR A → ADC0 (PA0)
-* LDR B → ADC1 (PA1)
-* Thermistor A → ADC2 (PA2)
-* Thermistor B → ADC3 (PA3)
-* LCD Data → PC0–PC3
-* LCD Control: RS → PC4, EN → PC5
-* Fan A → PD0
-* Fan B → PD1
-* Light A → PD2
-* Light B → PD3
-* Mode Button A → PD4
-* Mode Button B → PD5
+* RS → PB0
+* RW → GND
+* E  → PB1
+* D4 → PB4
+* D5 → PB5
+* D6 → PB6
+* D7 → PB7
 
+### Button Mapping
 
-### System Workflow
+* ModeBtn → PD2
+
+### HC05 Mapping
+
+* Bluetooth Tx → MCU Rx  (PD0) as Input
+* Bluetooth Rx → MCU Tx  (PD1) as Output
+
+### Zones
+
+#### Zone One
+
+* LDR                              → PA0 (ADC0)  Channel0
+* LM35                             → PA1 (ADC1)  Channel1
+* DC Motor (Fan)                   → PB3 (OC0)  PWM
+* Led (Light)                      → PC0
+* Relay (Light)                    → PC1
+
+#### Zone Two
+
+* LDR                              → PA2 (ADC2)  Channel2
+* LM35                             → PA3 (ADC3)  Channel3
+* DC Motor (Fan)                   → PD5 (OC1A)  PWM
+* Led (Light)                      → PC2
+* Relay (Light)                    → PC3
+
+#### Zone Three
+
+* LDR                              → PA4 (ADC4)  Channel4
+* LM35                             → PA5 (ADC5)  Channel5
+* DC Motor (Fan)                   → PD4 (OC1B)  PWM
+* Led (Light)                      → PC4
+* Relay (Light)                    → PC5
+
+#### Zone Four
+
+* LDR                              → PA6 (ADC6)  Channel6
+* LM35                             → PA7 (ADC7)  Channel7
+* DC Motor (Fan)                   → PD7 (OC2)   PWM
+* Led (Light)                      → PC6
+* Relay (Light)                    → PC7
+
+## System Workflow
 
 1. Continuously read sensor data per zone.
 2. In Auto Mode:
