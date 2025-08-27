@@ -2,7 +2,7 @@
  * @file     Relay_Private.h
  * @author   Developer Mohammed Atif      (Email: medoatifatif@gmail.com)
  * @author   <Reviewer>
- * @brief    Unsed in version 0.1
+ * @brief    Unused in version 0.1
  * @version   0.1
  * @date      2025-08-24
  * 

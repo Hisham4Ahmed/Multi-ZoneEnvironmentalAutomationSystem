@@ -18,7 +18,7 @@
 /**
  * @defgroup Relay_Config Relay Configuration
  * @brief Macros for relay zones and pin mapping.
- *
+ * @author Developer Mohammed Atif (Email: medoatifatif@gmail.com)
  * These macros define the maximum number of zones, the relay control group,
  * and the relay pin configuration per zone.
  * @{
