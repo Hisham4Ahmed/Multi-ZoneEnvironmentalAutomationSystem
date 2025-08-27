@@ -11,32 +11,38 @@
 #include "DC_Interface.h"
 #include "../../MCAL/DIO/DIO_Interface.h"
 #include "../../MCAL/DIO/DIO_Private.h"
-static uint8_t ZonesGroups [NumberOfZones]=Zones_DCGroups;
-static uint8_t ZonesPins [NumberOfZones]=Zones_DCPins;
+static uint8_t ZonesGroups[NumberOfZones] = Zones_DCGroups;
+static uint8_t ZonesPins[NumberOfZones] = Zones_DCPins;
 void hFan_Init(uint8_t ZoneNumber)
 {
-    if (ZoneNumber <=NumberOfZones&&ZoneNumber >0)
+    if (ZoneNumber <= NumberOfZones && ZoneNumber > 0)
     {
-        DIO_Direction_Pin( ZonesGroups[ZoneNumber-1], ZonesPins[ZoneNumber-1], Output);
+        DIO_Direction_Pin(ZonesGroups[ZoneNumber - 1], ZonesPins[ZoneNumber - 1], Output);
         hFan_Off(ZoneNumber);
     }
-    
+    else
+    {
+    }
 }
 void hFan_On(uint8_t ZoneNumber)
 {
-  
-     if (ZoneNumber <=NumberOfZones&&ZoneNumber >0)
+
+    if (ZoneNumber <= NumberOfZones && ZoneNumber > 0)
     {
-        DIO_Write_Pin(ZonesGroups[ZoneNumber-1], ZonesPins[ZoneNumber-1], High);
+        DIO_Write_Pin(ZonesGroups[ZoneNumber - 1], ZonesPins[ZoneNumber - 1], High);
     }
-    
+    else
+    {
+    }
 }
 void hFan_Off(uint8_t ZoneNumber)
 {
 
-  
-     if (ZoneNumber <=NumberOfZones&&ZoneNumber >0)
+    if (ZoneNumber <= NumberOfZones && ZoneNumber > 0)
     {
-        DIO_Write_Pin(ZonesGroups[ZoneNumber-1], ZonesPins[ZoneNumber-1], Low);
+        DIO_Write_Pin(ZonesGroups[ZoneNumber - 1], ZonesPins[ZoneNumber - 1], Low);
+    }
+    else
+    {
     }
 }
