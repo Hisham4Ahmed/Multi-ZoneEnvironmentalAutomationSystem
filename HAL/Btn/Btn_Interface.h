@@ -1,7 +1,7 @@
 /**
  * @file     Btn_Interface.h
- * @author   Naira Mohamed (naira.mohammed.76@gmil.com)
- * @author   Hozifa Ahmed 
+ * @author   Developer: Naira Mohamed (naira.mohammed.76@gmail.com)
+ * @author   Reviewer: Hozifa Ahmed (hozifasedik@gmail.com)
  * @brief    Bublic interface for button driver, includes functions prototypes and user accessible macros.
  * @version   0.2
  * @date      2025-08-25
@@ -19,19 +19,26 @@
 #define Toggle(Mode)  Mode^=1
 
 /**
- * @fn  this function is to initialize button hardware.
- */
-void hBtn_Init();
-
-/**
- * @fn this function is to get the status of the button.
+ * @fn this function is to get the status of the button, 
+ *       if pressed, it will return 0
+ *       if Not pressed, it will return 1
  */
 uint8_t hBtn_GetStatus(void);
 
 /**
- * @fn this function includes the action to happen when interrupt occurs.
+ * @fn This function includes the action to happen when interrupt occurs.
+ *     When interrupt, the mode will toggle from auto to manual or vice versa.
  */
 void hBtn_ISRAction();
 
+/**
+ * @fn  this function is to initialize button hardware.
+ * @note  In this function:
+ *           1) Make button pin as input
+ *           2) Enable internal pull up
+ *           3) Register EXTI0 callback with sense control "Falling Edge"
+ *           4) Enable EXTI0 and Global Interrupt
+ */
+void hBtn_Init();
 
 #endif /*_BTN_INTERFACE_H_*/

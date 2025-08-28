@@ -1,7 +1,7 @@
 /**
  * @file     Btn_Private.h
- * @author   Naira Mohamed (naira.mohammed.76@gmil.com)
- * @author   Hozifa Ahmed 
+ * @author   Developer: Naira Mohamed (naira.mohammed.76@gmail.com)
+ * @author   Reviewer: Hozifa Ahmed (hozifasedik@gmail.com)
  * @brief    Private and internal definitions for button driver. 
  * @version   0.2
  * @date      2025-08-25
