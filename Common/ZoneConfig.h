@@ -18,9 +18,9 @@
 // DC MOTOR(Fans) Macros
 /**
  * @def Zone1_DCpin
- * @def Zone1_DCpin
- * @def Zone1_DCpin
- * @def Zone1_DCpin
+ * @def Zone2_DCpin
+ * @def Zone3_DCpin
+ * @def Zone4_DCpin
  * @brief Pins of MCU we use on different zones of the PWM
  * @author Mohamed Diaa "mohammeddiaato@gmail.com"
  *  */
@@ -30,10 +30,10 @@
 #define Zone4_DCpin    Pin7
 
 /**
- * @def Zone1_DCGroup
- * @def Zone1_DCGroup
- * @def Zone1_DCGroup
- * @def Zone1_DCGroup
+ * @def  Zone1_DCGroup
+ * @def  Zone2_DCGroup
+ * @def  Zone3_DCGroup
+ * @def  Zone4_DCGroup
  * @brief Groups on MCU of the Pins we use on different Zones 
  * @author Mohamed Diaa "mohammeddiaato@gmail.com"
  *  */
@@ -58,7 +58,6 @@
  * @def Zone2Num
  * @def Zone3Num
  * @def Zone4Num
- * @def NumberOfZones 
  * @brief Zone numbers to use them in the functions directly
  * @author Mohamed Diaa "mohammeddiaato@gmail.com"
  */
@@ -66,5 +65,5 @@
 #define Zone2Num 2
 #define Zone3Num 3
 #define Zone4Num 4
-#define NumberOfZones 4
+
 #endif /* _ZONECONFIG_H_ */

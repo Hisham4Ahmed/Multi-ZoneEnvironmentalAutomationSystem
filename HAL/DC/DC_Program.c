@@ -18,19 +18,20 @@
  * @brief These two global variables are indicating for the DC_Motor what groups or pins are they for each Group
  * @author Mohammed Diaa
  */
-static uint8_t ZonesGroups[NumberOfZones] = Zones_DCGroups;
-static uint8_t ZonesPins[NumberOfZones] = Zones_DCPins;
+static uint8_t ZonesGroups[MaxZones] = Zones_DCGroups;
+static uint8_t ZonesPins[MaxZones] = Zones_DCPins;
 
 
 
 void hFan_Init(uint8_t ZoneNumber)
 {
-    if (ZoneNumber <= NumberOfZones && ZoneNumber > 0)
+    if (ZoneNumber <= MaxZones && ZoneNumber > 0)
     {
         DIO_Direction_Pin(ZonesGroups[ZoneNumber - 1], ZonesPins[ZoneNumber - 1], Output);
     }
     else
     {
+        //Handle error
     }
 }
 
@@ -38,12 +39,13 @@ void hFan_Init(uint8_t ZoneNumber)
 void hFan_On(uint8_t ZoneNumber)
 {
 
-    if (ZoneNumber <= NumberOfZones && ZoneNumber > 0)
+    if (ZoneNumber <= MaxZones && ZoneNumber > 0)
     {
         DIO_Write_Pin(ZonesGroups[ZoneNumber - 1], ZonesPins[ZoneNumber - 1], High);
     }
     else
     {
+        //Handle error
     }
 }
 
@@ -51,11 +53,12 @@ void hFan_On(uint8_t ZoneNumber)
 void hFan_Off(uint8_t ZoneNumber)
 {
 
-    if (ZoneNumber <= NumberOfZones && ZoneNumber > 0)
+    if (ZoneNumber <= MaxZones && ZoneNumber > 0)
     {
         DIO_Write_Pin(ZonesGroups[ZoneNumber - 1], ZonesPins[ZoneNumber - 1], Low);
     }
     else
     {
+        //Handle error
     }
 }
