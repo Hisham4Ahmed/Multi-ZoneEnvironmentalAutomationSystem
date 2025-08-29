@@ -14,11 +14,7 @@
 #define _LCD_PRIVATE_H_
 
 
-/*------------------- LCD Commands --------------------------*/
 
-#define LCD_CLEAR_DISPLAY        0x01
-#define LCD_RETURN_HOME         0x02
-#define LCD_ENTRY_MODE          0x06
 
 #define LCD_DISPLAY_OFF         0x08
 #define LCD_DISPLAY_ON          0x0E
