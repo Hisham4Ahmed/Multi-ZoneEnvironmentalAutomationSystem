@@ -64,6 +64,13 @@ void mTimer0_ChangeDutyCycle(uint8_t DutyCycle,uint8_t ActionType );
 
 /*---------------------------------------------------------------------------------------*/
 
+/**
+ * @fn       T0_Call_Back_fn
+ * @brief    This Function is used to set the Call Back Function That will be executed in Timer0 ISR
+ * @param    PF : Pointer to Function that will be executed in the ISR
+ */
+void T0_Call_Back_fn(void(*PF)(void));
+
 
 
 #endif /*_T0_INTERFACE_H_*/
