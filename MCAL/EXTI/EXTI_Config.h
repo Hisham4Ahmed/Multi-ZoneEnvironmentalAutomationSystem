@@ -33,7 +33,7 @@
  * @brief Configuring SenseControl value for Each ISR
  */
 
-#define SenseControl_INT0 SC_Choice_Low
+#define SenseControl_INT0 SC_Choice_Falling
 #define SenseControl_INT1 SC_Choice_Low
 #define SenseControl_INT2 SC_Choice_Low
 

@@ -11,6 +11,7 @@
 
 #ifndef _ZONECONFIG_H_
 #define _ZONECONFIG_H_
+#include "Macro.h"
 
 /* ------------------- Zone 1 ------------------- */
 /** @brief Zone 1 LED connection */
@@ -31,6 +32,12 @@
 /** @brief Zone 4 LED connection */
 #define ZONE4_LED_PORT   GroupC
 #define ZONE4_LED_PIN    6
+/**
+ * @brief these macros define button group and pin connected in microcontroller.
+ */
+#define Zones_BtnGroup   GroupD
+#define Zones_BtnPin     Pin2
+
 
 
 #endif /* _ZONECONFIG_H_ */
