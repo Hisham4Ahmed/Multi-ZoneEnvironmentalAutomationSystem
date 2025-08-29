@@ -12,13 +12,64 @@
 
 #ifndef _ZONECONFIG_H_
 #define _ZONECONFIG_H_
-#include "Macro.h"
 
+/*--------------------------------------------------------------*/
+#include "../MCAL/DIO/DIO_Interface.h"
+
+// DC MOTOR(Fans) Macros
+/**
+ * @def Zone1_DCpin
+ * @def Zone2_DCpin
+ * @def Zone3_DCpin
+ * @def Zone4_DCpin
+ * @brief Pins of MCU we use on different zones of the PWM
+ * @author Mohamed Diaa "mohammeddiaato@gmail.com"
+ *  */
+#define Zone1_DCpin    Pin3
+#define Zone2_DCpin    Pin5
+#define Zone3_DCpin    Pin4
+#define Zone4_DCpin    Pin7
+
+/**
+ * @def  Zone1_DCGroup
+ * @def  Zone2_DCGroup
+ * @def  Zone3_DCGroup
+ * @def  Zone4_DCGroup
+ * @brief Groups on MCU of the Pins we use on different Zones 
+ * @author Mohamed Diaa "mohammeddiaato@gmail.com"
+ *  */
+#define Zone1_DCGroup  GroupB
+#define Zone2_DCGroup  GroupD
+#define Zone3_DCGroup  GroupD
+#define Zone4_DCGroup  GroupD
+
+#include "Macro.h"
 #include "MCAL/DIO/DIO_Private.h"
 
 #define MaxZones    4
 
 /**
+ * @def Zones_DCGroups
+ * @def Zones_DCPins
+ * @brief Collecting the Pins into one entity to use them freely
+ * @author Mohamed Diaa "mohammeddiaato@gmail.com"
+ * */
+#define Zones_DCGroups   {Zone1_DCGroup,Zone2_DCGroup,Zone3_DCGroup,Zone4_DCGroup}
+#define Zones_DCPins     {Zone1_DCpin,Zone2_DCpin,Zone3_DCpin,Zone4_DCpin}
+/*--------------------------------------------------------------*/
+/**
+ * @def Zone1Num
+ * @def Zone2Num
+ * @def Zone3Num
+ * @def Zone4Num
+ * @brief Zone numbers to use them in the functions directly
+ * @author Mohamed Diaa "mohammeddiaato@gmail.com"
+ */
+#define Zone1Num 1
+#define Zone2Num 2
+#define Zone3Num 3
+#define Zone4Num 4
+ /*
  * @brief these macros define button group and pin connected in microcontroller.
  */
 #define Zones_BtnGroup   GroupD
@@ -64,5 +115,6 @@
 
 #define Zones_Relay_Pin {Zone1_RelayPin, Zone2_RelayPin, Zone3_RelayPin, Zone4_RelayPin}
 /**@}*/
+
 
 #endif /* _ZONECONFIG_H_ */
