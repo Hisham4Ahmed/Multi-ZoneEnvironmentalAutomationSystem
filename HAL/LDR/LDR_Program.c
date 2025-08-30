@@ -8,3 +8,15 @@
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
+#include "../../Common/Config.h"
+#if LDR_Driver
+
+
+
+
+
+#include "LDR_Interface.h"
+
+
+
+#endif /*LDR_Driver*/

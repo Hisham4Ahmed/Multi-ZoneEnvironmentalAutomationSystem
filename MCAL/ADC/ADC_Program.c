@@ -18,6 +18,12 @@
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
 
+#include "../../Common/Config.h"
+#if ADC_Driver
+
+
+
+
 #include "ADC_Interface.h"
 
 /**
@@ -162,3 +168,9 @@ void mADC_Enable() {
 void __vector_16(void) {
     // Action
 }
+
+
+
+
+
+#endif /* ADC_Driver */

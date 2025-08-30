@@ -10,7 +10,11 @@
  */
 
 
- #include "LCD_Interface.h"
+
+#include "../../Common/Config.h"
+#if LCD_Driver
+
+#include "LCD_Interface.h"
 
 #include <util/delay.h>
 
@@ -48,7 +52,7 @@ void hLCD_WriteByte(uint8_t Byte)
 {
     // RS = 1 for data
     DIO_Write_Pin(LCD_RS_Group, LCD_RS_Pin, DIO_High);
-DIO_Write_Pin(LCD_E_Group, LCD_E_Pin, DIO_High);
+    DIO_Write_Pin(LCD_E_Group, LCD_E_Pin, DIO_High);
     _delay_us(1);
     // Send high nibble
     uint8_t Temp_Byte=Byte ;
@@ -192,3 +196,4 @@ void hLCD_ClearSecondLine()
 }
 
 /*---------------------------------------------------------*/
+#endif /*LCD_Driver*/

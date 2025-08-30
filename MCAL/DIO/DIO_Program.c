@@ -8,6 +8,11 @@
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
+
+#include "../../Common/Config.h"
+
+#if  DIO_Driver 
+
 #include "DIO_Interface.h"
 #include "DIO_Private.h"
 #include "../../Common/Macro.h"
@@ -190,3 +195,5 @@ uint8_t DIO_Read_Group(uint8_t GroupName)
     return InputValue;
 }
 
+
+#endif /* DIO_Driver */

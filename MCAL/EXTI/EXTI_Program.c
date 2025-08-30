@@ -8,6 +8,14 @@
  *
  * @copyright Copyright (c) 2025 , Gestell Company
  */
+
+
+#include "../../Common/Config.h"
+
+#if EXTI_Driver
+
+
+
 #include "EXTI_Interface.h"
 #include "../RegistersAddress.h"
 #include "../../Common/Macro.h"
@@ -183,3 +191,5 @@ void __vector_3(void)
 
 }
 /*----------------------------------------------*/
+
+#endif /* EXTI_Driver */

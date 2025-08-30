@@ -8,16 +8,17 @@
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
+#include "../../Common/Config.h"
+#if UART_Driver
 
- #include "Uart_Interface.h"
- #include "../../Common/Macro.h"
- #include "../RegistersAddress.h"
+#include "Uart_Interface.h"
+#include "../../Common/Macro.h"
+#include "../RegistersAddress.h"
 
-
- /**
- * @note this is a Global pointer to function to carry 
- *       the PointerFunc called by ISR
- */
+/**
+* @note this is a Global pointer to function to carry 
+*       the PointerFunc called by ISR
+*/
 static void (*RxGlobal)(uint16_t Data)= Null;
 
 /**
@@ -312,3 +313,4 @@ void __vector_13(void)
     ClearBit(UCSRB_Reg, RXCIE_Bit);
 }
 
+#endif /* UART_Driver */
