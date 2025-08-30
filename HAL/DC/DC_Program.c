@@ -8,6 +8,10 @@
  *
  * @copyright Copyright (c) 2025 , Gestell Company
  */
+
+#include "../../Common/Config.h"
+#if DC_Driver
+
 #include "DC_Interface.h"
 #include "../../MCAL/DIO/DIO_Interface.h"
 #include "../../MCAL/DIO/DIO_Private.h"
@@ -62,3 +66,4 @@ void hFan_Off(uint8_t ZoneNumber)
         //Handle error
     }
 }
+#endif /*DC_Driver*/

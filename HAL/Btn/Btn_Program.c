@@ -9,14 +9,19 @@
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
-#include "HAL/Btn/Btn_Interface.h"
-#include "HAL/Btn/Btn_Config.h"
-#include "HAL/Btn/Btn_Private.h"
-#include "MCAL/GIE/GIE.h"
-#include "MCAL/EXTI/EXTI_Interface.h"
-#include "MCAL/DIO/DIO_Interface.h"
-#include "MCAL/DIO/DIO_Private.h"
-#include "Common/Macro.h"
+
+#include "../../Common/Config.h"
+#if Btn_Driver
+
+#include "../../Common/Macro.h"
+#include "../../MCAL/DIO/DIO_Private.h"
+#include "../../MCAL/DIO/DIO_Interface.h"
+#include "../../MCAL/EXTI/EXTI_Interface.h"
+#include "../../MCAL/GIE/GIE.h"
+
+#include "Btn_Interface.h"
+#include "Btn_Config.h"
+#include "Btn_Private.h"
 
 /**
  * @var CurrentMode Global variable to store the current operation mode (Auto/Manual).
@@ -53,3 +58,4 @@ void hBtn_Init()
 
 
 
+#endif /* Btn_Driver */

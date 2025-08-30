@@ -33,7 +33,6 @@
 #define FirstLineAddress  0x00
 #define SecondLineAddress 0x40
 #define SetDDRAMCommand   0x80
-/*-------------------------------------------------------------*/
 /*------------------------------LCD Magic Numbers--------------------------------------*/
 /**
  * @def LCD Magic Numbers

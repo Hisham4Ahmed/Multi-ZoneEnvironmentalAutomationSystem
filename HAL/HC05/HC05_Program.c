@@ -8,3 +8,12 @@
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
+
+#include "../../Common/Config.h"
+#if HC05_Driver
+
+#include "HC05_Interface.h"
+
+
+
+#endif /*HC05_Driver*/

@@ -12,6 +12,10 @@
 
 #ifndef _GIE_H_
 #define _GIE_H_
+#include "../../Common/Config.h"
+
+#if GIE_Driver 
+
 
 #include "../../Common/Macro.h"
 #include "../RegistersAddress.h"
@@ -34,5 +38,9 @@
  * @brief This Macro is Responsible for 
  */
 #define mGIE_Disable()         ClearBit(SREG_Reg,I_Bit)
+
+
+#endif /* GIE_Driver */
+
 
 #endif /*_GIE_H_*/

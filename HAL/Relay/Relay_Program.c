@@ -8,6 +8,8 @@
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
+#include "../../Common/Config.h"
+#if Relay_Driver
 
 #include "Relay_Interface.h"
 
@@ -54,3 +56,6 @@ void hRelay_Toggle(uint8_t ZoneNumber) {
         // Ignore Invalid Zone Number 
     }
 }
+
+
+#endif /*Relay_Driver*/

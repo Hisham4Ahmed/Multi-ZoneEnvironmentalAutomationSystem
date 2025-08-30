@@ -9,6 +9,8 @@
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
 
+#include "../../Common/Config.h"
+#if LED_Driver
 
 #include "../../MCAL/DIO/DIO_Interface.h"
 #include "../../MCAL/DIO/DIO_Private.h"
@@ -70,4 +72,4 @@ void hLed_Off(uint8_t ZoneNumber)
     }
 }
 
- 
+#endif /*LED_Driver*/

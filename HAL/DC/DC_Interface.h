@@ -15,7 +15,6 @@
 #include <stdint.h>
 #include "../../Common/ZoneConfig.h"
 #include "../../Common/Macro.h"
-#include "DC_Config.h"
 /**
  * @fn      void hFan_Init(uint8_t ZoneNumber)
  * @brief   Initialization Function OF the DC motor Zones
