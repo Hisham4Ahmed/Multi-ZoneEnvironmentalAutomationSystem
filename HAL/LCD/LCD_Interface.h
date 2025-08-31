@@ -21,6 +21,7 @@
 #include "../../Common/Macro.h"
 #include "../../MCAL/RegistersAddress.h"
 #include "../../MCAL/DIO/DIO_Interface.h"
+#include "../../MCAL/DIO/DIO_Private.h"
 /*-------------------Functions-------------------------------*/
 /**
  * @fn hLCD_Init
