@@ -48,6 +48,18 @@
   * @def Zone4Num
   * @brief Zone numbers to use them in the functions directly
   * @author Mohamed Diaa "mohammeddiaato@gmail.com"
+  * @def Zone1_LDRGroup
+  * @def Zone2_LDRGroup
+  * @def Zone3_LDRGroup
+  * @def Zone4_LDRGroup
+  * @brief Groups on MCU on different zones for LDR
+  * @author Ahmed Ashraf
+  * @def Zone1_LDRPin
+  * @def Zone2_LDRPin
+  * @def Zone3_LDRPin
+  * @def Zone4_LDRPin
+  * @brief Pins on MCU on different zones for LDR
+  * @author Ahmed Ashraf
 */
 /* ------------------- Zone 1 ------------------- */
 #define Zone1Num         1
@@ -56,6 +68,8 @@
 #define Zone1_RelayPin   Pin1
 #define Zone1_DCpin      Pin3
 #define Zone1_DCGroup    GroupB
+#define Zone1_LDRGroup   GroupA
+#define Zone1_LDRPin     Pin0
 
 /* ------------------- Zone 2 ------------------- */
 #define Zone2Num         2
@@ -64,6 +78,8 @@
 #define Zone2_RelayPin   Pin3
 #define Zone2_DCpin      Pin5
 #define Zone2_DCGroup    GroupD
+#define Zone2_LDRGroup   GroupA
+#define Zone2_LDRPin     Pin2
 
 /* ------------------- Zone 3 ------------------- */
 #define Zone3Num         3
@@ -72,6 +88,8 @@
 #define Zone3_RelayPin   Pin5
 #define Zone3_DCpin      Pin4
 #define Zone3_DCGroup    GroupD
+#define Zone3_LDRGroup   GroupA
+#define Zone3_LDRPin     Pin4
 /* ------------------- Zone 4 ------------------- */
 /** @brief Zone 4 LED connection */
 #define Zone4Num         4 
@@ -80,6 +98,8 @@
 #define Zone4_RelayPin   Pin7
 #define Zone4_DCpin      Pin7
 #define Zone4_DCGroup    GroupD
+#define Zone4_LDRGroup   GroupA
+#define Zone4_LDRPin     Pin6
 
 
 
@@ -98,5 +118,6 @@
 
 
 #define Zones_Relay_Pin {Zone1_RelayPin, Zone2_RelayPin, Zone3_RelayPin, Zone4_RelayPin}
-
+#define Zones_LDRGroups {Zone1_LDRGroup, Zone2_LDRGroup , Zone3_LDRGroup, Zone4_LDRGroup}
+#define Zones_LDRPins   {Zone1_LDRPin, Zone2_LDRPin, Zone3_LDRPin, Zone4_LDRPin }
 #endif /* _ZONECONFIG_H_ */
