@@ -70,7 +70,7 @@ typedef enum
 #define COM20_Bit   4
 /**
  * @def     Timer2_COM_FastPWM 
- * @brief    
+ * @brief   Choosing the Compare Output ;atch 
  */
 typedef enum
 {

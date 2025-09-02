@@ -50,6 +50,13 @@
 
  */
 
-#define DefaultDutyCycle   50
+#define initialDutyCycle   50
+
+/**
+ * @def   ClearPrescallerbitsOnlyMask
+ * @brief Mask to clear the last three bits in TCCR2
+ */
+#define ClearPrescallerbitsOnlyMask 0xF8
+
 
 #endif /*_T2_CONFIG_H_*/
