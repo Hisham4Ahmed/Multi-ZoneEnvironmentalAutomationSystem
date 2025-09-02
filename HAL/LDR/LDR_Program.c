@@ -17,24 +17,25 @@
 
 static uint8_t LDR_ZonesPins[MaxZones] = Zones_LDRPins;
 
-void hLDR_Init(uint8_t ZoneNumber)
+void hLDR_Init(uint8_t ZoneNumber)  
 {
-mADC_Init();
-DIO_Direction_Pin(GroupA , LDR_ZonesPins[ZoneNumber-1], DIO_Input );
+    mADC_Init();
+    DIO_Direction_Pin(GroupA , LDR_ZonesPins[ZoneNumber-1], DIO_Input );
 }
 
 uint8_t hLDR_GetLightStatus(uint8_t ZoneNumber)
 {
-    uint8_t LDR_Read = 0;
+    uint16_t LDR_Read = 0;
+
     if (ZoneNumber >= 1 && ZoneNumber <= MaxZones)
     {
- LDR_Read = (mADC_SingleModeConversion(LDR_ZonesPins[ZoneNumber-1] )*5000UL /1023) ;
+      LDR_Read = (mADC_SingleModeConversion(LDR_ZonesPins[ZoneNumber-1] )*5000UL /1023) ;
     }
     else
     {
         // Do Nothing
     }
-#if LDR_Connection_Type == With_Vcc
+   #if LDR_Connection_Type == With_Vcc
     
    if (LDR_Read<=LDR_With_Vcc_Edge_point)  // This Value Leads To 10 Lux in our case
    {
@@ -45,17 +46,17 @@ uint8_t hLDR_GetLightStatus(uint8_t ZoneNumber)
     return Morning ;
    }
    
-#elif  LDR_Connection_Type == With_GND
-{
- if (LDR_Read<=LDR_With_GND_Edge_point)  
-   {
-   return Morning;
-   }
-   else
-   {
-    return Evening ;
-   }
-}
+    #elif  LDR_Connection_Type == With_GND
+    {
+     if (LDR_Read<=LDR_With_GND_Edge_point)  
+       {
+       return Morning;
+       }
+       else
+       {
+        return Evening ;
+       }
+     }
 #endif
 }
 

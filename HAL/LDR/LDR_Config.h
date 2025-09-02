@@ -40,7 +40,19 @@
  * 
  */
 #define LDR_Connection_Type            With_Vcc
+
+/**
+ * @def LDR_With_Vcc_Edge_point 
+ * @brief How Many miliVolts are going to adc when LDR is in With_Vcc
+ */
+
 #define LDR_With_Vcc_Edge_point        1793
+
+/**
+ * @def LDR_With_GND_Edge_point 
+ * @brief How Many miliVolts are going to adc when LDR is in With_GND
+ */
+
 #define LDR_With_GND_Edge_point        3201
 
 
