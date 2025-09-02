@@ -19,6 +19,19 @@
  */
 #define WGM20_Bit   6
 #define WGM21_Bit   3
+
+/**
+ * @def     Timer2_WaveGenModes
+ * @brief   This is Timer 2 Waveform Generation to select Timer mode  
+ */
+typedef enum
+{
+  Normal =0,
+  PhaseCorrect =1,
+  CTC =2,
+  FastPwm =3,
+
+} Timer2_WaveGenModes;
 /**
  * @def   CS22_Bit
  * @def   CS21_Bit
@@ -36,14 +49,14 @@
  */
 typedef enum
 {
-    Timer2_NoClockSource   = 0,
-    Timer2_Prescaller_1    = 1,
-    Timer2_Prescaller_8    = 2,
-    Timer2_Prescaller_32   = 3,
-    Timer2_Prescaller_64   = 4,
-    Timer2_Prescaller_128  = 5,
-    Timer2_Prescaller_256  = 6,
-    Timer2_Prescaller_1024 = 7
+    NoClockSource   = 0,
+    Prescaller_1    = 1,
+    Prescaller_8    = 2,
+    Prescaller_32   = 3,
+    Prescaller_64   = 4,
+    Prescaller_128  = 5,
+    Prescaller_256  = 6,
+    Prescaller_1024 = 7
 
 } Timer2_Prescaller_Set;
 
@@ -65,10 +78,20 @@ typedef enum
    NonInverting=2,
    Inverting=3, 
 
-
-
 }    Timer2_COM_FastPWM ;
 
+/**
+ * @def   OCIE2_Bit
+ * @brief Timer2 Interrupt Enable Bit
+ */
+#define  OCIE2_Bit  7
+
+/**
+ * @def   OCIE2_Bit
+ * @brief Timer2 Prescaller Reset bit 
+ */
+
+#define  PSR2_Bit   1
 
 
 #endif /*_T2_PRIVATE_H_*/
