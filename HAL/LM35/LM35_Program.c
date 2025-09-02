@@ -23,7 +23,6 @@ void hLm35_Init(uint8_t ZoneNumber) {
     mADC_Init();
 }
 
-/** @warning Still Doesn't support minus Temps */
 int8_t hLm35_GetTemp(uint8_t ZoneNumber) {
     static uint16_t DigitalVoltage = 0;
     static uint16_t LastDigitalVoltage = 0;

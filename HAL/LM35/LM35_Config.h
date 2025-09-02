@@ -2,7 +2,7 @@
  * @file     LM35_Config.h
  * @author   Developer : Mohammed Atif  "medoatifatif@gmail.com:
  * @author   Reviewer  : Mohammed Diaa  "mohammeddiaato@gmail.com"
- * @brief 
+ * @brief    User configuration file for LM35 sensor driver.
  * @version   0.1
  * @date      2025-08-15
  * 
