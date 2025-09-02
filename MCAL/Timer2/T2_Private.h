@@ -82,12 +82,6 @@ typedef enum
 
 /**
  * @def   OCIE2_Bit
- * @brief Timer2 Interrupt Enable Bit
- */
-#define  OCIE2_Bit  7
-
-/**
- * @def   OCIE2_Bit
  * @brief Timer2 Prescaller Reset bit 
  */
 

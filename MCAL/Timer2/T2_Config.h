@@ -50,8 +50,6 @@
 
  */
 
-
-#define WaveGenMode        FastPwm
-#define Interrupt_Enable   Enabled
+#define DefaultDutyCycle   50
 
 #endif /*_T2_CONFIG_H_*/

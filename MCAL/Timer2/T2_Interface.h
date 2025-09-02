@@ -12,8 +12,28 @@
 
 #ifndef _T2_INTERFACE_H_
 #define _T2_INTERFACE_H_
+#include "T2_Private.h"
+#include "T2_Config.h"
 
 
+/**
+ * @fn    void mTimer2_InitFastPWMMode(void);
+ * @brief Initializes Timer2 in Fast PWM mode.
+ */
+void mTimer2_InitFastPWMMode(void);
+ 
+/**
+ * @fn    void mTimer2_ChangeDutyCycle(uint8_t DutyCycle );    
+ * @brief Changes the duty cycle of the Timer2 Fast PWM output.
+ * @param DutyCycle The desired duty cycle percentage (0-100).
+ */
+void mTimer2_ChangeDutyCycle(uint8_t DutyCycle );
+ 
+/**
+ * @fn    void mTimer2_FastPWMStop(void);
+ * @brief Stops the Fast PWM operation on Timer2.
+ */
 
+void mTimer2_FastPWMStop(void);
 
 #endif /*_T2_INTERFACE_H_*/
