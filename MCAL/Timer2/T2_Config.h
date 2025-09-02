@@ -53,15 +53,14 @@
 #define initialDutyCycle   50
 
 /**
- * @def   ClearPrescallerbitsOnlyMask
+ * @def   Timer2_NoClkMask
  * @def   Timer2_StopBitMask 
  * @brief Mask for the bits in TCCR2
  */
-#define ClearPrescallerbitsOnlyMask 0xF8
 
-#define Timer2_StopBitMask          0xF8
+#define Timer2_NoClkMask          0xF8
 
-#define Timer2_PWMStop              0xFF
+#define Timer2_PWMStop              0xCF //5th and 4th bits cleared
 
 
 #endif /*_T2_CONFIG_H_*/

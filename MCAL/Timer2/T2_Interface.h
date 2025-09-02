@@ -35,5 +35,10 @@ void mTimer2_ChangeDutyCycle(uint8_t DutyCycle );
  */
 
 void mTimer2_FastPWMStop(void);
+/**
+ * @fn    void mTimer2_TimerStop(void);
+ * @brief Stops the Timer2 operation by making it with no clock
+ */
 
+void mTimer2_TimerStop(void);
 #endif /*_T2_INTERFACE_H_*/
