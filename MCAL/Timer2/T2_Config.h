@@ -54,9 +54,14 @@
 
 /**
  * @def   ClearPrescallerbitsOnlyMask
- * @brief Mask to clear the last three bits in TCCR2
+ * @def   Timer2_StopBitMask 
+ * @brief Mask for the bits in TCCR2
  */
 #define ClearPrescallerbitsOnlyMask 0xF8
+
+#define Timer2_StopBitMask          0xF8
+
+#define Timer2_PWMStop              0xFF
 
 
 #endif /*_T2_CONFIG_H_*/

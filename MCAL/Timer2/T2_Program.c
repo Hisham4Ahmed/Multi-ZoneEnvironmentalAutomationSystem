@@ -62,7 +62,24 @@ void mTimer2_ChangeDutyCycle(uint8_t DutyCycle )
 }
 
 
-void mTimer2_FastPWMStop(void);
+void mTimer2_FastPWMStop(void)
+{
+    	uint8_t TCCR2_Temp  = Timer2_PWMStop ;
+        
+        TCCR2_Reg&=TCCR2_Temp;
+
+}
+void mTimer2_TimerStop(void)
+{
+    uint8_t TCCR2_Temp  = Timer2_StopBitMask ;
+    ClearBit(TCCR2_Temp,COM20_Bit);
+    ClearBit(TCCR2_Temp,COM21_Bit);
+
+    TCCR2_Reg &=TCCR2_Temp;
+            
+
+
+}
 
 
 
