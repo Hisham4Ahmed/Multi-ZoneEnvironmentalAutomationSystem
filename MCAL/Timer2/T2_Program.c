@@ -16,7 +16,7 @@
 #include "T2_Interface.h"
 #include "../../Common/Macro.h"
 #include "../RegistersAddress.h"
-
+#include <stdint.h>
 
 void mTimer2_InitFastPWMMode()
 {
@@ -44,7 +44,22 @@ void mTimer2_InitFastPWMMode()
  
 }
 
-void mTimer2_ChangeDutyCycle(uint8_t DutyCycle );
+void mTimer2_ChangeDutyCycle(uint8_t DutyCycle )
+{
+    uint8_t CompareValue = 0 ;
+
+    #if CompareOutputMode ==NonInverting
+	
+		CompareValue = (256 * DutyCycle) / 100; 
+            
+    #elif CompareOutputMode ==Inverting
+            CompareValue= 256 * (1-DutyCycle/100);
+
+    #endif
+	
+	OCR0_Reg = CompareValue;
+
+}
 
 
 void mTimer2_FastPWMStop(void);
