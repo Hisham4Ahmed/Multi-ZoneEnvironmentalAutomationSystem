@@ -28,12 +28,13 @@
  * @details LDR Was Configured To be Connected by this way :
  *               Vcc
  *                |
- *               LDR ----- ADC
+ *               LDR 
+ *                |----- ADC
  *                |                
  *                |
  *               GND 
  */
-void hLDr_Init(uint8_t ZoneNumber) ;
+void hLDR_Init(uint8_t ZoneNumber) ;
 
 /**
  * @fn hLDR_GetLightStatus
