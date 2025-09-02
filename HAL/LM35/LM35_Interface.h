@@ -15,7 +15,10 @@
 #include <stdint.h>
 
 #include "../../Common/ZoneConfig.h"
+#include "LM35_Config.h"
+#include "LM35_Private.h"
 #include "../../MCAL/ADC/ADC_Interface.h"
+#include "../../MCAL/DIO/DIO_Interface.h"
 
 /**
  * @fn void hLm35_Init(uint8_t ZoneNumber)
