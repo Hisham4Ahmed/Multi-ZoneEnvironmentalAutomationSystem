@@ -13,7 +13,8 @@
 #include "../../Common/Config.h"
 #if TIMER2_Driver
 
-#include "T1_Interface.h"
+#include "T2_Interface.h"
+#include "../RegistersAddress.h"
 
 
 
