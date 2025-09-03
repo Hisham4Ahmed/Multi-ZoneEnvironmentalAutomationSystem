@@ -22,6 +22,12 @@
 #define Relays_Group     GroupC
 #define Zones_BtnGroup   GroupD
 #define Zones_BtnPin     Pin2
+/*----------------------- HC05 Configuration Pins------------------*/
+#define Bluetooth_TxGroup    GroupD
+#define Bluetooth_TxPin      Pin0
+
+#define Bluetooth_RxGroup    GroupD
+#define Bluetooth_RxPin      Pin1
 
 /** 
   * @defgroup  Zones Mapping
