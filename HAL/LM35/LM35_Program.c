@@ -18,6 +18,8 @@
 static LM35_Zone[MaxZones] = Zones_ADC_Channel;
 
 void hLm35_Init(uint8_t ZoneNumber) {
+    static uint8_t initialized = 0;
+
     // Initialize ADC :
     if (ZoneNumber >= 1 && ZoneNumber < MaxZones) {
         DIO_Direction_Pin(GroupA, LM35_Zone[ZoneNumber-1], DIO_Input);
@@ -25,7 +27,12 @@ void hLm35_Init(uint8_t ZoneNumber) {
     else {
         // Invalid Zone Number
     }
-    mADC_Init();
+    
+    // Runtime Guard 'Initialize ADC only once' 
+    if (!initialized) {
+        mADC_Init();
+        initialized = 1;
+    }
 }
 
 int8_t hLm35_GetTemp(uint8_t ZoneNumber) {
