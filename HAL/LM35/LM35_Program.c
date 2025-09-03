@@ -19,39 +19,50 @@ static LM35_Zone[MaxZones] = Zones_ADC_Channel;
 
 void hLm35_Init(uint8_t ZoneNumber) {
     // Initialize ADC :
-    DIO_Direction_Pin(GroupA, LM35_Zone[ZoneNumber-1], DIO_Input);
+    if (ZoneNumber >= 1 && ZoneNumber < MaxZones) {
+        DIO_Direction_Pin(GroupA, LM35_Zone[ZoneNumber-1], DIO_Input);
+    }
+    else {
+        // Invalid Zone Number
+    }
     mADC_Init();
 }
 
 int8_t hLm35_GetTemp(uint8_t ZoneNumber) {
-    static uint16_t DigitalVoltage = 0;
-    static uint16_t LastDigitalVoltage = 0;
-    static uint16_t AnalogVoltage_mV = 0;
-    static int8_t Temp_C = 0;
-    
-    // Start single conversion :
-    DigitalVoltage = mADC_SingleModeConversion(LM35_Zone[ZoneNumber - 1]);
-    
-    // Convert Digital to Analog volt in mV.    
-    if ( LastDigitalVoltage != DigitalVoltage) {
-        #if LM35_Mode == Basic
-            /**
-             *  @var Temp_C
-             *  @brief Converts Digital Voltage to Temperature(C) in one step
-             * where
-             *  Analog Volt in mV = ((uint32_t)DigitalVolt*5000UL)/1024
-             *  Temp(C) = Analog Volt / 10mV
-             */
-            Temp_C = ((uint32_t)DigitalVoltage*5000UL)/10240;
-        #elif LM35_Mode == Full_Range
-            // Will be supported in future.
-        #endif
-
-        LastDigitalVoltage = DigitalVoltage;
+    if (ZoneNumber >= 1 && ZoneNumber < MaxZones) {
+        static uint16_t DigitalVoltage = 0;
+        static uint16_t LastDigitalVoltage = 0;
+        static uint16_t AnalogVoltage_mV = 0;
+        static int8_t Temp_C = 0;
+        
+        // Start single conversion :
+        DigitalVoltage = mADC_SingleModeConversion(LM35_Zone[ZoneNumber - 1]);
+        
+        // Convert Digital to Analog volt in mV.    
+        if ( LastDigitalVoltage != DigitalVoltage) {
+            #if LM35_Mode == Basic
+                /**
+                 *  @var Temp_C
+                 *  @brief Converts Digital Voltage to Temperature(C) in one step
+                 * where
+                 *  Analog Volt in mV = ((uint32_t)DigitalVolt*5000UL)/1024
+                 *  Temp(C) = Analog Volt / 10mV
+                 */
+                Temp_C = ((uint32_t)DigitalVoltage*5000UL)/10240;
+            #elif LM35_Mode == Full_Range
+                // Will be supported in future.
+            #endif
+        
+            LastDigitalVoltage = DigitalVoltage;
+        }
+        
+        // return T(C)
+        return Temp_C;
     }
-    
-    // return T(C)
-    return Temp_C;
+    else {
+        // Invalid Zone Number
+        return 255;
+    }
 }
 
 #endif /*LM35_Driver*/
