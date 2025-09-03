@@ -54,7 +54,11 @@ void hHC05_SendChar(uint8_t Char)
 
 void hHC05_SendString(const uint8_t *String)
   {
-    while (*String!=Null)
+    if (String==Null)
+    {
+        return;
+    }
+    while (*String!=NullChar)
     {
         hHC05_SendChar(*String);
         String++;
@@ -84,7 +88,7 @@ void hHC05_ReceiveString(uint8_t *String, uint16_t maxLen)
             break;
         }
     }
-    String[Counter] = Null;
+    String[Counter] = NullChar;
   }
 
 void hHC05_RxISRHandler(uint8_t byte)
