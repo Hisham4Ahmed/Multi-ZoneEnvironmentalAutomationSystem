@@ -29,7 +29,7 @@
 #define UART_Driver         Enabled
 
 #define Btn_Driver          Enabled
-#define HC05_Driver         Disabled
+#define HC05_Driver         Enabled
 #define LCD_Driver          Disabled
 #define LDR_Driver          Disabled
 #define LED_Driver          Enabled

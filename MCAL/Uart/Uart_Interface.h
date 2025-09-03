@@ -15,6 +15,12 @@
 #include "Uart_Config.h"
 #include <stdint.h>
 /**
+ * @fn A callback function to be executed on UART interrupt.
+ * @param PointerFunc: A pointer to the callback function that takes 
+ *        the received UART data (uint16_t Data) as an argument.
+ */
+void mUart_CallBack(void(*PointerFunc)(uint16_t Data));
+/**
  * @fn this function is to intialize USART
  */
 void USART_Init();
