@@ -1,10 +1,10 @@
 /**
  * @file     LDR_Program.c
- * @author   <Developer>
- * @author   <Reviewer>
- * @brief 
+ * @author   Developer : Ahmed Ashraf
+ * @author   Reviewer  : Mohamed Atif
+ * @brief  This driver is to initialize and operate LDR
  * @version   0.1
- * @date      2025-08-15
+ * @date      2025-08-31
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
