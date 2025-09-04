@@ -12,6 +12,4 @@
 #ifndef _LM35_CONFIG_H_
 #define _LM35_CONFIG_H_
 
-#define LM35_Mode   Basic
-
 #endif /*_LM35_CONFIG_H_*/
