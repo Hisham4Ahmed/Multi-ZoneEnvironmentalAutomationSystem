@@ -14,13 +14,30 @@
 #include "../../MCAL/ADC/ADC_Interface.h"
 #include "../../MCAL/ADC/ADC_Private.h"
 
+static uint8_t ADC_initializied = 0;
 
 static uint8_t LDR_ZonesPins[MaxZones] = Zones_LDRPins;
 
 void hLDR_Init(uint8_t ZoneNumber)  
 {
+  if (ADC_initializied==0)
+  {
     mADC_Init();
+    ADC_initializied=1 ;
+
+  }
+  else
+  {
+     // do nothing
+  }
+   if (ZoneNumber <= MaxZones && ZoneNumber > 0)
+   {
     DIO_Direction_Pin(GroupA , LDR_ZonesPins[ZoneNumber-1], DIO_Input );
+   }
+   else
+   {
+    // do nothing
+   }
 }
 
 uint8_t hLDR_GetLightStatus(uint8_t ZoneNumber)

@@ -25,14 +25,7 @@
 /**
  * @fn hLDR_Init
  * @brief This Function is used to initialize LDR According to it's Zone
- * @details LDR Was Configured To be Connected by this way :
- *               Vcc
- *                |
- *               LDR 
- *                |----- ADC
- *                |                
- *                |
- *               GND 
+ * 
  */
 void hLDR_Init(uint8_t ZoneNumber) ;
 

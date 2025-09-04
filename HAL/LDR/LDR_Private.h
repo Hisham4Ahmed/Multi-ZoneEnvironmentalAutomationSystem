@@ -20,7 +20,11 @@
 #define Evening                           0
 
 
-
+/**
+ * @def With_Vcc
+ * @def With_GND
+ * @brief these macros defines ways of connecting LDR
+ */
 #define With_Vcc                          1
 #define With_GND                          0
 
