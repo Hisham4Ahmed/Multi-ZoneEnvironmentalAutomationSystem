@@ -52,7 +52,7 @@ int8_t hLm35_GetTemp(uint8_t ZoneNumber) {
                  *  @var Temp_C
                  *  @brief Converts Digital Voltage to Temperature(C) in one step
                  * where
-                 *  Analog Volt in mV = ((uint32_t)DigitalVolt*5000UL)/1024
+                 *  Analog Volt in mV = ((uint32_t)DigitalVolt*(unsigned long)V_Ref_mV)/(2*10)
                  *  Temp(C) = Analog Volt / 10mV
                  */
                 Temp_C = ((uint32_t)DigitalVoltage*(unsigned long)V_Ref_mV)/10240;
