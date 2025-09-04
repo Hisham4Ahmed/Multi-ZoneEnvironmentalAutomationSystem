@@ -13,9 +13,14 @@
 #define _LDR_CONFIG_H_
 
 /**
- * @details : Fixed Resistance Used Must Be 10K ohm , Vcc Must be 5V , there's 2 ways of connection
+ * @param: Fixed Resistance Used Must Be 10K ohm , Vcc Must be 5V , there's 2 ways of connection
  * @param : these are the parameters of LDR R1 ------> R in 0.1 lux must be equal 127410 ohm , Gamma = 0.8582
+ * @note   if these parameters was changed , all you need to do is to measure volt in milivolt from adc 
+ *          multiplied by Vcc (in mili volts) UL / 1023 and change the edge point from the config 
  * 
+ * @note   you can measure adc read using voltameter or by printing ADC*5000UL/1023 on lcd 
+ * 
+ * @details
  * 1 -    this is called With_Vcc in this driver
  * 
  *               Vcc
