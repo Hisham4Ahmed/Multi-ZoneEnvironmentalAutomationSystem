@@ -40,6 +40,23 @@ void mTimer2_FastPWMStop(void);
  * @fn    void mTimer2_TimerStop(void);
  * @brief Stops the Timer2 operation by making it with no clock
  */
-
 void mTimer2_TimerStop(void);
+
+/**
+ * @brief Enables the Output Compare Interrupt for Timer2.
+ *
+ * This function activates the interrupt for the Output Compare event on Timer2.
+ */
+void mTimer2_OutCompINTEnable(void);
+ 
+/**
+ * @brief Timer2 Output Compare Interrupt Service Routine.
+ *
+ * This is the interrupt handler for the Timer2 Output Compare event.
+ * It is automatically called when the Output Compare condition is met.
+ */
+void __vector_4(void) __attribute__((signal));
+
+
+
 #endif /*_T2_INTERFACE_H_*/

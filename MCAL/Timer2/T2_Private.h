@@ -81,12 +81,26 @@ typedef enum
 
 }    Timer2_COM_FastPWM ;
 
+
+/**
+ * @def   PSR2_Bit
+ * @brief Timer2 Prescaller Reset bit in SFIOR_reg
+ */
+#define  PSR2_Bit   1
+
+
 /**
  * @def   OCIE2_Bit
- * @brief Timer2 Prescaller Reset bit 
+ * @brief Timer2 Output compare match Interrupt  in TIMSK register
  */
+#define  OCIE2_Bit   7
 
-#define  PSR2_Bit   1
+
+/**
+ * @def   OCF2_Bit
+ * @brief Timer2 Output compare match Interrupt  in TIFR register
+ */
+#define  OCF2_Bit   7
 
 
 #endif /*_T2_PRIVATE_H_*/

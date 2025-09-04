@@ -83,4 +83,15 @@ void mTimer2_TimerStop(void)
         TCCR2_Reg &= Timer2_NoClkMask;
 }
 
+
+void mTimer2_OutCompINTEnable(void)
+{
+        SetBit(TIMSK_Reg,OCIE2_Bit);
+}
+
+void __vector_4(void) 
+{
+        //Action
+}
+
 #endif /* TIMER2_Driver */
