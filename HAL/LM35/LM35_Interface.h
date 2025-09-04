@@ -44,7 +44,8 @@ void hLm35_Init(uint8_t ZoneNumber);
  * millivolts, and then converts that to temperature in Celsius
  * (10 mV per °C). If the ADC reading hasn't changed since the
  * last call, the cached temperature value is returned.
- *
+ * Also returns 255 as error code if the ZoneNumber was invalid.
+ * 
  * @return Temperature in Celsius (int8_t).
  */
 int8_t hLm35_GetTemp(uint8_t ZoneNumber);
