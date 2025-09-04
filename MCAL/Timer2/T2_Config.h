@@ -1,9 +1,10 @@
 /**
  * @file T2_Config.h
- * @author Hesham Ahmed  (Hisham4Ahmed@gmail.com)
- * @brief 
- * @version 0.1
- * @date 2025-08-30
+ * @author Mohammed Diaa Developer-> Mohammeddiaato@gmail.com
+ * @author Hozifah Ahmed Reviwer  ->
+ * @brief  This File is made for the configuration of the Timer2 Config file 
+ * @version 0.2
+ * @date 2025-09-04
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
  * 
