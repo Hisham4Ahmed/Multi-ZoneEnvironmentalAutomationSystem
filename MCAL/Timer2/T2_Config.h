@@ -62,6 +62,9 @@
 #define Timer2_NoClkMask          0xF8
 
 #define Timer2_PWMStop              0xCF //5th and 4th bits cleared
-
-
+/**
+ * @def Timer2_Top 
+ * @brief The top value in the PWM
+ */
+#define Timer2_Top  255
 #endif /*_T2_CONFIG_H_*/
