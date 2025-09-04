@@ -55,7 +55,7 @@ int8_t hLm35_GetTemp(uint8_t ZoneNumber) {
                  *  Analog Volt in mV = ((uint32_t)DigitalVolt*5000UL)/1024
                  *  Temp(C) = Analog Volt / 10mV
                  */
-                Temp_C = ((uint32_t)DigitalVoltage*5000UL)/10240;
+                Temp_C = ((uint32_t)DigitalVoltage*(unsigned long)V_Ref_mV)/10240;
             #elif LM35_Mode == Full_Range
                 // Will be supported in future.
             #endif
