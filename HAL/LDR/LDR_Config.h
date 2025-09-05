@@ -51,14 +51,14 @@
  * @brief How Many miliVolts are going to adc when LDR is in With_Vcc
  */
 
-#define LDR_With_Vcc_Edge_point        1793
+#define LDR_With_Vcc_Edge_point        1808  //1808-> in proteus , 1793 -> in simulide
 
 /**
  * @def LDR_With_GND_Edge_point 
  * @brief How Many miliVolts are going to adc when LDR is in With_GND
  */
 
-#define LDR_With_GND_Edge_point        3201
+#define LDR_With_GND_Edge_point        3196   //3196-> in proteus  , 3201 in simulide
 
 
 #endif /*_LCD_CONFIG_H_*/
