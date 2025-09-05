@@ -91,6 +91,7 @@ void hHC05_ReceiveString(uint8_t *String, uint16_t maxLen)
     String[Counter] = NullChar;
   }
 
+  
 void hHC05_RxISRHandler(uint16_t byte)
 {
     enum BufferState state = GetBufferState();
