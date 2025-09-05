@@ -3,7 +3,7 @@
  * @author   Developer: Naira Mohammed (naira.mohammed.76@gmail.com)
  * @author   Reviewer: Ahmed Ashraf 
  * @brief    Implementation of HC05 bluetooth module driver functions.
- * @version   0.1
+ * @version   0.2
  * @date      2025-09-03
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
@@ -91,7 +91,7 @@ void hHC05_ReceiveString(uint8_t *String, uint16_t maxLen)
     String[Counter] = NullChar;
   }
 
-void hHC05_RxISRHandler(uint8_t byte)
+void hHC05_RxISRHandler(uint16_t byte)
 {
     enum BufferState state = GetBufferState();
     if (state!=Full)

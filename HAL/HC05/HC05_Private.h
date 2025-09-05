@@ -3,7 +3,7 @@
  * @author   Developer: Naira Mohammed (naira.mohammed.76@gmail.com)
  * @author   Reviewer: Ahmed Ashraf 
  * @brief    private definitions for HC05 Bluetooth module.
- * @version   0.1
+ * @version   0.2
  * @date      2025-09-03
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 

@@ -3,7 +3,7 @@
  * @author   Developer: Naira Mohammed (naira.mohammed.76@gmail.com)
  * @author   Reviewer: Ahmed Ashraf 
  * @brief    Public interface for HC05 driver implementation.
- * @version   0.1
+ * @version   0.2
  * @date      2025-09-03
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
@@ -51,7 +51,7 @@ void hHC05_SendChar(uint8_t Char);
 void hHC05_SendString(const uint8_t *String);
 
 /**
- * @fn hHC05_ReceiveChar: this function is to receive char from Hc05 buffer and send it to USART.
+ * @fn hHC05_ReceiveChar: this function is to receive char from Hc05 buffer.
  * @param *Char: a pinter to store the received char.
  * @brief Psudo code:
  *          1) check buffer state, if empty, there will be nothing to read.
@@ -89,6 +89,6 @@ void hHC05_ReceiveString(uint8_t *String, uint16_t maxLen);
  *                   then add the byte in buffer usin Enqueue function.
  *            2) Exit ISR.
  */
-void hHC05_RxISRHandler(uint8_t byte);
+void hHC05_RxISRHandler(uint16_t byte);
 
 #endif /*_HC05_INTERFACE_H_*/
