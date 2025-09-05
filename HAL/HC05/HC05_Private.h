@@ -1,14 +1,14 @@
 /**
  * @file     HC05_Private.h
- * @author   <Developer>
- * @author   <Reviewer>
- * @brief 
- * @version   0.1
- * @date      2025-08-15
- * 
+ * @author   Developer: Naira Mohammed (naira.mohammed.76@gmail.com)
+ * @author   Reviewer: Ahmed Ashraf 
+ * @brief    private definitions for HC05 Bluetooth module.
+ * @version   0.2
+ * @date      2025-09-03
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
 
+ 
 #ifndef _HC05_PRIVATE_H_
 #define _HC05_PRIVATE_H_
 
