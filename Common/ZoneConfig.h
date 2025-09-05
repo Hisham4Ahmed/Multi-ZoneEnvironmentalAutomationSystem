@@ -74,6 +74,7 @@
 #define Zone1_RelayPin   Pin1
 #define Zone1_DCpin      Pin3
 #define Zone1_DCGroup    GroupB
+#define Zone1_ADC_Channel   Pin1
 
 #define Zone1_LDRPin     Pin0
 
@@ -84,6 +85,7 @@
 #define Zone2_RelayPin   Pin3
 #define Zone2_DCpin      Pin5
 #define Zone2_DCGroup    GroupD
+#define Zone2_ADC_Channel   Pin3
 
 #define Zone2_LDRPin     Pin2
 
@@ -94,8 +96,8 @@
 #define Zone3_RelayPin   Pin5
 #define Zone3_DCpin      Pin4
 #define Zone3_DCGroup    GroupD
-
 #define Zone3_LDRPin     Pin4
+#define Zone3_ADC_Channel   Pin5
 /* ------------------- Zone 4 ------------------- */
 /** @brief Zone 4 LED connection */
 #define Zone4Num         4 
@@ -104,6 +106,7 @@
 #define Zone4_RelayPin   Pin7
 #define Zone4_DCpin      Pin7
 #define Zone4_DCGroup    GroupD
+#define Zone4_ADC_Channel   Pin7
 
 #define Zone4_LDRPin     Pin6
 
@@ -126,4 +129,6 @@
 #define Zones_Relay_Pin {Zone1_RelayPin, Zone2_RelayPin, Zone3_RelayPin, Zone4_RelayPin}
 
 #define Zones_LDRPins   {Zone1_LDRPin, Zone2_LDRPin, Zone3_LDRPin, Zone4_LDRPin }
+#define Zones_ADC_Channel {Zone1_ADC_Channel, Zone2_ADC_Channel, Zone3_ADC_Channel, Zone4_ADC_Channel}
+
 #endif /* _ZONECONFIG_H_ */
