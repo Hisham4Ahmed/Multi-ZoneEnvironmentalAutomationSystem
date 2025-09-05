@@ -39,7 +39,6 @@ int8_t hLm35_GetTemp(uint8_t ZoneNumber) {
     if (ZoneNumber >= 1 && ZoneNumber < MaxZones) {
         static uint16_t DigitalVoltage = 0;
         static uint16_t LastDigitalVoltage = 0;
-        static uint16_t AnalogVoltage_mV = 0;
         static int8_t Temp_C = 0;
         
         // Start single conversion :
