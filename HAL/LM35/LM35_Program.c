@@ -13,5 +13,61 @@
 #if LM35_Driver
 
 
+/** LM35 pin mapping for each zone. */
+static uint8_t LM35_Zone[MaxZones] = Zones_ADC_Channel;
+
+void hLm35_Init(uint8_t ZoneNumber) {
+    static uint8_t initialized = 0;
+
+    // Initialize ADC :
+    if (ZoneNumber >= 1 && ZoneNumber < MaxZones) {
+        DIO_Direction_Pin(GroupA, LM35_Zone[ZoneNumber-1], DIO_Input);
+    }
+    else {
+        // Invalid Zone Number
+    }
+    
+    // Runtime Guard 'Initialize ADC only once' 
+    if (!initialized) {
+        mADC_Init();
+        initialized = 1;
+    }
+}
+
+int8_t hLm35_GetTemp(uint8_t ZoneNumber) {
+    if (ZoneNumber >= 1 && ZoneNumber < MaxZones) {
+        static uint16_t DigitalVoltage = 0;
+        static uint16_t LastDigitalVoltage = 0;
+        static int8_t Temp_C = 0;
+        
+        // Start single conversion :
+        DigitalVoltage = mADC_SingleModeConversion(LM35_Zone[ZoneNumber - 1]);
+        
+        // Convert Digital to Analog volt in mV.    
+        if ( LastDigitalVoltage != DigitalVoltage) {
+            #if LM35_Mode == Basic
+                /**
+                 *  @var Temp_C
+                 *  @brief Converts Digital Voltage to Temperature(C) in one step
+                 * where
+                 *  Analog Volt in mV = ((uint32_t)DigitalVolt*(unsigned long)V_Ref_mV)/(2*10)
+                 *  Temp(C) = Analog Volt / 10mV
+                 */
+                Temp_C = ((uint32_t)DigitalVoltage*(unsigned long)V_Ref_mV)/10240;
+            #elif LM35_Mode == Full_Range
+                // Will be supported in future.
+            #endif
+        
+            LastDigitalVoltage = DigitalVoltage;
+        }
+        
+        // return T(C)
+        return Temp_C;
+    }
+    else {
+        // Invalid Zone Number
+        return 255;
+    }
+}
 
 #endif /*LM35_Driver*/
