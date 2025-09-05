@@ -11,7 +11,6 @@
 
 #ifndef _LM35_CONFIG_H_
 #define _LM35_CONFIG_H_
-
 /**
  * @def LM35_Mode
  * @brief Selects the operating mode for the LM35 temperature sensor.

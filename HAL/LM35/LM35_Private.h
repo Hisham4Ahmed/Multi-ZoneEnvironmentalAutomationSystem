@@ -12,11 +12,5 @@
 #ifndef _LM35_PRIVATE_H_
 #define _LM35_PRIVATE_H_
 
-/**
- * @def Basic : Supports from 2°C to 150°C
- * @def Full_Range : Supports full range from -55°C to 150°C
- */
-#define Basic       1
-#define Full_Range  0
 
 #endif /*_LM35_PRIVATE_H_*/
