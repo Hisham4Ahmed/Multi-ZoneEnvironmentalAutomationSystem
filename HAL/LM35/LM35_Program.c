@@ -15,7 +15,7 @@
 #include "LM35_Interface.h"
 
 /** LM35 pin mapping for each zone. */
-static LM35_Zone[MaxZones] = Zones_ADC_Channel;
+static uint8_t LM35_Zone[MaxZones] = Zones_ADC_Channel;
 
 void hLm35_Init(uint8_t ZoneNumber) {
     static uint8_t initialized = 0;
