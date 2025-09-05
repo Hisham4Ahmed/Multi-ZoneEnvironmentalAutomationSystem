@@ -5,7 +5,6 @@
  * @brief    Implementation of HC05 bluetooth module driver functions.
  * @version   0.2
  * @date      2025-09-03
- * 
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
 
@@ -13,7 +12,6 @@
 #if HC05_Driver
 
 #include "HC05_Interface.h"
-#include <stdint.h>
 
 
 /**

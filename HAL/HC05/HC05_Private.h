@@ -5,7 +5,6 @@
  * @brief    private definitions for HC05 Bluetooth module.
  * @version   0.2
  * @date      2025-09-03
- * 
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
 
@@ -14,10 +13,5 @@
 #define _HC05_PRIVATE_H_
 
 
-enum BufferState {
-    Empty,
-    Full,
-    PartiallyFull
-};
 
 #endif /*_HC05_PRIVATE_H_*/

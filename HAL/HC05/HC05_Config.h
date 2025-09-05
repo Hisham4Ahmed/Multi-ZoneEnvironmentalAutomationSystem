@@ -5,6 +5,7 @@
  * @brief    Configuration settings for HC05 Bluetooth module.
  * @version   0.2
  * @date      2025-09-03
+
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
@@ -13,10 +14,7 @@
  
 #ifndef _HC05_CONFIG_H_
 #define _HC05_CONFIG_H_
-#include "HC05_Private.h"
-#include "../../MCAL/DIO/DIO_Private.h"
 
-#define Buffer_Size      256
 
 
 #endif /*_HC05_CONFIG_H_*/
