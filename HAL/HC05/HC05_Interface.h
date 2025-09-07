@@ -12,6 +12,7 @@
 
 #ifndef _HC05_INTERFACE_H_
 #define _HC05_INTERFACE_H_
+
 #include "HC05_Config.h"
 #include "HC05_Private.h"
 #include "../../MCAL/Uart/Uart_Interface.h"
