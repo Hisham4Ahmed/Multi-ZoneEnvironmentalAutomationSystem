@@ -18,7 +18,7 @@
 #include "../../MCAL/Uart/Uart_Interface.h"
 #include "../../MCAL/DIO/DIO_Interface.h"
 #include "../../Common/ZoneConfig.h"
-
+ 
 #include <stdint.h>
 /**
  * @fn hHC05_Init: this function initializes HC05 module.

@@ -13,6 +13,7 @@
 #define _HC05_PRIVATE_H_
 
 
+
 enum BufferState {
     Empty,
     Full,
