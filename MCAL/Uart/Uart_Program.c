@@ -296,8 +296,7 @@ void USART_Transmit (uint16_t TxData)
  /**
   * @note the following is the ISR for RX complete interrupt, with a vector number of 13.
   *         * Automatically executed when a new frame is received
- *          * Reads UDR and Stores the received data through the callback function.  
- * -        * Clears the RX Complete Interrupt Enable bit (RXCIE) after execution.  
+ *          * Reads UDR and Stores the received data through the callback function.
  */
 
 void __vector_13(void)
