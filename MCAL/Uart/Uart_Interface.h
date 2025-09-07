@@ -15,6 +15,12 @@
 #include "Uart_Config.h"
 #include <stdint.h>
 /**
+ * @fn this is the call back function of UART.
+ */
+void USART_RxCallBack(void(*PointerFunc)(uint16_t Data));
+
+
+/**
  * @fn this function is to intialize USART
  */
 void USART_Init();

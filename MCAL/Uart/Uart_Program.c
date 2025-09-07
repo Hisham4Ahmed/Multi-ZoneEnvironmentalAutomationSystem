@@ -31,7 +31,7 @@ static void (*RxGlobal)(uint16_t Data)= Null;
  * @param PointerFunc A pointer to the callback function. 
  *        must not be NULL, otherwise no action will be taken.
  */
-void mUart_CallBack(void(*PointerFunc)(uint16_t Data))
+void USART_RxCallBack(void(*PointerFunc)(uint16_t Data))
 {
 	if (PointerFunc!=Null)
 	{
@@ -236,29 +236,30 @@ void mUart_CallBack(void(*PointerFunc)(uint16_t Data))
  *       5) Clear TX complete flag (TXC bit) by setting it to 1.
  */
 
- void USART_Transmit(uint16_t TxData)
- {
+
+
+void USART_Transmit (uint16_t TxData)
+{
    while(GetBit(UCSRA_Reg, UDRE_Bit)==0);
-   if (DataBits==Data5Bit || DataBits==Data6Bit || DataBits==Data7Bit || DataBits==Data8Bit)
-   {
-      UDR_Reg=(uint8_t)TxData;
-   }
-   else if (DataBits==Data9Bit)
-   {
+      #if DataBits==Data9Bit
       uint8_t NinthBit = GetBit(TxData, 8);
-      if (NinthBit==0)
-      {
-         ClearBit(UCSRB_Reg, TXB8_Bit);
-      }
-      else if (NinthBit==1)
-      {
-         SetBit(UCSRB_Reg, TXB8_Bit);
-      }
-      UDR_Reg=(uint8_t)TxData;
-   }
+         if (NinthBit==0)
+         {
+            ClearBit(UCSRB_Reg, TXB8_Bit);
+         }
+         else if (NinthBit==1)
+         {
+            SetBit(UCSRB_Reg, TXB8_Bit);
+         }
+         UDR_Reg=(uint8_t)TxData;
+      #else 
+      UDR_Reg=/*(uint8_t)*/TxData;
+      #endif
+
    while(GetBit(UCSRA_Reg,TXC_Bit)==0);
    SetBit(UCSRA_Reg,TXC_Bit);
- };
+
+} 
 
 /**
  * @fn This function receives data using USART communication protocol.
