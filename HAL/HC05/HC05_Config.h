@@ -15,6 +15,6 @@
 #ifndef _HC05_CONFIG_H_
 #define _HC05_CONFIG_H_
 
-
-
+#define Buffer_Size      256
+ 
 #endif /*_HC05_CONFIG_H_*/
