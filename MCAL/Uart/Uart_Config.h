@@ -1,9 +1,9 @@
 /**
  * @file     Uart_Config.h
- * @author   Naira Mohammed
- * @author   Ahmed Ashraf
+ * @author   Developer: Naira Mohammed
+ * @author   Reviewer: Ahmed Ashraf   
  * @brief    User configuration file, allowing user to configure Uart parameters.
- * @version   0.2
+ * @version   0.3
  * @date      2025-08-19
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
@@ -82,6 +82,6 @@
  * @note this drive supports only polling for Tx
  *       while it supports polling or interrupt for Rx
  */
-#define RxHandling   RxPolling
+#define RxHandling   RxInterrupt
 
 #endif /*_UART_CONFIG_H_*/

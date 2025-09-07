@@ -1,9 +1,9 @@
 /**
  * @file     Uart_Interface.h
- * @author   Naira Mohammed
- * @author   Ahmed Ashraf
+ * @author   Developer: Naira Mohammed
+ * @author   Reviewer: Ahmed Ashraf   
  * @brief    Public API's and function prototypes for Uart driver, allowing the user to initialize and use Uart peripheral 
- * @version   0.2
+ * @version   0.3
  * @date      2025-08-19
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
@@ -15,7 +15,7 @@
 #include "Uart_Config.h"
 #include <stdint.h>
 /**
- * @fn this is the call back function of UART.
+ * @fn A callback function to be executed when UART receives data.
  */
 void USART_RxCallBack(void(*PointerFunc)(uint16_t Data));
 

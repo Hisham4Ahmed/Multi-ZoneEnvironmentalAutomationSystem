@@ -1,9 +1,9 @@
 /**
  * @file     Uart_Program.c
- * @author   Naira Mohammed
- * @author   Ahmed Ashraf
+ * @author   Developer: Naira Mohammed
+ * @author   Reviewer: Ahmed Ashraf   
  * @brief 
- * @version   0.2
+ * @version   0.3
  * @date      2025-08-19
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
@@ -311,7 +311,6 @@ void __vector_13(void)
    #endif
 
     RxGlobal(RxData);
-    ClearBit(UCSRB_Reg, RXCIE_Bit);
 }
 
 #endif /* UART_Driver */
