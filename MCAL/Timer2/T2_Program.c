@@ -18,20 +18,7 @@
 #include "../RegistersAddress.h"
 #include <stdint.h>
 
-static void (*mTimer2_Global)(void) = Null;
 
-
-
-void mTimer2_Callback(void (*PF)(void))
-{
-        if (PF != Null)
-        {
-                mTimer2_Global = PF;
-        }
-        else
-        {
-        }
-}
 
 void mTimer2_InitFastPWMMode()
 {
@@ -84,14 +71,6 @@ void mTimer2_TimerStop(void)
 }
 
 
-void mTimer2_OutCompINTEnable(void)
-{
-        SetBit(TIMSK_Reg,OCIE2_Bit);
-}
 
-void __vector_4(void) 
-{
-        //Action
-}
 
 #endif /* TIMER2_Driver */

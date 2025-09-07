@@ -69,10 +69,5 @@
 #define Timer2_Top  255
 
 
-/**
- * @def     Timer2_INT
- * @brief   Enabling Interrupt option
- */
-#define Timer2_INT  Enabled
 
 #endif /*_T2_CONFIG_H_*/
