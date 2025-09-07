@@ -5,6 +5,7 @@
  * @brief    User configuration file, allowing user to configure Uart parameters.
  * @version   0.3
  * @date      2025-08-19
+ * @date      2025-09-07
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
