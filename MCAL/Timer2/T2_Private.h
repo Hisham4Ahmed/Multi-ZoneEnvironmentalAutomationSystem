@@ -1,9 +1,9 @@
 /**
  * @file T2_Private.h
  * @author Mohammed Diaa Developer-> Mohammeddiaato@gmail.com
- * @author Hozifah Ahmed Reviwer  ->
+ * @author Eng.Hesham Ahmed
  * @brief  This File is made for the Private elements of the Timer2 Config file 
- * @version 0.1
+ * @version 0.3
  * @date 2025-08-30
  *
  * @copyright Copyright (c) 2025 , Gestell Company

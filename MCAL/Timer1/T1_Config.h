@@ -1,7 +1,7 @@
 /**
  * @file T1_Config.h
  * @author Hesham Ahmed  (Hisham4Ahmed@gmail.com)
- * @brief 
+ * @brief  This File Is Done For Using PWM on Timer1 pins 
  * @version 0.1
  * @date 2025-08-30
  * 
