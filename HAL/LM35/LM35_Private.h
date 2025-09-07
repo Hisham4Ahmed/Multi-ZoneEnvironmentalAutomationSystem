@@ -20,3 +20,5 @@
 #define Basic      1 
 #define Full_Range 0
 #endif /*_LM35_PRIVATE_H_*/
+
+
