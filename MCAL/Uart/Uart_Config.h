@@ -82,6 +82,6 @@
  * @note this drive supports only polling for Tx
  *       while it supports polling or interrupt for Rx
  */
-#define RxHandling   RxInterrupt
+#define RxHandling   RxPolling
 
 #endif /*_UART_CONFIG_H_*/

@@ -1,8 +1,8 @@
 /**
  * @file     LM35_Private.h
- * @author   <Developer>
- * @author   <Reviewer>
- * @brief 
+ * @author   Developer : Mohammed Atif  "medoatifatif@gmail.com:
+ * @author   Reviewer  : Mohammed Diaa  "mohammeddiaato@gmail.com"
+ * @brief    Defines internal configuration options for LM35 temperature sensor.
  * @version   0.1
  * @date      2025-08-15
  * 

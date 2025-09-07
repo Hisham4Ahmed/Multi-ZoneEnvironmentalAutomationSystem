@@ -25,11 +25,11 @@
 #define GIE_Driver          Enabled
 #define TIMER0_Driver       Disabled
 #define TIMER1_Driver       Disabled
-#define TIMER2_Driver       Disabled
+#define TIMER2_Driver       Enabled
 #define UART_Driver         Enabled
 
 #define Btn_Driver          Enabled
-#define HC05_Driver         Enabled
+#define HC05_Driver         Disabled
 #define LCD_Driver          Disabled
 #define LDR_Driver          Disabled
 #define LED_Driver          Enabled

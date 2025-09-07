@@ -3,12 +3,12 @@
  * @author   Developer: Naira Mohammed (naira.mohammed.76@gmail.com)
  * @author   Reviewer: Ahmed Ashraf 
  * @brief    Public interface for HC05 driver implementation.
- * @version   0.1
+ * @version   0.2
  * @date      2025-09-03
- * 
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
 
+ 
 
 #ifndef _HC05_INTERFACE_H_
 #define _HC05_INTERFACE_H_
@@ -33,26 +33,7 @@
 void hHC05_Init();
 
 /**
- * @fn hHC05_SendChar: this function sends char via bluetooth.
- * @brief   Call USART_Transmit(uint16_t TxData); and let it send char.
- * @param char: is the char to be sent.
- */
-void hHC05_SendChar(uint8_t Char);
-
-/**
- * @fn hHC05_SendString: this function sends string of chars via bluetooth.
- * @param *String: string is an array of chars, the (*) is to access chars and send them.
- * @brief Psudo code:
- *          1) while current char != to Null
- *               -> call hHC05_SendChar and let it's arguments (*String), 
- *                  to access the chars of the string array and send them 
- *                  one by one.
- *               -> Repeat until end of string.
- */
-void hHC05_SendString(const uint8_t *String);
-
-/**
- * @fn hHC05_ReceiveChar: this function is to receive char from Hc05 buffer and send it to USART.
+ * @fn hHC05_ReceiveChar: this function is to receive char from Hc05 buffer.
  * @param *Char: a pinter to store the received char.
  * @brief Psudo code:
  *          1) check buffer state, if empty, there will be nothing to read.
@@ -90,6 +71,7 @@ void hHC05_ReceiveString(uint8_t *String, uint16_t maxLen);
  *                   then add the byte in buffer usin Enqueue function.
  *            2) Exit ISR.
  */
-void hHC05_RxISRHandler(uint8_t byte);
+void hHC05_RxISRHandler(uint16_t byte);
+
 
 #endif /*_HC05_INTERFACE_H_*/
