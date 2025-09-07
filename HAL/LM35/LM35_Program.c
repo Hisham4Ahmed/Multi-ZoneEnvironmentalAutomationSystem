@@ -12,6 +12,7 @@
 #include "../../Common/Config.h"
 #if LM35_Driver
 
+#include "LM35_Interface.h"
 
 /** LM35 pin mapping for each zone. */
 static uint8_t LM35_Zone[MaxZones] = Zones_ADC_Channel;
