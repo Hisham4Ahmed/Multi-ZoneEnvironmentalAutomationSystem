@@ -13,6 +13,24 @@
 #ifndef _HC05_INTERFACE_H_
 #define _HC05_INTERFACE_H_
 
+#include "HC05_Config.h"
+#include "HC05_Private.h"
+#include "../../MCAL/Uart/Uart_Interface.h"
+#include "../../MCAL/DIO/DIO_Interface.h"
+#include "../../Common/ZoneConfig.h"
+ 
+#include <stdint.h>
+/**
+ * @fn hHC05_Init: this function initializes HC05 module.
+ * @brief Psudo code:
+ *          1) set direction pins:
+ *                 Bluetooth Tx → MCU Rx (PD0) as Input
+ *                 Bluetooth Rx → MCU Tx (PD1) as Output
+ *          2) set Uart callback to hHC05_RxISRHandler().
+ *          3) Initialize internal RX buffer.
+ *          4) Call Uart init function.
+ */
+void hHC05_Init();
 
 /**
  * @fn hHC05_ReceiveChar: this function is to receive char from Hc05 buffer.

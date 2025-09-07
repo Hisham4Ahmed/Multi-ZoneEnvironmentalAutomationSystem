@@ -13,5 +13,10 @@
 #define _HC05_PRIVATE_H_
 
 
+enum BufferState {
+    Empty,
+    Full,
+    PartiallyFull
+};
 
 #endif /*_HC05_PRIVATE_H_*/
