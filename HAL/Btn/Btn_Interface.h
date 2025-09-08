@@ -13,6 +13,8 @@
 #define _BTN_INTERFACE_H_
 #include <stdint.h>
 
+#include "Btn_Private.h"
+
 /**
  * @brief this macro is to toggle modes when button is pressed
  */

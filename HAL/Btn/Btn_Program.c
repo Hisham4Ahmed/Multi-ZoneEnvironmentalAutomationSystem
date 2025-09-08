@@ -22,7 +22,7 @@
 
 #include "Btn_Interface.h"
 #include "Btn_Config.h"
-#include "Btn_Private.h"
+
 
 /**
  * @var CurrentMode Global variable to store the current operation mode (Auto/Manual).
