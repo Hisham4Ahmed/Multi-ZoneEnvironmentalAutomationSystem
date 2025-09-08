@@ -36,6 +36,8 @@
 #define LM35_Driver         Disabled
 #define Relay_Driver        Enabled
 
+#define ModeControl_App     Enabled
+
 /** @} */
 
 

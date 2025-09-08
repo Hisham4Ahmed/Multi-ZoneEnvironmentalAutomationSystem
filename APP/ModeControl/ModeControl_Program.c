@@ -1,9 +1,9 @@
 /**
  * @file     ModeControl_Program.c
  * @author   Developer: Mohammed Atif   "medoatifatif@gmail.com"
- * @author   <Reviewer>
+ * @author   Reviewer: Hesham Ahmed  (Hisham4Ahmed@gmail.com)
  * @brief    Mode control initialization and mode retrieval.
- * @version   0.1
+ * @version   0.2
  * @date      2025-09-8
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
@@ -29,5 +29,5 @@ void ModeControl_Task(void) {
 }
 
 uint8_t ModeControl_GetMode(void) {
-    return CurrentMode;
+    return hBtn_GetStatus();
 }
