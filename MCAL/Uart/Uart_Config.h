@@ -4,8 +4,8 @@
  * @author   Reviewer: Ahmed Ashraf   
  * @brief    User configuration file, allowing user to configure Uart parameters.
  * @version   0.3
- * @date      2025-08-19
- * @date      2025-09-07
+ * @date      (Created) 2025-08-19
+ * @date      (Updated) 2025-09-09
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
@@ -20,7 +20,7 @@
 
  /**
  * @def ParityMode
- * @brief Defines the parity check mode used in USART communication.
+ * @brief Defines the parity check mode used in UART communication.
  * 
  * Options:
  * - ParityDisable      : No parity bit is used.
@@ -31,7 +31,7 @@
 
 /**
  * @def DataBits
- * @brief Defines the number of data bits used in USART frame.
+ * @brief Defines the number of data bits used in UART frame.
  * 
  * Options:
  * - Data5Bit, Data6Bit, Data7Bit, Data8Bit, Data9Bit
@@ -40,7 +40,7 @@
 
 /**
  * @def TranceiverMode
- * @brief Defines whether the USART operates as transmitter, receiver, or both.
+ * @brief Defines whether the UART operates as transmitter, receiver, or both.
  * 
  * Options:
  * - Tx_Enable     : Enable only transmission.
@@ -50,18 +50,18 @@
 #define TranceiverMode   Rx_Tx_Enable
 
 /**
- * @def USARTSpeed
- * @brief Defines the USART communication speed mode.
+ * @def UARTSpeed
+ * @brief Defines the UART communication speed mode.
  * 
  * Options:
  * - NormalSpeed  : Standard baud rate.
  * - DoubleSpeed  : Double the baud rate for faster communication.
  */
-#define USARTSpeed       DoubleSpeed
+#define UARTSpeed       DoubleSpeed
 
 /**
  * @def StopBits
- * @brief Defines the number of stop bits in the USART frame.
+ * @brief Defines the number of stop bits in the UART frame.
  * 
  * Options:
  * - Stop1Bit : Use one stop bit.
@@ -69,19 +69,29 @@
  */
 #define StopBits         Stop1Bit
 
-/* Baud rate after calculate
+/**
+ * @def UBRR_value
+ * @brief UART Baud Rate Register value 
+ * UBRR value calculations:
  * Baud rate value = 9600
  * Foc = 8MHz
- *     Normal speed: UBRR=((Freq)/16*BaudRate)-1
- *     double speed: UBRR=((Freq)/8*BaudRate)-1
+ *     at Normal speed: UBRR=((Freq)/16*BaudRate)-1
+ *     at double speed: UBRR=((Freq)/8*BaudRate)-1
  * According to Double Speed, UBRR value = 103.1667
  * According to Normal Speed, UBRR value = 51
  */
 #define UBRR_Value   103
 
 /**
- * @note this drive supports only polling for Tx
- *       while it supports polling or interrupt for Rx
+ * @def RxHandling
+ * @brief Defines how the UART receiver handles incoming data.
+ *
+ * Options:
+ * - RxPolling   : Use polling to receive data.
+ * - RxInterrupt : Use interrupts to receive data.
+ *
+ * @note This driver supports only polling for transmission (Tx),
+ *       while reception (Rx) can be handled either by polling or interrupt.
  */
 #define RxHandling   RxInterrupt
 

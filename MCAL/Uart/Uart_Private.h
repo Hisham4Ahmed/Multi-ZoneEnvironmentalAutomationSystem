@@ -4,8 +4,8 @@
  * @author   Reviewer: Ahmed Ashraf   
  * @brief    Internal definitions and macros for Uart driver implementation, including Uart registers and its bits. 
  * @version   0.3
- * @date      2025-08-19
- * @date      2025-09-07
+ * @date      (Created) 2025-08-19
+ * @date      (Updated) 2025-09-09
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
