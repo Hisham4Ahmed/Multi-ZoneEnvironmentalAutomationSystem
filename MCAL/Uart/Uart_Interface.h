@@ -100,6 +100,8 @@ void mUART_RxCallBack(void(*PointerFunc)(uint16_t Data));
  *            Disable For UDR empty interrupt (UDRIE) - > 0 in UCSRB
  *     7) set URSEL bit in UCSRC to choose to write in UCSRC 
  *       instead of UBRRH     
+ * @note while "receive interrupt is enabled", UART_Receive_and_RxInterruptMode() function 
+ *       should be implemented in initialization of the communicating module.
  */ 
  
 void mUART_Init();
