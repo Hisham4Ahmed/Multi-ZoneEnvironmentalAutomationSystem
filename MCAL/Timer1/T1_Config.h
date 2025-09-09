@@ -1,8 +1,9 @@
 /**
  * @file T1_Config.h
- * @author Hesham Ahmed  (Hisham4Ahmed@gmail.com)
+ * @author Mohammed Diaa    (mohammeddiaato@gmail.com)  Developer 
+ * @author Hesham Ahmed     (Hisham4Ahmed@gmail.com)    Reviewer
  * @brief  This File Is Done For Using PWM on Timer1 pins 
- * @version 0.1
+ * @version 0.3
  * @date 2025-08-30
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 

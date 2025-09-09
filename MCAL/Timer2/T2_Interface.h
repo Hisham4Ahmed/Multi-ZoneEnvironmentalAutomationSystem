@@ -1,7 +1,7 @@
 /**
  * @file T2_Interface.h
- * @author Mohammed Diaa Developer-> Mohammeddiaato@gmail.com
- * @author Eng.Hesham Ahmed
+ * @author Mohammed Diaa    (mohammeddiaato@gmail.com)  Developer 
+ * @author Hesham Ahmed     (Hisham4Ahmed@gmail.com)    Reviewer
  * @brief  This File is made for the Interfacing Elements of the Timer2  
  * @version 0.3
  * @date 2025-08-30

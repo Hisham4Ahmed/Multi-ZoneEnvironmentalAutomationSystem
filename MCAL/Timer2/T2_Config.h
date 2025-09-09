@@ -1,7 +1,7 @@
 /**
  * @file T2_Config.h
- * @author Mohammed Diaa Developer-> Mohammeddiaato@gmail.com
- * @author Eng.Hesham Ahmed
+ * @author Mohammed Diaa    (mohammeddiaato@gmail.com)  Developer 
+ * @author Hesham Ahmed     (Hisham4Ahmed@gmail.com)    Reviewer
  * @brief  This File is made for the configuration of the Timer2 Config file 
  * @version 0.3
  * @date 2025-09-04
