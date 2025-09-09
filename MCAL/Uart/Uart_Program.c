@@ -139,7 +139,7 @@ void mUART_Transmit (uint16_t TxData)
    SetBit(UCSRA_Reg,TXC_Bit);
 } 
 
- uint16_t mUART_Receive()
+ uint16_t mUART_Receive_and_RxInterruptMode()
  {
    #if RxHandling==RxPolling
       while(GetBit(UCSRA_Reg, RXC_Bit)==0);

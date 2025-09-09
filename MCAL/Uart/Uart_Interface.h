@@ -120,10 +120,11 @@ void mUART_Init();
 void mUART_Transmit(uint16_t TxData);
 
 /**
+ * @fn mUART_Receive_and_RxInterruptMode
  * @brief Receives data using the UART communication protocol.
  *
  * Pseudo code:
- * - Check Rx handling mode (polling or interrupt).
+ * - Check Rx handling mode (polling or interrupt), as configured in configuration file.
  *   - If polling:
  *         1. Wait until data is received (RXC flag in UCSRA).
  *         2. Read data from the UDR register.
@@ -133,7 +134,7 @@ void mUART_Transmit(uint16_t TxData);
  *
  * @retval uint16_t The received data (8 or 9-bit depending on configuration).
  */
-uint16_t mUART_Receive();
+uint16_t mUART_Receive_and_RxInterruptMode();
 
 /**
  * @brief USART RX Complete Interrupt Service Routine.
