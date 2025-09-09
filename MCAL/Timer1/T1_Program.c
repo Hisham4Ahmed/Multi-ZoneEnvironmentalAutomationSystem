@@ -14,6 +14,27 @@
 
 #include "T1_Interface.h"
 
+void mTimer1_InitFastPWMMode(void)
+{
+
+}
+
+void mTimer1_ChangeDutyCycle(uint8_t DutyCycle )
+{
+    
+}
+ 
+
+
+void mTimer1_FastPWMStop(void)
+{
+
+}
+
+void mTimer1_TimerStop(void)
+{
+
+}
 
 
 #endif /* TIMER1_Driver */
