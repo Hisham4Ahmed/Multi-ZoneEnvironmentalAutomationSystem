@@ -17,7 +17,7 @@
 void mTimer1_InitFastPWMMode(void)
 {
     uint8_t Temp=0;
-    //Compare Output Mode
+    //Compare Output Mode For OC1A and OC1B
     #if CompareOutputMode ==NonInverting
     Temp =NonInverting_BitMask;
     #elif CompareOutputMode ==Inverting
@@ -25,21 +25,25 @@ void mTimer1_InitFastPWMMode(void)
     #else 
     //Error Handle
     #endif
-    
-    Temp =0x
+    //Setting Prescaller for OC1A and OC1B
+    Temp &=Timer1_NoClkMask;
+    Temp |=Timer1_Prescaller; 
+    TCCR1A_Reg;
+
+
 
 
     
 }
 
-void mTimer1_ChangeDutyCycle(uint8_t DutyCycle ,uint8_t)
+void mTimer1_ChangeDutyCycle(uint8_t DutyCycle ,uint8_t Channel)
 {
     
 }
  
 
 
-void mTimer1_FastPWMStop(void)
+void mTimer1_FastPWMStop(uint8_t Channel)
 {
 
 }

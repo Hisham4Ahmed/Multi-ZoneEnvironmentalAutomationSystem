@@ -16,6 +16,7 @@
 #include "T1_Private.h"
 #include "T1_Config.h"
 #include <stdint.h>
+#include "../RegistersAddress.h"
 
 /**
  * @fn    void mTimer1_InitFastPWMMode(void);
@@ -27,15 +28,16 @@ void mTimer1_InitFastPWMMode(void);
  * @fn    void mTimer1_ChangeDutyCycle(uint8_t DutyCycle );    
  * @brief Changes the duty cycle of the Timer1 Fast PWM output.
  * @param DutyCycle The desired duty cycle percentage (0-100).
+ *  @param channel Selects output channel (e.g., CHANNEL_A or CHANNEL_B).
  */
-void mTimer1_ChangeDutyCycle(uint8_t DutyCycle );
+void mTimer1_ChangeDutyCycle(uint8_t DutyCycle ,uint8_t Channel);
  
 /**
  * @fn    void mTimer1_FastPWMStop(void);
  * @brief Stops the Fast PWM operation on Timer1.
  */
 
-void mTimer1_FastPWMStop(void);
+void mTimer1_FastPWMStop(uint8_t Channel);
 /**
  * @fn    void mTimer1_TimerStop(void);
  * @brief Stops the Timer1 operation by making it with no clock
