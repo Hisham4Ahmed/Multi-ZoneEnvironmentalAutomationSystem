@@ -61,23 +61,41 @@
  * @def Timer1_Top 
  * @brief The top value in the PWM
  */
-#define Timer1_Top  255
-/**
- * @def OC1A_FastPWM
- * @def OC1B_FastPWM
- * @def FastPWM_All
- * @brief Macros Used to make App developer choose What PWM output pin stops or do actions on them 
- */
+#define Timer1_Top  0x00FF
 
-#define OC1A_Channel   0
-#define OC1B_Channel   1
-#define Channel_All    2
+
+
 
 /**
- * 
+ * @def NonInverting_BitMask
+ * @brief Bit mask for Non-Inverting PWM mode (OC1A/OC1B)
  */
 #define NonInverting_BitMask    0xA0 
+
+/**
+ * @def Inverting_BitMask
+ * @brief Bit mask for Inverting PWM mode (OC1A/OC1B)
+ */
 #define Inverting_BitMask       0xF0
+
+/**
+ * @def OC1A_Channel
+ * @brief Channel identifier for OC1A
+ */
+#define OC1A_Channel   0
+
+/**
+ * @def OC1B_Channel
+ * @brief Channel identifier for OC1B
+ */
+#define OC1B_Channel   1
+
+/**
+ * @def Channel_All
+ * @brief Channel identifier for both OC1A and OC1B
+ */
+#define Channel_All    2
+
 
 
 #endif /*_T1_CONFIG_H_*/
