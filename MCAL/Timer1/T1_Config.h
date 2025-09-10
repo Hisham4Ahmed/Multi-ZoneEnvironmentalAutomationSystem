@@ -69,9 +69,9 @@
  * @brief Macros Used to make App developer choose What PWM output pin stops or do actions on them 
  */
 
-#define OC1A_FastPWM   0
-#define OC1B_FastPWM   1
-#define FastPWM_All    2
+#define OC1A_Channel   0
+#define OC1B_Channel   1
+#define Channel_All    2
 
 /**
  * 
