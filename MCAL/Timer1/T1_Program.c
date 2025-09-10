@@ -16,10 +16,23 @@
 
 void mTimer1_InitFastPWMMode(void)
 {
+    uint8_t Temp=0;
+    //Compare Output Mode
+    #if CompareOutputMode ==NonInverting
+    Temp =NonInverting_BitMask;
+    #elif CompareOutputMode ==Inverting
+    Temp =Inverting_BitMask;
+    #else 
+    //Error Handle
+    #endif
+    
+    Temp =0x
 
+
+    
 }
 
-void mTimer1_ChangeDutyCycle(uint8_t DutyCycle )
+void mTimer1_ChangeDutyCycle(uint8_t DutyCycle ,uint8_t)
 {
     
 }
