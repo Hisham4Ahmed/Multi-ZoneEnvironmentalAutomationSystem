@@ -10,16 +10,6 @@
  */
 #include "ModeControl_Interface.h"
 
-/**
- * @var CurrentMode
- * @brief Current operation mode of the system.
- *
- * Possible values:
- * - 0: Automatic mode
- * - 1: Manual mode
- */
-extern uint8_t CurrentMode; 
-
 void ModeControl_Init(void) {
     hBtn_Init();
 }
