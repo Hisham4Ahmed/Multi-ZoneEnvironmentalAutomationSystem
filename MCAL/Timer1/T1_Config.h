@@ -47,11 +47,6 @@
 
 #define initialDutyCycle   50
 
-/**
- * @def   Timer1_NoClkMask
- * @def   Timer1_StopBitMask 
- * @brief Mask for the bits in TCCR1A and TCCR1B
- */
 
 #define Timer1_NoClkMask                 0xF8
 #define Timer1_OC1A_PWMStop              0x3F //7th and 6th bits cleared

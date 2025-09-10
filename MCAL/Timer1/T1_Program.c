@@ -95,17 +95,18 @@ void mTimer1_FastPWMStop(uint8_t Channel)
 {
     if (Channel==Channel_All)
     {
-
+        TCCR1A_Reg=Timer1_OC1A_PWMStop;
+        TCCR1A_Reg=Timer1_OC1B_PWMStop;
 
     }
     else if (Channel==OC1A_Channel)
     {
 
-
+        TCCR1A_Reg=Timer1_OC1B_PWMStop;
     }
     else if (Channel==OC1B_Channel)
     {
-
+        TCCR1A_Reg=Timer1_OC1B_PWMStop;
     }
     else
     {
