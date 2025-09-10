@@ -25,10 +25,26 @@ void mTimer1_InitFastPWMMode(void)
     #else 
     //Error Handle
     #endif
-    //Setting Prescaller for OC1A and OC1B
-    Temp &=Timer1_NoClkMask;
-    Temp |=Timer1_Prescaller; 
-    TCCR1A_Reg;
+   /*
+    Setting wave Gen to have FastPWM
+        WGM13 WGM12  WGM11 WGM10 
+          1     1       1   0   == 14 
+   */ 
+    SetBit(Temp,WGM11_Bit);
+    ClearBit(Temp,WGM10_Bit);
+    
+    TCCR1A_Reg=Temp;
+
+    //Setting TCCR1B_reg
+
+    Temp=0;
+    SetBit(Temp,WGM12_Bit);
+    SetBit(Temp,WGM13_Bit);
+
+    Temp&=Timer1_NoClkMask;
+    Temp|=Timer1_Prescaller;
+    TCCR1B_Reg=Temp;
+
 
 
 
