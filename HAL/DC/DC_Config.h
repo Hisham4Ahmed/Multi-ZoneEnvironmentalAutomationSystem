@@ -20,8 +20,9 @@
  * This value sets the upper limit for the fan speed control, ensuring
  * the fan does not exceed safe operational parameters.
  */
-#define Fan_MAXSpeed   500
+#define Fan_MAXSpeed        500
+#define OutPutCompareMatch  Non_inverting
+#define Zones_Timers   {Zone1_Timer,Zone2_Timer,Zone3_Timer,Zone4_Timer}
 
 
-#define ZONES_Timers   {Zone1_Timer,Zone2_Timer,Zone3_Timer,Zone4_Timer}
 #endif

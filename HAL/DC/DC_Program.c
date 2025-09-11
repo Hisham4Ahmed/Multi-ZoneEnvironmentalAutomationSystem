@@ -26,6 +26,7 @@
  */
 static uint8_t ZonesGroups[MaxZones] = Zones_DCGroups;
 static uint8_t ZonesPins[MaxZones] = Zones_DCPins;
+static uint8_t ZonesTimers[MaxZones] = Zones_Timers;
 
 
 
@@ -68,8 +69,38 @@ void hFan_Off(uint8_t ZoneNumber)
         //Handle error
     }
 }
-void hFan_SpeedControl(uint8_t ZoneNumber)
+void hFan_SpeedControl(uint8_t ZoneNumber,uint16_t RPMSpeed)
 {
-        
+    uint8_t Percentage=0;
+    Percentage= RPMSpeed/Fan_MAXSpeed;
+    if (ZoneNumber <= MaxZones && ZoneNumber > 0)
+    {
+       switch (ZoneNumber)
+       {
+       case Zone1Num:
+        mTimer0_ChangeDutyCycle(Percentage,OutPutCompareMatch);
+        break;
+       case Zone2Num:
+        mTimer1_ChangeDutyCycle(Percentage,OC1A_Channel);        
+        break;
+        case Zone3Num:
+        /* code */
+        mTimer1_ChangeDutyCycle(Percentage,OC1B_Channel);        
+        break;
+        case Zone4Num:
+
+        mTimer2_ChangeDutyCycle(Percentage);        
+        break;
+       
+       default:
+       //Error Handle
+       
+        break;
+       }
+    }
+    else
+    {
+        //Handle error
+    }
 }
 #endif /*DC_Driver*/
