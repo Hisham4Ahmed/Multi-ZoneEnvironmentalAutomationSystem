@@ -40,15 +40,15 @@ void hHC05_Init(void)
 {
     DIO_Direction_Pin(Bluetooth_TxGroup, Bluetooth_TxPin, DIO_Input);
     DIO_Direction_Pin(Bluetooth_RxGroup, Bluetooth_RxPin, DIO_Output);
-    USART_RxCallBack(hHC05_RxISRHandler);
+    mUART_RxCallBack(hHC05_RxISRHandler);
     RxBuffer_Init();
-    USART_Init();
-    USART_Receive(); // Was added to Enable Interrupt
+    mUART_Init();
+    mUART_Receive_and_RxInterruptMode(); // Was added to Enable Interrupt
 }
 
 void hHC05_SendChar(uint8_t Char)
 {
-    USART_Transmit(Char);
+    mUART_Transmit(Char);
 }
 
 void hHC05_SendString(const uint8_t *String)
