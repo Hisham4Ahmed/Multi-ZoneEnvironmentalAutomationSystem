@@ -85,7 +85,7 @@ void hFan_SpeedControl(uint8_t ZoneNumber,uint16_t RPMSpeed)
         mTimer1_ChangeDutyCycle(Percentage,OC1A_Channel);        
         break;
         case Zone3Num:
-        /* code */
+        
         mTimer1_ChangeDutyCycle(Percentage,OC1B_Channel);        
         break;
         case Zone4Num:

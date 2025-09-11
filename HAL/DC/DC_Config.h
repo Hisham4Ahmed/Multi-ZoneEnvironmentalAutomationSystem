@@ -21,8 +21,22 @@
  * the fan does not exceed safe operational parameters.
  */
 #define Fan_MAXSpeed        500
+/**
+ * @def OutPutCompareMatch
+ * @brief Sets the output compare match mode for DC motor control.
+ *
+ * This macro defines the compare match mode (e.g., Non_inverting) used for PWM signal generation
+ * to control the DC motor output.
+ */
 #define OutPutCompareMatch  Non_inverting
-#define Zones_Timers   {Zone1_Timer,Zone2_Timer,Zone3_Timer,Zone4_Timer}
 
+/**
+ * @def Zones_Timers
+ * @brief Array of timer identifiers for each DC motor zone.
+ *
+ * This macro defines the timers assigned to each zone for DC motor control.
+ * The order corresponds to Zone1, Zone2, Zone3, and Zone4.
+ */
+#define Zones_Timers   {Zone1_Timer,Zone2_Timer,Zone3_Timer,Zone4_Timer}
 
 #endif
