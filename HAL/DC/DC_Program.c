@@ -71,8 +71,9 @@ void hFan_Off(uint8_t ZoneNumber)
 }
 void hFan_SpeedControl(uint8_t ZoneNumber,uint16_t RPMSpeed)
 {
-    uint8_t Percentage=0;
-    Percentage= RPMSpeed/Fan_MAXSpeed;
+    uint16_t Percentage=0;
+    Percentage= RPMSpeed*100/Fan_MAXSpeed;
+    if(Percentage>100) Percentage=100;
     if (ZoneNumber <= MaxZones && ZoneNumber > 0)
     {
        switch (ZoneNumber)
