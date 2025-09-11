@@ -15,7 +15,9 @@
 #include "DC_Interface.h"
 #include "../../MCAL/DIO/DIO_Interface.h"
 #include "../../MCAL/DIO/DIO_Private.h"
-
+#include "../../MCAL/Timer0/T0_Interface.h"
+#include "../../MCAL/Timer1/T1_Interface.h"
+#include "../../MCAL/Timer2/T2_Interface.h"
 /**
  * @def ZonesGroups
  * @def ZonesPins 
@@ -65,5 +67,9 @@ void hFan_Off(uint8_t ZoneNumber)
     {
         //Handle error
     }
+}
+void hFan_SpeedControl(uint8_t ZoneNumber)
+{
+        
 }
 #endif /*DC_Driver*/

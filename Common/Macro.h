@@ -103,6 +103,18 @@
 #define Enabled     1
 #define Disabled    0 
 
+
+/**
+ * @def Timer0
+ * @def Timer1
+ * @def Timer2
+ * @brief Timer identifiers for use in timer-related functions and macros.
+ *
+ * These macros define numeric identifiers for Timer0, Timer1, and Timer2.
+ */
+#define Timer0  0
+#define Timer1  1
+#define Timer2  2
 #endif /* _MACRO_H_ */
 /**
  * @brief

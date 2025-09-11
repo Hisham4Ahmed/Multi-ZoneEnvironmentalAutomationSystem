@@ -34,7 +34,18 @@ void hFan_On(uint8_t ZoneNumber);
  */
 void hFan_Off(uint8_t ZoneNumber);
 
-#define Fan_MAXSpeed   500
+/**
+ * @brief Controls the speed of the DC fan in the specified zone.
+ * 
+ * This function adjusts the speed of the DC fan based on the requirements
+ * for the given zone number. The speed control mechanism may use PWM or other
+ * techniques depending on the hardware implementation.
+ *
+ * @param ZoneNumber The zone number of the fan to control.
+ * @return None
+ */
+void hFan_SpeedControl(uint8_t ZoneNumber);
+
 
 
 #endif /*_DC_INTERFACE_H_*/
