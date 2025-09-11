@@ -34,9 +34,31 @@
  */
 void hHC05_Init();
 
+
+
+ /**
+ * @fn hHC05_SendChar: this function sends char via bluetooth.
+ * @brief   Call USART_Transmit(uint16_t TxData); and let it send char.
+ * @param char
+ * @brief The Char To be Sent.
+ */
+void hHC05_SendChar(uint8_t Char);
+
+/**
+ * @fn hHC05_SendString: this function sends string of chars via bluetooth.
+ * @param *String: string is an array of chars, the (*) is to access chars and send them.
+ * @brief Psudo code:
+ *          1) while current char != to Null
+ *               -> call hHC05_SendChar and let it's arguments (*String), 
+ *                  to access the chars of the string array and send them 
+ *                  one by one.
+ *               -> Repeat until end of string.
+ */
+void hHC05_SendString(const uint8_t *String);
+
 /**
  * @fn hHC05_ReceiveChar: this function is to receive char from Hc05 buffer.
- * @param *Char: a pinter to store the received char.
+ * @param *Char: a pointer to store the received char.
  * @brief This Function receives a char from Hc05 ring buffer.
  * @details Psudo code:
  *          1) check buffer state, if empty, there will be nothing to read.
