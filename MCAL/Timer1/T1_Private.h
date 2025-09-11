@@ -52,12 +52,12 @@ typedef enum
  */
 typedef enum
 {
-    NoClockSource      = 0, /**< Timer stopped (no clock source) */
-    Prescaller_1       = 1, /**< No prescaling (direct clock) */
-    Prescaller_8       = 2, /**< Clock divided by 8 */
-    Prescaller_64      = 3, /**< Clock divided by 64 */
-    Prescaller_256     = 4, /**< Clock divided by 256 */
-    Prescaller_1024    = 5, /**< Clock divided by 1024 */
+    T1_NoClockSource      = 0, /**< Timer stopped (no clock source) */
+    T1_Prescaller_1       = 1, /**< No prescaling (direct clock) */
+    T1_Prescaller_8       = 2, /**< Clock divided by 8 */
+    T1_Prescaller_64      = 3, /**< Clock divided by 64 */
+    T1_Prescaller_256     = 4, /**< Clock divided by 256 */
+    T1_Prescaller_1024    = 5, /**< Clock divided by 1024 */
     Ext_Source_Falling = 6, /**< External clock on T1 pin, falling edge */
     Ext_Source_Rising  = 7  /**< External clock on T1 pin, rising edge */
 } Timer1_Prescaller_Set;
@@ -69,8 +69,8 @@ typedef enum
  */
 typedef enum
 {
-    Normal   = 0,  /**< Normal counting mode */
-    FastPwm  = 14  /**< Fast PWM mode using ICR1 as TOP */
+    T1_Normal   = 0,  /**< Normal counting mode */
+    T1_FastPwm  = 14  /**< Fast PWM mode using ICR1 as TOP */
 } Timer1_WaveGenModes;
 
 /**
@@ -81,9 +81,9 @@ typedef enum
  */
 typedef enum
 {
-    NormalOperation = 0, /**< Normal port operation, OC1A/OC1B disconnected */
-    NonInverting    = 2, /**< Clear OC1A/OC1B on compare match, set at BOTTOM */
-    Inverting       = 3  /**< Set OC1A/OC1B on compare match, clear at BOTTOM */
+    T1_NormalOperation = 0, /**< Normal port operation, OC1A/OC1B disconnected */
+    T1_NonInverting    = 2, /**< Clear OC1A/OC1B on compare match, set at BOTTOM */
+    T1_Inverting       = 3  /**< Set OC1A/OC1B on compare match, clear at BOTTOM */
 } Timer1_COM_FastPWM;
 
 #endif /*_T1_PRIVATE_H_*/

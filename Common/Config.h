@@ -23,7 +23,7 @@
 #define DIO_Driver          Enabled
 #define EXTI_Driver         Enabled
 #define GIE_Driver          Enabled
-#define TIMER0_Driver       Disabled
+#define TIMER0_Driver       Enabled
 #define TIMER1_Driver       Enabled
 #define TIMER2_Driver       Enabled
 #define UART_Driver         Enabled

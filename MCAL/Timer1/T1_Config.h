@@ -25,7 +25,7 @@
     Ext_Source_Falling = 6, //< External clock on T1 pin, falling edge 
     Ext_Source_Rising  = 7  //< External clock on T1 pin, rising edge 
  */
-#define Timer1_Prescaller  Prescaller_1
+#define Timer1_Prescaller  T1_Prescaller_1
 /**
  * @def Timer1_CompareOutputMode
  * @brief Choosing Mode for Timer1 
@@ -35,7 +35,7 @@
     Inverting       = 3  //< Set OC1A/OC1B on compare match, clear at BOTTOM 
 
  */
-#define CompareOutputMode  NonInverting
+#define CompareOutputMode  T1_NonInverting
 /**
  * @def Timer1_WaveGenMode
  * @brief Choosing Mode for Timer1 

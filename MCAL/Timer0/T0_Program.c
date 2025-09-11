@@ -135,7 +135,7 @@ void mTimer0_ChangeDutyCycle(uint8_t DutyCycle,uint8_t ActionType )
 
 }
 
-static void (*TIMER0_PF)(void)=NULL;
+static void (*TIMER0_PF)(void)=Null;
 
 void T0_Call_Back_fn(void(*PF)(void))
 {
