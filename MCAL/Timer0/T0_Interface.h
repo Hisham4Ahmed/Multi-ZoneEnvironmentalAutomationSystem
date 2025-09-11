@@ -17,17 +17,6 @@
 #include "../../Common/Macro.h"
 #include "../RegistersAddress.h"
 #include <stdint.h>
-/*-------------------------------------------------------------------------------------*/
-/* CTC Mode */
-/** 
-* @fn       T0_CTC_Mode_Init
-* @brief    This Function is used to initialize Timer0 on CTC Mode 
-* @note     You can change the prescaler or compare value from the Config.h 
-*/
-
-void T0_CTC_Mode_Init();
-/*--------------------------------------------------*/
-
 /** 
 * @fn(ISR)    void __vector_10(void)
 * @brief      This Fn(ISR) is used to perform the a speceific action Contained in the Fn implemenetation
