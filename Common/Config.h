@@ -35,6 +35,7 @@
 #define LED_Driver          Enabled
 #define LM35_Driver         Disabled
 #define Relay_Driver        Enabled
+#define DC_Driver           Enabled
 
 /** @} */
 

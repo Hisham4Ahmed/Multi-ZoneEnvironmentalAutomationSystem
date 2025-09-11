@@ -34,5 +34,7 @@ void hFan_On(uint8_t ZoneNumber);
  */
 void hFan_Off(uint8_t ZoneNumber);
 
+#define Fan_MAXSpeed   500
+
 
 #endif /*_DC_INTERFACE_H_*/
