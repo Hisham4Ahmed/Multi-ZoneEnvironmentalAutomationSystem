@@ -45,6 +45,7 @@ void hFan_Init(uint8_t ZoneNumber)
 
 void hFan_On(uint8_t ZoneNumber,uint16_t speed)
 {
+    
 
     if (ZoneNumber <= MaxZones && ZoneNumber > 0)
     {
