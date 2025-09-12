@@ -25,8 +25,8 @@ typedef enum
     COM1A0_Bit = 6, /**< Compare Output Mode for Channel A, bit 0 */
     COM1B1_Bit = 5, /**< Compare Output Mode for Channel B, bit 1 */
     COM1B0_Bit = 4, /**< Compare Output Mode for Channel B, bit 0 */
-    WGM10_Bit  = 1, /**< Waveform Generation Mode bit 0 */
-    WGM11_Bit  = 0  /**< Waveform Generation Mode bit 1 */
+    WGM11_Bit  = 1, /**< Waveform Generation Mode bit 0 */
+    WGM10_Bit  = 0  /**< Waveform Generation Mode bit 1 */
 } TCCR1A_Bits;
 
 /**

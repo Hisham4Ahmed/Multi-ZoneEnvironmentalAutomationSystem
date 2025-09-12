@@ -20,7 +20,7 @@
  * This value sets the upper limit for the fan speed control, ensuring
  * the fan does not exceed safe operational parameters.
  */
-#define Fan_MAXSpeed        500
+#define Fan_MAXSpeed       200
 /**
  * @def OutPutCompareMatch
  * @brief Sets the output compare match mode for DC motor control.

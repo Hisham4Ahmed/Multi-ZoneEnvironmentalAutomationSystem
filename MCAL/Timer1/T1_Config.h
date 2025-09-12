@@ -25,7 +25,7 @@
     Ext_Source_Falling = 6, //< External clock on T1 pin, falling edge 
     Ext_Source_Rising  = 7  //< External clock on T1 pin, rising edge 
  */
-#define Timer1_Prescaller  T1_Prescaller_1
+#define Timer1_Prescaller  T1_Prescaller_8
 /**
  * @def Timer1_CompareOutputMode
  * @brief Choosing Mode for Timer1 
@@ -45,7 +45,7 @@
 
  */
 
-#define initialDutyCycle   50
+#define initialDutyCycle   70
 
 
 #define Timer1_NoClkMask                 0xF8
@@ -56,7 +56,7 @@
  * @def Timer1_Top 
  * @brief The top value in the PWM
  */
-#define Timer1_Top  0x00FF
+#define Timer1_Top  999
 
 
 
