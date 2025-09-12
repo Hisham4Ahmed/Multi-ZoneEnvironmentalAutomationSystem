@@ -43,12 +43,13 @@ void hFan_Init(uint8_t ZoneNumber)
 }
 
 
-void hFan_On(uint8_t ZoneNumber)
+void hFan_On(uint8_t ZoneNumber,uint16_t speed)
 {
 
     if (ZoneNumber <= MaxZones && ZoneNumber > 0)
     {
         DIO_Write_Pin(ZonesGroups[ZoneNumber - 1], ZonesPins[ZoneNumber - 1], High);
+        hFan_SpeedControl(ZoneNumber,speed);
     }
     else
     {
