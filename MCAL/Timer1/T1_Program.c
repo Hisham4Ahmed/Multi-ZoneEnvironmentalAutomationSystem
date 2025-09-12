@@ -56,6 +56,7 @@ void mTimer1_InitFastPWMMode(void)
 void mTimer1_ChangeDutyCycle(uint8_t DutyCycle ,uint8_t Channel)
 {
     uint16_t CompareValue = 0;
+    ICR1_Reg=Timer1_Top;
     #if CompareOutputMode == NonInverting
 
     CompareValue = (Timer1_Top * (double)DutyCycle) / 100;
