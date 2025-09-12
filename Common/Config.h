@@ -30,11 +30,13 @@
 
 #define Btn_Driver          Enabled
 #define HC05_Driver         Disabled
-#define LCD_Driver          Disabled
+#define LCD_Driver          Enabled
 #define LDR_Driver          Disabled
 #define LED_Driver          Enabled
 #define LM35_Driver         Disabled
 #define Relay_Driver        Enabled
+
+#define ModeControl_App     Enabled
 
 /** @} */
 

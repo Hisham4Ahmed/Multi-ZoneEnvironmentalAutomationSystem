@@ -2,9 +2,10 @@
  * @file     Btn_Program.c
  * @author   Developer: Naira Mohamed (naira.mohammed.76@gmail.com)
  * @author   Reviewer: Hozifa Ahmed (hozifasedik@gmail.com)
+ * @author   Refactor Developer: Mohammed Atif   "medoatifatif@gmailcom"
  * @brief    Implementation of button driver, contains the logic for initialization, 
  *           button status, and interrupt service routine for button action.
- * @version   0.2
+ * @version   0.3
  * @date      2025-08-25
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
@@ -21,30 +22,21 @@
 
 #include "Btn_Interface.h"
 #include "Btn_Config.h"
-#include "Btn_Private.h"
+
 
 /**
  * @var CurrentMode Global variable to store the current operation mode (Auto/Manual).
  */
-uint8_t CurrentMode =  StartingMode;
+uint8_t static CurrentMode =  StartingMode;
 
 uint8_t hBtn_GetStatus(void)
 {
-    uint8_t status = DIO_Read_Pin(GroupD, Pin2);
-    return status;
+    return CurrentMode;
 }
 
 void hBtn_ISRAction()
 {
-    if(hBtn_GetStatus() == 0)  //button is pressed
-    {
-        Toggle(CurrentMode);
-    }
-    else 
-    {
-        //Do Nothing
-    }
-    
+    Toggle(CurrentMode);
 }
 
 void hBtn_Init()
