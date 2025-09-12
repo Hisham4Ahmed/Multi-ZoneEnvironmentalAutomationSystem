@@ -27,7 +27,7 @@ void hFan_Init(uint8_t ZoneNumber);
  * @brief    Turning ON the DC motor Zones
  * @return  NONE
  */
-void hFan_On(uint8_t ZoneNumber);
+void hFan_On(uint8_t ZoneNumber,uint16_t Speed);
 /**
  * @fn      void hFan_OFF(uint8_t ZoneNumber)
  * @brief   Turning OFF the DC motor Zones

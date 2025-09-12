@@ -15,10 +15,10 @@ int main()
         T0_FastPWM_Mode_Init();
         mTimer1_InitFastPWMMode();
         mTimer2_InitFastPWMMode();
-        hFan_On(Zone1Num);
-        hFan_On(Zone2Num);
-        hFan_On(Zone3Num);
-        hFan_On(Zone4Num);
+        hFan_On(Zone1Num,200);
+        hFan_On(Zone2Num,200);
+        hFan_On(Zone3Num,200);
+        hFan_On(Zone4Num,200);
         _delay_ms(2000);
         while (1)
         {
