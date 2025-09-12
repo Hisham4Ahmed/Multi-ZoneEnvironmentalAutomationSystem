@@ -47,7 +47,7 @@ void T0_FastPWM_Mode_Init();
 *
 */ 
 
-void mTimer0_ChangeDutyCycle(uint8_t DutyCycle,uint8_t ActionType );
+void mTimer0_ChangeDutyCycle(uint8_t DutyCycle, uint8_t ActionType );
 
 
 

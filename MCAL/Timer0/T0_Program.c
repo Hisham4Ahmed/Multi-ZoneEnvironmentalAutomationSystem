@@ -55,13 +55,13 @@ void mTimer0_ChangeDutyCycle(uint8_t DutyCycle, uint8_t ActionType)
 	{
 		// Compare Low on OC0 & Top High on OC0-> nin-inverting
 		//  Compare Value = (2^n * DutyCycle)/100
-		CompareValue_PWM = (uint8_t)((255.0 * (double)DutyCycle) / 100.0);
+		CompareValue_PWM = (uint8_t)((Timer0_Top * (double)DutyCycle) / 100.0);
 	}
 	else if (ActionType == inverting)
 	{
 		// Compare High on OC0 & Top Low On OC0 > inverting
 		// Compare Value = 2^n*(1-DutyCycle/100)
-		CompareValue_PWM = (uint8_t)(255.0 * (1.0 - (double)DutyCycle / 100.0));
+		CompareValue_PWM = (uint8_t)(Timer0_Top * (1.0 - (double)DutyCycle / 100.0));
 	}
 	OCR0_Reg = CompareValue_PWM;
 }
