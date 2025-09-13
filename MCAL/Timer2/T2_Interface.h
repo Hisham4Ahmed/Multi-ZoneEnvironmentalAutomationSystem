@@ -13,6 +13,8 @@
 
 #ifndef _T2_INTERFACE_H_
 #define _T2_INTERFACE_H_
+
+#include <stdint.h>
 #include "T2_Private.h"
 #include "T2_Config.h"
 #include <stdint.h>
