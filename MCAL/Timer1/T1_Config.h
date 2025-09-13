@@ -1,8 +1,9 @@
 /**
  * @file T1_Config.h
- * @author Hesham Ahmed  (Hisham4Ahmed@gmail.com)
- * @brief 
- * @version 0.1
+ * @author Mohammed Diaa    (mohammeddiaato@gmail.com)  Developer 
+ * @author Hesham Ahmed     (Hisham4Ahmed@gmail.com)    Reviewer
+ * @brief  This File Is Done For Using PWM on Timer1 pins 
+ * @version 0.3
  * @date 2025-08-30
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
@@ -11,10 +12,84 @@
 
 #ifndef _T1_CONFIG_H_
 #define _T1_CONFIG_H_
+/**
+ * @def Timer1_Prescaller
+ * @brief Choosing Prescaller for Timer1
+ * @details 
+    NoClockSource      = 0, //< Timer stopped (no clock source) 
+    Prescaller_1       = 1, //< No prescaling (direct clock) 
+    Prescaller_8       = 2, //< Clock divided by 8 
+    Prescaller_64      = 3, //< Clock divided by 64 
+    Prescaller_256     = 4, //< Clock divided by 256 
+    Prescaller_1024    = 5, //< Clock divided by 1024 
+    Ext_Source_Falling = 6, //< External clock on T1 pin, falling edge 
+    Ext_Source_Rising  = 7  //< External clock on T1 pin, rising edge 
+ */
+#define Timer1_Prescaller  T1_Prescaller_8
+/**
+ * @def Timer1_CompareOutputMode
+ * @brief Choosing Mode for Timer1 
+ * @details 
+    NormalOperation = 0, //< Normal port operation, OC1A/OC1B disconnected 
+    NonInverting    = 2, //< Clear OC1A/OC1B on compare match, set at BOTTOM 
+    Inverting       = 3  //< Set OC1A/OC1B on compare match, clear at BOTTOM 
+
+ */
+#define CompareOutputMode  T1_NonInverting
+/**
+ * @def Timer1_WaveGenMode
+ * @brief Choosing Mode for Timer1 
+ * @details 
+    Normal   = 0,  < Normal counting mode 
+    FastPwm  = 14  < Fast PWM mode using ICR1 as TOP 
+
+ */
+
+#define initialDutyCycle   70
+
+
+#define Timer1_NoClkMask                 0xF8
+#define Timer1_OC1A_PWMStop              0x3F //7th and 6th bits cleared
+#define Timer1_OC1B_PWMStop              0xCF //5th and 4th bits cleared
+
+/**
+ * @def Timer1_Top 
+ * @brief The top value in the PWM
+ */
+#define Timer1_Top  999
 
 
 
 
+/**
+ * @def NonInverting_BitMask
+ * @brief Bit mask for Non-Inverting PWM mode (OC1A/OC1B)
+ */
+#define NonInverting_BitMask    0xA0 
+
+/**
+ * @def Inverting_BitMask
+ * @brief Bit mask for Inverting PWM mode (OC1A/OC1B)
+ */
+#define Inverting_BitMask       0xF0
+
+/**
+ * @def OC1A_Channel
+ * @brief Channel identifier for OC1A
+ */
+#define OC1A_Channel   0
+
+/**
+ * @def OC1B_Channel
+ * @brief Channel identifier for OC1B
+ */
+#define OC1B_Channel   1
+
+/**
+ * @def Channel_All
+ * @brief Channel identifier for both OC1A and OC1B
+ */
+#define Channel_All    2
 
 
 

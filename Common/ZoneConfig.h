@@ -89,6 +89,7 @@
 
 #define Zone2_LDRPin     Pin2
 
+
 /* ------------------- Zone 3 ------------------- */
 #define Zone3Num         3
 #define ZONE3_LED_PORT   GroupC
@@ -109,6 +110,7 @@
 #define Zone4_ADC_Channel   Pin7
 
 #define Zone4_LDRPin     Pin6
+
 
 
 

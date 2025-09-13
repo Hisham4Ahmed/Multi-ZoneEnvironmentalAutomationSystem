@@ -67,6 +67,7 @@ set Num_of_Compare_Match to the division Result
  */
 #define Num_of_Compare_Match 1000
 
+#define Timer0_Top 255
 
 
 #endif /*_T0_CONFIG_H_*/

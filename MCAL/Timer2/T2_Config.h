@@ -1,9 +1,9 @@
 /**
  * @file T2_Config.h
- * @author Mohammed Diaa Developer-> Mohammeddiaato@gmail.com
- * @author Hozifah Ahmed Reviwer  ->
+ * @author Mohammed Diaa    (mohammeddiaato@gmail.com)  Developer 
+ * @author Hesham Ahmed     (Hisham4Ahmed@gmail.com)    Reviewer
  * @brief  This File is made for the configuration of the Timer2 Config file 
- * @version 0.2
+ * @version 0.3
  * @date 2025-09-04
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
@@ -69,10 +69,5 @@
 #define Timer2_Top  255
 
 
-/**
- * @def     Timer2_INT
- * @brief   Enabling Interrupt option
- */
-#define Timer2_INT  Enabled
 
 #endif /*_T2_CONFIG_H_*/
