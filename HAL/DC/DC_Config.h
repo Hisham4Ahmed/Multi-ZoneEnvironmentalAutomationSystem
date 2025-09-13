@@ -30,13 +30,6 @@
  */
 #define OutPutCompareMatch  Non_inverting
 
-/**
- * @def Zones_Timers
- * @brief Array of timer identifiers for each DC motor zone.
- *
- * This macro defines the timers assigned to each zone for DC motor control.
- * The order corresponds to Zone1, Zone2, Zone3, and Zone4.
- */
-#define Zones_Timers   {Zone1_Timer,Zone2_Timer,Zone3_Timer,Zone4_Timer}
+
 
 #endif

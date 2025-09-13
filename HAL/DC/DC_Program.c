@@ -26,7 +26,7 @@
  */
 static uint8_t ZonesGroups[MaxZones] = Zones_DCGroups;
 static uint8_t ZonesPins[MaxZones] = Zones_DCPins;
-static uint8_t ZonesTimers[MaxZones] = Zones_Timers;
+
 
 
 
