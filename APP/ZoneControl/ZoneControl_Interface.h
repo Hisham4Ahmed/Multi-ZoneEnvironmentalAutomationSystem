@@ -4,7 +4,7 @@
  * @author   Reviewer:  Hesham Ahmed    (Hisham4Ahmed@gmail.com)
  * @brief 
  * @version   0.1
- * @date      2025-08-15
+ * @date      2025-09-14
  *
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
@@ -12,10 +12,7 @@
 #ifndef _ZONECONTROL_INTERFACE_H_
 #define _ZONECONTROL_INTERFACE_H_
 
-#include "../ModeControl/ModeControl_Interface.h"
-#include "../../Common/ZoneConfig.h"
-#include "../../HAL/LDR/LDR_Interface.h"
-#include "../../HAL/LM35/LM35_Interface.h"
+// ZoneControl is the only module allowed to control actuators (Relay, LED, Fan). so no includes
 
 void ZoneControl_Init(void);
 void ZoneControl_Task(void);
