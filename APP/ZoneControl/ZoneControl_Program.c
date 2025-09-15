@@ -2,9 +2,9 @@
  * @file     ZoneControl_Program.c
  * @author   Developer: Mohammed Atif   "medoatifatif@gmail.com"
  * @author   Reviewer:  Hesham Ahmed    (Hisham4Ahmed@gmail.com)
- * @brief 
- * @version   0.1
- * @date      2025-09-14
+ * @brief    Implements zone initialization and periodic control tasks.
+ * @version  0.1
+ * @date     2025-09-14
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
@@ -19,10 +19,10 @@
 #include "ZoneControl_Interface.h"
 #include "../ModeControl/ModeControl_Interface.h"
 #include "../Communication/Communication_Interface.h"
-// Sensors
+// Sensors APIs
 #include "../../HAL/LDR/LDR_Interface.h"
 #include "../../HAL/LM35/LM35_Interface.h"
-// Actuators
+// Actuators APIs
 #include "../../HAL/Relay/Relay_Interface.h"
 #include "../../HAL/LED/LED_Interface.h"
 #include "../../HAL/DC/DC_Interface.h"
@@ -61,7 +61,7 @@ void ZoneControl_Task(void) {
             }
         }
         else if (ModeControl_GetMode() == Manual) {
-            /** @warning this portion is for prototyping and might be broken 
+            /** @warning this portion might be broken 
             *   @warning Depends on Communication Task implementation 
             * */
             while (Communication_HasNewCommand(Loop_index)) {
@@ -95,7 +95,14 @@ void ZoneControl_Task(void) {
             Fan_Speed = 100;
         }
         else {
-            // Linear temp-speed relation
+            /**
+             * Linear Temp-Speed relation
+             * Temp(°C) | Fan Speed
+             *   22     |     0%    MIN
+             *   25     |    23%     |
+             *   30     |    61%     v
+             *   35     |   100%    MAX
+             */
             Fan_Speed = ((Temperature-22)*100)/13;
             hFan_On(Loop_index, Fan_Speed);
         }
