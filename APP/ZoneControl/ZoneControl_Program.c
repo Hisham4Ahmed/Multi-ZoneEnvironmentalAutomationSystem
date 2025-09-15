@@ -40,14 +40,13 @@ void ZoneControl_Init(void) {
 }
 
 void ZoneControl_Task(void) {
-    static uint8_t Temperature = 0;
     static uint8_t Light_Status = 0;
-    static uint8_t Fan_Speed = 0;
     static Command_t Received_Command = {0};
+    static ZoneData_t Zone_Data = {0};
 
     for (Loop_index = 1; Loop_index <= MaxZones; Loop_index++) {
-        Light_Status = hLDR_GetLightStatus(Loop_index);
-        Temperature = hLm35_GetTemp(Loop_index);
+        Zone_Data.Light_Status = hLDR_GetLightStatus(Loop_index);
+        Zone_Data.Temperature = hLm35_GetTemp(Loop_index);
 
         // Light Control
         if (ModeControl_GetMode() == Automatic) {
@@ -71,7 +70,7 @@ void ZoneControl_Task(void) {
                  *  clears someting that makes the expression goes false 
                  * */
                 Received_Command = Communication_GetCommand(Loop_index);
-                if (Received_Command.Actuator == "LED Macro") {
+                if (Received_Command.Actuator == LED) {
                     if (Received_Command.Value == 0) {
                         hLed_Off(Loop_index);
                     }
@@ -79,20 +78,20 @@ void ZoneControl_Task(void) {
                         hLed_On(Loop_index);
                     }
                 }
-                if (Received_Command.Actuator == "Fan Macro") {
+                if (Received_Command.Actuator == Fan) {
                     hFan_On(Loop_index, Received_Command.Value);
                 }
             }
         }
 
         // Fan Speed Control
-        if (Temperature < 22) {
+        if (Zone_Data.Temperature < 22) {
             hFan_Off(Loop_index);
-            Fan_Speed = 0;
+            Zone_Data.Fan_Speed = 0;
         }
-        else if (Temperature >= 35) {
+        else if (Zone_Data.Temperature >= 35) {
             hFan_On(Loop_index, 100);
-            Fan_Speed = 100;
+            Zone_Data.Fan_Speed = 100;
         }
         else {
             /**
@@ -103,23 +102,16 @@ void ZoneControl_Task(void) {
              *   30     |    61%     v
              *   35     |   100%    MAX
              */
-            Fan_Speed = ((Temperature-22)*100)/13;
-            hFan_On(Loop_index, Fan_Speed);
+            Zone_Data.Fan_Speed = ((Zone_Data.Temperature-22)*100)/13;
+            hFan_On(Loop_index, Zone_Data.Fan_Speed);
         }
         
         /**
          * @fn Communication_SendZoneData
-         * @param Loop_index Zone Number
-         * @param Temperature 
-         * @param Light_Status
-         * @param Fan_Speed
-         * @brief Send zone data (temp,light status, fan speed)
-         * @note LDR reading is the same as light stauts no need for seperate parameters
-         * 
-         * @warning Not Mentioned in DOD of Communication Task
+         * @warning Light_Status is flipped
          * @warning Depends on Communication Task implementation
          */
-        Communication_SendZoneData(Loop_index, Temperature, Light_Status, Fan_Speed); // and Actuators Status
+        Communication_SendZoneData(Loop_index, Zone_Data);
         
     }
 }
