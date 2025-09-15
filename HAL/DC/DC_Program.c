@@ -1,10 +1,10 @@
 /**
- * @file        DC_Program.c
- * @author      Developer: Mohamed Diaa "mohammeddiaato@gmail.com"
- * @author      Reviewer: Mohammed Atef "medoatifatif@gmail.com"
- * @brief      DC_Motor Impelementing the Functions 
- * @version   0.2
- * @date      2025-08-15
+ * @file     DC_Program.c
+ * @author   Developer: Mohamed Diaa "mohammeddiaato@gmail.com"
+ * @author   Reviewer: Mohammed Atef "medoatifatif@gmail.com"
+ * @brief    DC_Motor Impelementing the Functions 
+ * @version  0.2
+ * @date     2025-08-15
  *
  * @copyright Copyright (c) 2025 , Gestell Company
  */
@@ -18,13 +18,15 @@
 #include "../../MCAL/Timer0/T0_Interface.h"
 #include "../../MCAL/Timer1/T1_Interface.h"
 #include "../../MCAL/Timer2/T2_Interface.h"
+
 /**
- * @def ZonesGroups
- * @def ZonesPins 
- * @brief These two global variables are indicating for the DC_Motor what groups or pins are they for each Group
- * @author Mohammed Diaa
+ * @brief Group mapping for each Zone.
  */
 static uint8_t ZonesGroups[MaxZones] = Zones_DCGroups;
+
+/**
+ * @brief Pin mapping for each Zone.
+ */
 static uint8_t ZonesPins[MaxZones] = Zones_DCPins;
 
 
