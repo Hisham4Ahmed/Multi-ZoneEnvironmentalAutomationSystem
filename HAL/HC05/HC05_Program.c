@@ -74,7 +74,8 @@ void hHC05_ReceiveChar(uint8_t *Char)
   }
 
 void hHC05_ReceiveString(uint8_t *String, uint16_t maxLen)
- {
+{
+
     uint16_t Counter = 0;
     uint8_t RxChar = 0;
 
