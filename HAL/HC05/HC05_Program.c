@@ -74,23 +74,31 @@ void hHC05_ReceiveChar(uint8_t *Char)
   }
 
 void hHC05_ReceiveString(uint8_t *String, uint16_t maxLen)
-  {
-    uint8_t Counter=0;
-    uint8_t RxChar=0;
-    enum BufferState state = GetBufferState();
-   
-    
-    while ((state!=Empty) && (Counter < maxLen-1))
+{
+    uint16_t Counter = 0;
+    uint8_t RxChar = 0;
+
+    while (Counter < maxLen - 1)   
     {
-        RxChar=Dequeue_Buffer();
-        String[Counter++]=RxChar;
-        if (RxChar=='\n' || RxChar=='\r')
+        
+        while (GetBufferState() == Empty)
+        {
+            
+        }
+
+      
+        RxChar = Dequeue_Buffer();
+        String[Counter++] = RxChar;
+
+       
+        if (RxChar == '\n' || RxChar == '\r')
         {
             break;
         }
     }
-    String[Counter] = NullChar;
-  }
+
+    String[Counter] = NullChar;  
+}
 
   
 void hHC05_RxISRHandler(uint16_t byte)
