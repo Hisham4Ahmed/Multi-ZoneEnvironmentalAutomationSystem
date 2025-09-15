@@ -205,7 +205,7 @@ uint8_t Communication_ParseCommand(const uint8_t *str, Command_t *Cmd);
  * 
  */
 #define New_Command_Available 1
-#define No_New_Command    
+#define No_New_Command        0
 /**
  * @fn integer_to_string
  * @brief Convert an integer value to a string.
