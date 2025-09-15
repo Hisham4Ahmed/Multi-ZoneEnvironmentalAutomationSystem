@@ -205,7 +205,13 @@ uint8_t Communication_ParseCommand(const uint8_t *str, Command_t *Cmd);
  * 
  */
 #define New_Command_Available 1
-#define No_New_Command        0
+#define No_New_Command    
+/**
+ * @fn integer_to_string
+ * @brief Convert an integer value to a string.
+ * @param value The integer value to convert (0-255).
+ * @param str Pointer to a character array where the resulting string will be stored.
+ *  */    
 void integer_to_string(uint8_t value , char* str);
 
 #endif /* _COMMUNICATION_PRIVATE_H_ */
