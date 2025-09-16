@@ -46,77 +46,78 @@ void ZoneControl_Init(void) {
     }
 }
 
-static void AutoExecutionRoutine() {
-    for (Loop_index = 1; Loop_index <= MaxZones; Loop_index++) {
-        Zone_Data.LDRRead = hLDR_GetLightStatus(Loop_index);
-        Zone_Data.Temperature = hLm35_GetTemp(Loop_index);
-
-        // Light Control
-        if (Zone_Data.LDRRead == Morning) {
-            hLed_Off(Loop_index);  
-            Zone_Data.LightState = OFF;      
-        }
-        else if (Zone_Data.LDRRead == Evening) {
-            hLed_On(Loop_index);        
-            Zone_Data.LightState = ON;      
-        }
-        
-        // Fan Speed Control
-        if (Zone_Data.Temperature < 22) {
-            Zone_Data.FanSpeed = 0;
-            hFan_Off(Loop_index);
-        }
-        else if (Zone_Data.Temperature >= 35) {
-            Zone_Data.FanSpeed = 100;
-            hFan_On(Loop_index, Zone_Data.FanSpeed);
-        }
-        else {
-            /**
-             * Linear Temp-Speed relation
-             * Temp(°C) | Fan Speed
-             *   22     |     0%    MIN
-             *   25     |    23%     |
-             *   30     |    61%     v
-             *   35     |   100%    MAX
-             */
-            Zone_Data.FanSpeed = ((Zone_Data.Temperature-22)*100)/13;
-            hFan_On(Loop_index, Zone_Data.FanSpeed);     
-        }
+static void AutoExecutionRoutine(void) {
+    // Light Control
+    if (Zone_Data.LDRRead == Morning) {
+        hLed_Off(Loop_index);  
+        Zone_Data.LightState = OFF;      
     }
+    else if (Zone_Data.LDRRead == Evening) {
+        hLed_On(Loop_index);        
+        Zone_Data.LightState = ON;      
+    }
+    
+    // Fan Speed Control
+    if (Zone_Data.Temperature < 22) {
+        Zone_Data.FanSpeed = 0;
+        hFan_Off(Loop_index);
+    }
+    else if (Zone_Data.Temperature >= 35) {
+        Zone_Data.FanSpeed = 100;
+        hFan_On(Loop_index, Zone_Data.FanSpeed);
+    }
+    else {
+        /**
+         * Linear Temp-Speed relation
+         * Temp(°C) | Fan Speed
+         *   22     |     0%    MIN
+         *   25     |    23%     |
+         *   30     |    61%     v
+         *   35     |   100%    MAX
+         */
+        Zone_Data.FanSpeed = ((Zone_Data.Temperature-22)*100)/13;
+        hFan_On(Loop_index, Zone_Data.FanSpeed);     
+    }
+    Communication_SendZoneData(Zone_Data);
 }
 
 static void ManualExecutionRoutine(void) {
-        Received_Command = Communication_GetCommand();
-        if (Received_Command.Actuator != "Value TBD") {
-            // Light control
-            if (Received_Command.Actuator == LIGHT) {
-                if (Received_Command.Value == OFF) {
-                    hLed_Off(Received_Command.ZoneId);
-                }
-                else if ( Received_Command.Value == ON) {
-                    hLed_On(Received_Command.ZoneId);
-                }
-                Zone_Data.LightState = Received_Command.Value;
+    Received_Command = Communication_GetCommand();
+    if (Received_Command.ZoneId != 0xFF) {
+        // Light control
+        if (Received_Command.Actuator == LIGHT) {
+            if (Received_Command.Value == OFF) {
+                hLed_Off(Received_Command.ZoneId);
             }
-            // Fan control
-            else if (Received_Command.Actuator == FAN) {
-                Zone_Data.FanSpeed = Received_Command.Value;
-                hFan_On(Received_Command.ZoneId, Zone_Data.FanSpeed);
+            else if (Received_Command.Value == ON) {
+                hLed_On(Received_Command.ZoneId);
             }
+            Zone_Data.LightState = Received_Command.Value;
         }
-        else {
-            // No Commands
+        // Fan control
+        else if (Received_Command.Actuator == FAN) {
+            Zone_Data.FanSpeed = Received_Command.Value;
+            hFan_On(Received_Command.ZoneId, Zone_Data.FanSpeed);
         }
+    }
+    else {
+        // No Commands
+    }
 }
 
 void ZoneControl_Task(void) {
-    if (ModeControl_GetMode() == Automatic) {
-        AutoExecutionRoutine();
+    for (Loop_index = 1; Loop_index <= MaxZones; Loop_index++) {
+        Zone_Data.LDRRead = hLDR_GetLightStatus(Loop_index);
+        Zone_Data.Temperature = hLm35_GetTemp(Loop_index);
+        Zone_Data.ZoneId = Loop_index;
+        if (ModeControl_GetMode() == Automatic) {
+            AutoExecutionRoutine();
+        }
+        else if (ModeControl_GetMode() == Manual) {
+            ManualExecutionRoutine();
+        }
+        Communication_SendZoneData(Zone_Data);
     }
-    else if (ModeControl_GetMode() == Manual) {
-        ManualExecutionRoutine();
-    }
-    Communication_SendZoneData(Zone_Data);
 }
 
 #endif  /*ZoneControl_App*/
