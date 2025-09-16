@@ -48,8 +48,8 @@ void ZoneControl_Task(void) {
         Zone_Data.Light_Status = hLDR_GetLightStatus(Loop_index);
         Zone_Data.Temperature = hLm35_GetTemp(Loop_index);
 
-        // Light Control
         if (ModeControl_GetMode() == Automatic) {
+            // Light Control
             if (Light_Status == Morning) {
                 hRelay_Off(Loop_index);
                 hLed_Off(Loop_index);        
@@ -57,6 +57,28 @@ void ZoneControl_Task(void) {
             else if (Light_Status == Evening) {
                 hRelay_On(Loop_index);
                 hLed_On(Loop_index);        
+            }
+
+            // Fan Speed Control
+            if (Zone_Data.Temperature < 22) {
+                hFan_Off(Loop_index);
+                Zone_Data.Fan_Speed = 0;
+            }
+            else if (Zone_Data.Temperature >= 35) {
+                hFan_On(Loop_index, 100);
+                Zone_Data.Fan_Speed = 100;
+            }
+            else {
+                /**
+                 * Linear Temp-Speed relation
+                 * Temp(°C) | Fan Speed
+                 *   22     |     0%    MIN
+                 *   25     |    23%     |
+                 *   30     |    61%     v
+                 *   35     |   100%    MAX
+                 */
+                Zone_Data.Fan_Speed = ((Zone_Data.Temperature-22)*100)/13;
+                hFan_On(Loop_index, Zone_Data.Fan_Speed);
             }
         }
         else if (ModeControl_GetMode() == Manual) {
@@ -77,35 +99,15 @@ void ZoneControl_Task(void) {
                     else if ( Received_Command.Value == 1) {
                         hLed_On(Loop_index);
                     }
+                    Zone_Data.Light_Status = Received_Command.Value;
                 }
                 if (Received_Command.Actuator == Fan) {
                     hFan_On(Loop_index, Received_Command.Value);
+                    Zone_Data.Fan_Speed = Received_Command.Value;
                 }
             }
         }
 
-        // Fan Speed Control
-        if (Zone_Data.Temperature < 22) {
-            hFan_Off(Loop_index);
-            Zone_Data.Fan_Speed = 0;
-        }
-        else if (Zone_Data.Temperature >= 35) {
-            hFan_On(Loop_index, 100);
-            Zone_Data.Fan_Speed = 100;
-        }
-        else {
-            /**
-             * Linear Temp-Speed relation
-             * Temp(°C) | Fan Speed
-             *   22     |     0%    MIN
-             *   25     |    23%     |
-             *   30     |    61%     v
-             *   35     |   100%    MAX
-             */
-            Zone_Data.Fan_Speed = ((Zone_Data.Temperature-22)*100)/13;
-            hFan_On(Loop_index, Zone_Data.Fan_Speed);
-        }
-        
         /**
          * @fn Communication_SendZoneData
          * @warning Light_Status is flipped
