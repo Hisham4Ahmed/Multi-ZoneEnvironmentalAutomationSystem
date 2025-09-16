@@ -13,8 +13,8 @@
 #define _T0_CONFIG_H_
 
 /**
- * @def TimerPrescaller0
- * @brief Prescaler setting for Timer0.
+ * @def     TimerPrescaller0
+ * @brief   Prescaler setting for Timer0.
  * @details Defines the clock division factor applied to Timer0.
  *          Example: Timer0Prescaller_64 divides system clock by 64.
  */
