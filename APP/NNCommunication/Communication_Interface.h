@@ -8,8 +8,8 @@
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
  
-#ifndef _NNCOMMUNICATION_INTERFACE_H_
-#define _NNCOMMUNICATION_INTERFACE_H_
+#ifndef _COMMUNICATION_INTERFACE_H_
+#define _COMMUNICATION_INTERFACE_H_
 
 #include <stdint.h>
 #include "../../Common/ZoneConfig.h"
@@ -43,26 +43,45 @@ void Communication_Task(void);
 
 /**
  * @fn Communication_GetCommand
- * @brief Retrieves the next available command from a specific zone's buffer.
+ * @brief Retrieves the next available command from the global command buffer.
  *
- * This function checks the command buffer of the given zone. If the buffer
- * is not empty, it dequeues the oldest command (FIFO) and updates the buffer's
- * head and count accordingly.
- * @param ZoneNumber The zone number to retrieve the command from (1 to MaxZones).
+ * This function checks the global command buffer 'ZonesBuffer'. If the buffer 
+ * is not empty, it dequeues (FIFO) the oldest command, updates the buffer's 
+ * head and count, and returns the command. 
+ *
+ * If the buffer is empty, it returns a "dummy" command with:
+ * - ZoneId = 0xFF  
+ * - Actuator = NONE  
+ * - Value = 0
+ *
+ * @note This implementation assumes a single shared buffer for all zones.
+ *
  * @return Command_t 
- * @retval 
- * - The next command available in the specified zone's buffer.
- * - Returns an empty command (all fields zeroed) if the buffer is empty 
- *   or if the zone number is invalid.
+ * @retval  - Valid command if available in the buffer.
+ *          - Dummy command if the buffer is empty.
  */
-Command_t Communication_GetCommand();
+Command_t Communication_GetCommand(void);
 
 /**
  * @fn Communication_SendZoneData
- * @brief Sends the current data of a specified zone via Bluetooth.
- * @param data The ZoneData_t structure containing the zone's current data.
+ * @brief Sends zone data to the HC05 Bluetooth module.
+ *
+ * This function formats and transmits the data of a specific zone 
+ * (identified by its ZoneId) over the HC05 Bluetooth module. 
+ * It sends zone information.
+ * 
+ * The data is sent in the format:
+ *   Z<ZoneId>:Fan Speed=<value>, Light=<ON/OFF>, Temp=<value>, LDR=<Morning/Evening>
+ *
+ * @param data ZoneData_t structure containing the following:
+ *  - ZoneId      : Zone identifier (1 .. MaxZones)
+ *  - FanSpeed    : Fan speed value (0–255)
+ *  - LightState  : Light state (ON/OFF)
+ *  - Temperature : Temperature value
+ *  - LDRRead     : LDR status (Morning/Evening)
+ *
  * @return void
  */
 void Communication_SendZoneData(ZoneData_t data);
 
-#endif /*_NNCOMMUNICATION_INTERFACE_H_*/
+#endif /*_COMMUNICATION_INTERFACE_H_*/
