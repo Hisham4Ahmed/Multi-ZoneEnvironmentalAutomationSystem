@@ -20,9 +20,41 @@
 
 
 void Communication_Init(void);
+
+/**
+ * @fn Communication_Task
+ * @brief Executes the main communication task for handling Bluetooth commands and zone data.
+ *
+ * This function performs the following:
+ *  - Receives a string from the HC05 Bluetooth module via hHC05_ReceiveString.
+ *  - Parses the received string into a structured command using Communication_ParseCommand.
+ *  - Check buffer mode, then Stores valid commands into the corresponding zone buffer.
+ *  - Uses the global TickCounter to periodically trigger sending zone data. *
+ * @param void No parameters.
+ * @retval void
+ */
 void Communication_Task(void);
+
+
 uint8_t Communication_HasNewCommand(uint8_t ZoneNumber);
+
+/**
+ * @fn Communication_GetCommand
+ * @brief Retrieves the next available command from a specific zone's buffer.
+ *
+ * This function checks the command buffer of the given zone. If the buffer
+ * is not empty, it dequeues the oldest command (FIFO) and updates the buffer's
+ * head and count accordingly.
+ * @param ZoneNumber The zone number to retrieve the command from (1 to MaxZones).
+ * @return Command_t 
+ * @retval 
+ * - The next command available in the specified zone's buffer.
+ * - Returns an empty command (all fields zeroed) if the buffer is empty 
+ *   or if the zone number is invalid.
+ */
 Command_t Communication_GetCommand(uint8_t ZoneNumber);
+
+
 void Communication_SendZoneData(uint8_t ZoneNumber, ZoneData_t data);
 
 #endif /*_NNCOMMUNICATION_INTERFACE_H_*/
