@@ -102,10 +102,12 @@ typedef struct {
  * 
  */
 typedef struct {
+    uint8_t ZoneId;   
+    uint8_t LDRRead;
     uint8_t FanSpeed;      
     uint8_t LightState;    
     uint8_t Temperature;      
-} ZoneData_t;
+} ZoneData_t; // ZoneId , LDR_Return , Led State
 
 
 /**

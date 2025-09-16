@@ -74,6 +74,6 @@ Command_t Communication_GetCommand(uint8_t ZoneNumber);
  * @param data The ZoneData_t structure containing the zone's current data.
  * @return void
  */
-void Communication_SendZoneData(uint8_t ZoneNumber, ZoneData_t data);
+void Communication_SendZoneData(ZoneData_t data);
 
 #endif /*_NNCOMMUNICATION_INTERFACE_H_*/

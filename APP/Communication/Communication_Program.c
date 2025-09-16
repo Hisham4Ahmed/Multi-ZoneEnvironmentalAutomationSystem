@@ -9,6 +9,9 @@
  */
 
 #include "Communication_Interface.h"
+#include "../../HAL/LDR/LDR_Interface.h"
+#include "Communication_Private.h"
+#include "Communication_Config.h"
 /**
  * @var ZonesBuffer
  * @brief Command buffers for each zone 
@@ -122,28 +125,37 @@ uint8_t Communication_ParseCommand(const uint8_t *str, Command_t *Cmd)
 
     // Check start: must be 'Z' and ID between 1..4
     if (str[0] != 'Z' || str[1] < '1' || str[1] > '4')
+    {
         return 0;
-
+    }
     Cmd->ZoneId = str[1] - '0';  // Convert char → number
 
     // Find '='
     for (i = 2; str[i] != '=' && str[i] != NullChar; i++);
-    if (str[i] != '=')
+    if (str[i] != '=') //->Note1: Brackets
         return 0; // '=' not found
 
     // Copy substring [2 .. i-1] into temp
     for (j = 2; j < i; j++)
+    {
         temp[j - 2] = str[j];
-    temp[j - 2] = NullChar;  // null-terminate
+    }
+        temp[j - 2] = NullChar;  // null-terminate
 
     // Match actuator
     if (Compare_Strings(temp, "FAN") == 0)
+    {
+     
         Cmd->Actuator = FAN;
-    else if (Compare_Strings(temp, "LIGHT") == 0)
+    }
+        else if (Compare_Strings(temp, "LIGHT") == 0)
+        {
         Cmd->Actuator = LIGHT;
+        }
     else
+    {
         return 0; // Invalid actuator
-
+    }
     // Parse value (string after '=')
     i++; // move past '='
 
@@ -219,7 +231,7 @@ void Communication_Task(void)
         //Non valid command
     }
     
-    TickCounter++;
+    TickCounter++; // ZoneControl Will Send Data 
     if (TickCounter>=10000)
     {
         TickCounter=0;
@@ -227,7 +239,7 @@ void Communication_Task(void)
         for (uint8_t Zone=1; Zone<=MaxZones; Zone++)
         {
             ZoneData_t Data;
-            Communication_SendZoneData(Zone, Data);
+            Communication_SendZoneData(Data);
         }
     }
 }
@@ -270,15 +282,15 @@ Command_t Communication_GetCommand(uint8_t ZoneNumber)
     return Command;
 }
 
-void Communication_SendZoneData(uint8_t ZoneNumber, ZoneData_t data)
+void Communication_SendZoneData( ZoneData_t data) // zoneid
 {
-    if (ZoneNumber >= 1 && ZoneNumber <= MaxZones)
+    if (data.ZoneId >= 1 && data.ZoneId <= MaxZones)
     {
         uint8_t Temp_string[4];  // enough for "255"
 
         // Zone header
         hHC05_SendChar('Z');
-        hHC05_SendChar(ZoneNumber + '0'); 
+        hHC05_SendChar(data.ZoneId + '0'); 
         hHC05_SendChar(':');
 
         // Fan speed
@@ -297,6 +309,15 @@ void Communication_SendZoneData(uint8_t ZoneNumber, ZoneData_t data)
         hHC05_SendString(", Temp=");
         integer_to_string(data.Temperature, Temp_string);
         hHC05_SendString(Temp_string);
+
+        // LDR Reading
+        hHC05_SendString(", LDR=");
+        if (data.LDRRead==Morning)
+        {
+            hHC05_SendString("Morning");
+        }
+        else
+            hHC05_SendString("Evening");
 
         // New line
         hHC05_SendString("\r\n");
