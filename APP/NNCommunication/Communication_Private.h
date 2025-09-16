@@ -8,8 +8,8 @@
  * @copyright Copyright (c) 2025, Gestell Company 
  */
 
-#ifndef _NNCOMMUNICATION_PRIVATE_H_
-#define _NNCOMMUNICATION_PRIVATE_H_
+#ifndef _COMMUNICATION_PRIVATE_H_
+#define _COMMUNICATION_PRIVATE_H_
 
 #include "Communication_Config.h"
 #include <stdint.h>
