@@ -8,12 +8,25 @@
  * @copyright Copyright (c) 2025, Gestell Company 
  */
 
-#ifndef _NNCOMMUNICATION_PRIVATE_H_
-#define _NNCOMMUNICATION_PRIVATE_H_
+#ifndef _COMMUNICATION_PRIVATE_H_
+#define _COMMUNICATION_PRIVATE_H_
 
 #include "Communication_Config.h"
 #include <stdint.h>
 #include "../../Common/ZoneConfig.h"
+
+/**
+ * @defgroup Flag Values
+ * @brief Definitions for command availability status
+ * @def New_Command_Available 
+ * @brief Indicates a new command is available in the buffer
+ * @def No_New_Command
+ * @brief Indicates no new command is available in the buffer
+ * 
+ */
+#define New_Command_Available 1
+#define No_New_Command        0
+
 /**
  * @enum Actuator_t
  * @brief Enumeration of supported actuator types
@@ -180,17 +193,6 @@ uint16_t Compare_Strings(const char* str1, const char* str2);
  */
 uint8_t Communication_ParseCommand(const uint8_t *str, Command_t *Cmd);
 
-/**
- * @defgroup Flag Values
- * @brief Definitions for command availability status
- * @def New_Command_Available 
- * @brief Indicates a new command is available in the buffer
- * @def No_New_Command
- * @brief Indicates no new command is available in the buffer
- * 
- */
-#define New_Command_Available 1
-#define No_New_Command        0
 /**
  * @fn integer_to_string
  * @brief Convert an integer value (0-255) to a null-terminated string.

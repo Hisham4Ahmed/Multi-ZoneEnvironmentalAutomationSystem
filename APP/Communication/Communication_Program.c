@@ -12,20 +12,12 @@
 #include "../../HAL/LDR/LDR_Interface.h"
 #include "Communication_Private.h"
 #include "Communication_Config.h"
+#include "../../Common/ZoneConfig.h"
 /**
  * @var ZonesBuffer
  * @brief Command buffers for each zone 
  */
 static Command_t ZonesBuffer[MaxZones];
-/**
- * @var TickCounter
- * @brief Global tick counter used for periodic operations in Communication_Task().
- *
- * This counter is incremented each time Communication_Task() is called.
- * Once it reaches a defined threshold, it is reset and triggers sending 
- * periodic zone data.
- */
-unsigned long TickCounter=0;
 
 void BufferInit(CommandBuffer_t *Buffer)
 {
@@ -192,11 +184,7 @@ uint8_t Communication_ParseCommand(const uint8_t *str, Command_t *Cmd)
 void Communication_Init(void)
 {
    hHC05_Init();
-
-    for (uint8_t i = 0; i < MaxZones; i++)
-    {
-        BufferInit(&ZonesBuffer[i]);
-    }
+   BufferInit(ZonesBuffer);
 }
 
 void Communication_Task(void)  
@@ -207,78 +195,41 @@ void Communication_Task(void)
     //parse the received string and check validity
     if(Communication_ParseCommand(RxBuffer,&Command))
     {
-        //store it in it's zones buffer
+        //store it in zones buffer
         uint8_t Zone=Command.ZoneId;
-        if(Zone>=1 && Zone<=MaxZones) // -> Zone validation was done in parsing function
+        if(!BufferIsFull(ZonesBuffer))
         {
-            if(!BufferIsFull(&ZonesBuffer[Zone-1]))
-            {
-                BufferEnqueue(&ZonesBuffer[Zone-1],Command);
-            }
-            else
-            {
-                ClearBuffer(&ZonesBuffer[Zone]);
-                BufferEnqueue(&ZonesBuffer[Zone-1],Command);
-            }
+            BufferEnqueue(ZonesBuffer , Command);
         }
         else
         {
-            //Undefined Zone 
+            ClearBuffer(ZonesBuffer);
+            BufferEnqueue(ZonesBuffer , Command);
         }
     }
     else 
     {
         //Non valid command
     }
-    
-    TickCounter++; // ZoneControl Will Send Data 
-    if (TickCounter>=10000)
-    {
-        TickCounter=0;
-        //send zonos data 
-        for (uint8_t Zone=1; Zone<=MaxZones; Zone++)
-        {
-            ZoneData_t Data;
-            Communication_SendZoneData(Data);
-        }
-    }
 }
 
-uint8_t Communication_HasNewCommand(uint8_t ZoneNumber)
-{
-   // psudo code:
-   // 1) check if the zone number is valid (1 to MaxZones)
-   if (ZoneNumber >0 && ZoneNumber <= MaxZones)
-   {
-       CommandBuffer_t *Buff = &ZonesBuffer[ZoneNumber];
-       if (!BufferIsEmpty(Buff))
-        {
-            return New_Command_Available;   // buffer has a new command
-        }
-            else
-        {
-            return No_New_Command;   // buffer empty
-        }
-   }
-   
-}
-
-Command_t Communication_GetCommand(uint8_t ZoneNumber)
+Command_t Communication_GetCommand(void)
 {
     Command_t Command = {0};
-
-    if (ZoneNumber >= 1 && ZoneNumber <= MaxZones)  
+    CommandBuffer_t *Buff = ZonesBuffer;
+    if (!BufferIsEmpty(Buff))
     {
-        CommandBuffer_t *Buff = &ZonesBuffer[ZoneNumber];
-
-        if (!BufferIsEmpty(Buff))
-        {
-            Command = Buff->Buffer[Buff->Head];
-            Buff->Head = (Buff->Head + 1) % CMD_BUFFER_SIZE;
-            Buff->Count--;
-        }
+        Command = Buff->Buffer[Buff->Head];
+        Buff->Head = (Buff->Head + 1) % CMD_BUFFER_SIZE;
+        Buff->Count--;
+        return Command;
     }
-
+    else
+    {
+        Command.ZoneId = 0xFF;    
+        Command.Actuator = NONE;  
+        Command.Value = 0;        
+    }  
     return Command;
 }
 

@@ -9,14 +9,15 @@
  */
 
 
-#ifndef _NNCOMMUNICATION_CONFIG_H_
-#define _NNCOMMUNICATION_CONFIG_H_
+#ifndef _COMMUNICATION_CONFIG_H_
+#define _COMMUNICATION_CONFIG_H_
 
 /**
  * @def CMD_BUFFER_SIZE
  * @brief max number of commands per zone
  */
-#define CMD_BUFFER_SIZE  4   
+#define CMD_BUFFER_SIZE  10   
+
 /**
  * @def RX_MAX_STRING
  * @brief max number of chars in string 
