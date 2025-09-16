@@ -14,6 +14,15 @@
  * @brief Command buffers for each zone 
  */
 static Command_t ZonesBuffer[MaxZones];
+/**
+ * @var TickCounter
+ * @brief Global tick counter used for periodic operations in Communication_Task().
+ *
+ * This counter is incremented each time Communication_Task() is called.
+ * Once it reaches a defined threshold, it is reset and triggers sending 
+ * periodic zone data.
+ */
+unsigned long TickCounter=0;
 
 void BufferInit(CommandBuffer_t *Buffer)
 {
@@ -168,15 +177,10 @@ uint8_t Communication_ParseCommand(const uint8_t *str, Command_t *Cmd)
   
 }
 
-
-
-
 void Communication_Init(void)
 {
    hHC05_Init();
-    
-    
-    /* Initialize buffers for all zones */
+
     for (uint8_t i = 0; i < MaxZones; i++)
     {
         BufferInit(&ZonesBuffer[i]);
@@ -185,7 +189,47 @@ void Communication_Init(void)
 
 void Communication_Task(void)  
 {
-    //Implementation
+    uint8_t RxBuffer[RX_MAX_STRING]= {0};
+    Command_t Command;
+    hHC05_ReceiveString(RxBuffer,RX_MAX_STRING);
+    //parse the received string and check validity
+    if(Communication_ParseCommand(RxBuffer,&Command))
+    {
+        //store it in it's zones buffer
+        uint8_t Zone=Command.ZoneId;
+        if(Zone>=1 && Zone<=MaxZones) // -> Zone validation was done in parsing function
+        {
+            if(!BufferIsFull(&ZonesBuffer[Zone-1]))
+            {
+                BufferEnqueue(&ZonesBuffer[Zone-1],Command);
+            }
+            else
+            {
+                ClearBuffer(&ZonesBuffer[Zone]);
+                BufferEnqueue(&ZonesBuffer[Zone-1],Command);
+            }
+        }
+        else
+        {
+            //Undefined Zone 
+        }
+    }
+    else 
+    {
+        //Non valid command
+    }
+    
+    TickCounter++;
+    if (TickCounter>=10000)
+    {
+        TickCounter=0;
+        //send zonos data 
+        for (uint8_t Zone=1; Zone<=MaxZones; Zone++)
+        {
+            ZoneData_t Data;
+            Communication_SendZoneData(Zone, Data);
+        }
+    }
 }
 
 uint8_t Communication_HasNewCommand(uint8_t ZoneNumber)
@@ -196,13 +240,13 @@ uint8_t Communication_HasNewCommand(uint8_t ZoneNumber)
    {
        CommandBuffer_t *Buff = &ZonesBuffer[ZoneNumber];
        if (!BufferIsEmpty(Buff))
-{
-    return New_Command_Available;   // buffer has a new command
-}
-    else
-{
-    return No_New_Command;   // buffer empty
-}
+        {
+            return New_Command_Available;   // buffer has a new command
+        }
+            else
+        {
+            return No_New_Command;   // buffer empty
+        }
    }
    
 }
@@ -211,7 +255,7 @@ Command_t Communication_GetCommand(uint8_t ZoneNumber)
 {
     Command_t Command = {0};
 
-    if (ZoneNumber <= MaxZones)  
+    if (ZoneNumber >= 1 && ZoneNumber <= MaxZones)  
     {
         CommandBuffer_t *Buff = &ZonesBuffer[ZoneNumber];
 

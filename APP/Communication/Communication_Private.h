@@ -191,7 +191,10 @@ uint16_t Compare_Strings(const char* str1, const char* str2);
 
 /**
  * @fn Communication_ParseCommand
- * 
+ * @brief Parse a command string into a Command_t structure.
+ * @param str Pointer to the null-terminated command string to parse.
+ * @param Cmd Pointer to the Command_t structured to store the parsed command.
+ * @return uint8_t -> if success return 1, else return 0
  */
 uint8_t Communication_ParseCommand(const uint8_t *str, Command_t *Cmd);
 
@@ -205,13 +208,15 @@ uint8_t Communication_ParseCommand(const uint8_t *str, Command_t *Cmd);
  * 
  */
 #define New_Command_Available 1
-#define No_New_Command    
+#define No_New_Command        0
+
 /**
  * @fn integer_to_string
- * @brief Convert an integer value to a string.
+ * @brief Convert an integer value (0-255) to a null-terminated string.
+ * @details this function is used to convert integer values to strings for sending via Bluetooth.
  * @param value The integer value to convert (0-255).
  * @param str Pointer to a character array where the resulting string will be stored.
- *  */    
+ */
 void integer_to_string(uint8_t value , char* str);
 
 #endif /* _COMMUNICATION_PRIVATE_H_ */
