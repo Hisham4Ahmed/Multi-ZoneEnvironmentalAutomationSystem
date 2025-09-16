@@ -32,9 +32,6 @@
  */
 void ZoneControl_Init(void);
 
-static void AutoExecutionRoutine();
-static void ManualExecutionRoutine();
-
 /**
  * @fn         ZoneControl_Task
  * @brief      Executes periodic zone control operations.

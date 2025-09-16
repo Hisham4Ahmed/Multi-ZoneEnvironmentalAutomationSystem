@@ -86,25 +86,27 @@ static void AutoExecutionRoutine() {
 }
 
 static void ManualExecutionRoutine(void) {
-    while (Communication_GetCommand().Actuator != "Fixed Value TBD") {
         Received_Command = Communication_GetCommand();
-        if (Received_Command.Actuator == LIGHT) {
+        if (Received_Command.Actuator != "Value TBD") {
             // Light control
-            if (Received_Command.Value == OFF) {
-                hLed_Off(Received_Command.ZoneId);
+            if (Received_Command.Actuator == LIGHT) {
+                if (Received_Command.Value == OFF) {
+                    hLed_Off(Received_Command.ZoneId);
+                }
+                else if ( Received_Command.Value == ON) {
+                    hLed_On(Received_Command.ZoneId);
+                }
+                Zone_Data.LightState = Received_Command.Value;
             }
-            else if ( Received_Command.Value == ON) {
-                hLed_On(Received_Command.ZoneId);
+            // Fan control
+            else if (Received_Command.Actuator == FAN) {
+                Zone_Data.FanSpeed = Received_Command.Value;
+                hFan_On(Received_Command.ZoneId, Zone_Data.FanSpeed);
             }
-            Zone_Data.LightState = Received_Command.Value;
         }
-        // Fan control
-        else if (Received_Command.Actuator == FAN) {
-            Zone_Data.FanSpeed = Received_Command.Value;
-            hFan_On(Received_Command.ZoneId, Zone_Data.FanSpeed);
+        else {
+            // No Commands
         }
-        Communication_DelCommand(Received_Command);
-    }
 }
 
 void ZoneControl_Task(void) {
