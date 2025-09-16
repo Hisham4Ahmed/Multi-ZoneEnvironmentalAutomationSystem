@@ -112,12 +112,32 @@
 #define Zone4_LDRPin     Pin6
 
 
+/*-----------------Communication------------------------------*/
+
+/**
+ * @struct ZoneData_t
+ * @brief Structure representing zone sensor data and actuator states to be sent
+ * 
+ * @var FanSpeed
+ * @brief  Current fan speed (0-100%)
+ * 
+ * @var LightState
+ * @brief Current light state (ON/OFF)
+ * 
+ * @var Temperature
+ * @brief Current temperature reading
+ * 
+ */
+typedef struct {
+    uint8_t ZoneId;   
+    uint8_t LDRRead;
+    uint8_t FanSpeed;      
+    uint8_t LightState;    
+    uint8_t Temperature;      
+} ZoneData_t; // ZoneId , LDR_Return , Led State
 
 
-
-
-
-
+/*--------------------------------------------------------*/
 /**
  * @def Zones_DCGroups
  * @def Zones_DCPins
