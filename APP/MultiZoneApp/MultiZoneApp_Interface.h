@@ -11,6 +11,11 @@
 
 #ifndef _MULTIZONEAPP_INTERFACE_H_
 #define _MULTIZONEAPP_INTERFACE_H_
+
+#include "../ZoneControl/ZoneControl_Interface.h"
+#include "../ModeControl/ModeControl_Interface.h"
+#include "../../HAL/LCD/LCD_Interface.h"
+
 /*Initialization
     - MultizoneApp_Init() shall:
         - Initialize all system modules in correct order: 
@@ -19,7 +24,11 @@
             - Communication_Init() 
             - LCDDisplay_Init()
         - Configure global interrupts if needed.
-        - Set initial state (Mode = StartingMode). 
+        - Set initial state (Mode = StartingMode).  */
+        
+void MultizoneApp_Init();
+        
+/** 
 Superloop Execution
     - MultizoneApp_Run() shall contain the infinite loop.
     - In each loop iteration:
@@ -39,7 +48,10 @@ Responsibilities
 Error Handling
     - If a submodule fails to initialize, MultizoneApp_Init() shall handle it (safe state or retry).
     - If communication errors occur, system shall continue with last known state.*/
-
+/**
+ *@fn 
+ */
+void MultizoneApp_Run();
 
 
 
