@@ -40,7 +40,6 @@ void ZoneControl_Init(void) {
 }
 
 void ZoneControl_Task(void) {
-    static uint8_t Light_Status = 0;
     static Command_t Received_Command = {0};
     static ZoneData_t Zone_Data = {0};
 
@@ -50,11 +49,11 @@ void ZoneControl_Task(void) {
 
         if (ModeControl_GetMode() == Automatic) {
             // Light Control
-            if (Light_Status == Morning) {
+            if (Zone_Data.Light_Status == Morning) {
                 hRelay_Off(Loop_index);
                 hLed_Off(Loop_index);        
             }
-            else if (Light_Status == Evening) {
+            else if (Zone_Data.Light_Status == Evening) {
                 hRelay_On(Loop_index);
                 hLed_On(Loop_index);        
             }
