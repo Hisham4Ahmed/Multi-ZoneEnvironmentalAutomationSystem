@@ -14,42 +14,25 @@
 
 #include "../ZoneControl/ZoneControl_Interface.h"
 #include "../ModeControl/ModeControl_Interface.h"
+//#include "../Communication/Communication_Interface.h"
 #include "../../HAL/LCD/LCD_Interface.h"
+#include "../../MCAL/GIE/GIE.h"
 
-/*Initialization
-    - MultizoneApp_Init() shall:
-        - Initialize all system modules in correct order: 
-            - ModeControl_Init()
-            - ZoneControl_Init() 
-            - Communication_Init() 
-            - LCDDisplay_Init()
-        - Configure global interrupts if needed.
-        - Set initial state (Mode = StartingMode).  */
-        
-void MultizoneApp_Init();
-        
-/** 
-Superloop Execution
-    - MultizoneApp_Run() shall contain the infinite loop.
-    - In each loop iteration:
-        - Call ModeControl_Task().
-        - Call Communication_Task(). 
-        - Call ZoneControl_Task().
-        - Call LCDDisplay_Task().
-    - Execution Order Rule:
-        - ModeControl_Task() first → ensures current mode is updated.
-        - Communication_Task() second → syncs data with mobile app.
-        - ZoneControl_Task() third → applies Auto/Manual logic. 
-        - LCDDisplay_Task() last → updates display for user feedback.
-Responsibilities
-    - Full App Task is the orchestrator (scheduler).
-    - It does not implement business logic → that belongs to submodules.
-    - It ensures tasks are called in the correct sequence for consistency. 
-Error Handling
-    - If a submodule fails to initialize, MultizoneApp_Init() shall handle it (safe state or retry).
-    - If communication errors occur, system shall continue with last known state.*/
 /**
- *@fn 
+ * @fn MultizoneApp_Init
+ * @brief Initializes the Multizone application.
+ * @details This function initializes all necessary peripherals, drivers, and 
+ *         components for the Multizone application needed for operation it should be called once at system startup.
+ * @note This function must be called before any other application functions.
+ */
+void MultizoneApp_Init();
+/**
+ * @fn MultizoneApp_Run
+ * @brief Runs the main loop of the Multizone application.
+ * @details This function contains the primary operational logic for the application, 
+ *          handling tasks such as processing data, 
+ *          state management, and communication.
+ *           It is typically called repeatedly within the system's main event loop.
  */
 void MultizoneApp_Run();
 

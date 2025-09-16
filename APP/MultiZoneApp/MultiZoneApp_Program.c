@@ -18,12 +18,16 @@
             - ZoneControl_Init() 
             - Communication_Init() 
             - LCDDisplay_Init()
-        - Configure global interrupts if needed.
+        - Configure global interrupts if needed. done by mode control 
         - Set initial state (Mode = StartingMode).  */
+ 
         
 void MultizoneApp_Init()
 {
-
+    ModeControl_Init();
+    ZoneControl_Init();
+    Communication_Init();
+    LCDDisplay_Init();
 }
         
 /** 
@@ -48,5 +52,12 @@ Error Handling
     - If communication errors occur, system shall continue with last known state.*/
 void MultizoneApp_Run()
 {
-    
+while (1)
+{
+    ModeControl_Task();
+    ZoneControl_Task();
+    Communication_Task();
+    LCDDisplay_Task();
+}
+
 }
