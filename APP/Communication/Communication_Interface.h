@@ -15,8 +15,8 @@
 #include "../../Common/ZoneConfig.h"
 #include "../../Common/Macro.h"
 #include "../../HAL/HC05/HC05_Interface.h"
-#include "NNCommunication_Config.h"
-#include "NNCommunication_Private.h"
+#include "Communication_Config.h"
+#include "Communication_Private.h"
 
 
 /**

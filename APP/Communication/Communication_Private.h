@@ -11,7 +11,7 @@
 #ifndef _NNCOMMUNICATION_PRIVATE_H_
 #define _NNCOMMUNICATION_PRIVATE_H_
 
-#include "NNCommunication_Config.h"
+#include "Communication_Config.h"
 #include <stdint.h>
 
 /**

@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
 
-#include "NNCommunication_Interface.h"
+#include "Communication_Interface.h"
 /**
  * @var ZonesBuffer
  * @brief Command buffers for each zone 
@@ -41,7 +41,7 @@ void integer_to_string(uint8_t value , char* str)
     if (value == 0)
     {
         str[0] = '0';
-        str[1] = '\0';
+        str[1] = NullChar;
         return;
     }
 
@@ -58,7 +58,7 @@ void integer_to_string(uint8_t value , char* str)
         str[j] = temp[i - j - 1];
     }
 
-    str[i] = '\0';  // null terminate
+    str[i] = NullChar;  // null terminate
 }
 }
 
