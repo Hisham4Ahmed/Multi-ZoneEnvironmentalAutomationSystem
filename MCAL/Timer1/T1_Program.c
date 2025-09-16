@@ -45,12 +45,6 @@ void mTimer1_InitFastPWMMode(void)
     Temp&=Timer1_NoClkMask;
     Temp|=Timer1_Prescaller;
     TCCR1B_Reg=Temp;
-
-
-
-
-
-    
 }
 
 void mTimer1_ChangeDutyCycle(uint8_t DutyCycle ,uint8_t Channel)
