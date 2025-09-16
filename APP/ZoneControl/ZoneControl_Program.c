@@ -27,7 +27,14 @@
 #include "../../HAL/LED/LED_Interface.h"
 #include "../../HAL/DC/DC_Interface.h"
 
+/*for loop counter*/
 static uint8_t Loop_index = 1;
+
+/*Store Zone Data*/
+static ZoneData_t Zone_Data = {0};
+
+/*Store Received Command*/
+static Command_t Received_Command = {0};
 
 void ZoneControl_Init(void) {
     for (Loop_index = 1; Loop_index <= MaxZones; Loop_index++) {
@@ -39,82 +46,75 @@ void ZoneControl_Init(void) {
     }
 }
 
-void ZoneControl_Task(void) {
-    static Command_t Received_Command = {0};
-    static ZoneData_t Zone_Data = {0};
-
+static void AutoExecutionRoutine() {
     for (Loop_index = 1; Loop_index <= MaxZones; Loop_index++) {
-        Zone_Data.Light_Status = hLDR_GetLightStatus(Loop_index);
+        Zone_Data.LDRRead = hLDR_GetLightStatus(Loop_index);
         Zone_Data.Temperature = hLm35_GetTemp(Loop_index);
 
-        if (ModeControl_GetMode() == Automatic) {
-            // Light Control
-            if (Zone_Data.Light_Status == Morning) {
-                hRelay_Off(Loop_index);
-                hLed_Off(Loop_index);        
-            }
-            else if (Zone_Data.Light_Status == Evening) {
-                hRelay_On(Loop_index);
-                hLed_On(Loop_index);        
-            }
-
-            // Fan Speed Control
-            if (Zone_Data.Temperature < 22) {
-                hFan_Off(Loop_index);
-                Zone_Data.Fan_Speed = 0;
-            }
-            else if (Zone_Data.Temperature >= 35) {
-                hFan_On(Loop_index, 100);
-                Zone_Data.Fan_Speed = 100;
-            }
-            else {
-                /**
-                 * Linear Temp-Speed relation
-                 * Temp(°C) | Fan Speed
-                 *   22     |     0%    MIN
-                 *   25     |    23%     |
-                 *   30     |    61%     v
-                 *   35     |   100%    MAX
-                 */
-                Zone_Data.Fan_Speed = ((Zone_Data.Temperature-22)*100)/13;
-                hFan_On(Loop_index, Zone_Data.Fan_Speed);
-            }
+        // Light Control
+        if (Zone_Data.LDRRead == Morning) {
+            hLed_Off(Loop_index);  
+            Zone_Data.LightState = OFF;      
         }
-        else if (ModeControl_GetMode() == Manual) {
-            /** @warning this portion might be broken 
-            *   @warning Depends on Communication Task implementation 
-            * */
-            while (Communication_HasNewCommand(Loop_index)) {
-                /**
-                 * @warning This loop will break when the expression is no longer true
-                 *  considering that Communication_GetCommand(Loop_index) 
-                 *  clears someting that makes the expression goes false 
-                 * */
-                Received_Command = Communication_GetCommand(Loop_index);
-                if (Received_Command.Actuator == LED) {
-                    if (Received_Command.Value == 0) {
-                        hLed_Off(Loop_index);
-                    }
-                    else if ( Received_Command.Value == 1) {
-                        hLed_On(Loop_index);
-                    }
-                    Zone_Data.Light_Status = Received_Command.Value;
-                }
-                if (Received_Command.Actuator == Fan) {
-                    hFan_On(Loop_index, Received_Command.Value);
-                    Zone_Data.Fan_Speed = Received_Command.Value;
-                }
-            }
+        else if (Zone_Data.LDRRead == Evening) {
+            hLed_On(Loop_index);        
+            Zone_Data.LightState = ON;      
         }
-
-        /**
-         * @fn Communication_SendZoneData
-         * @warning Light_Status is flipped
-         * @warning Depends on Communication Task implementation
-         */
-        Communication_SendZoneData(Loop_index, Zone_Data);
         
+        // Fan Speed Control
+        if (Zone_Data.Temperature < 22) {
+            Zone_Data.FanSpeed = 0;
+            hFan_Off(Loop_index);
+        }
+        else if (Zone_Data.Temperature >= 35) {
+            Zone_Data.FanSpeed = 100;
+            hFan_On(Loop_index, Zone_Data.FanSpeed);
+        }
+        else {
+            /**
+             * Linear Temp-Speed relation
+             * Temp(°C) | Fan Speed
+             *   22     |     0%    MIN
+             *   25     |    23%     |
+             *   30     |    61%     v
+             *   35     |   100%    MAX
+             */
+            Zone_Data.FanSpeed = ((Zone_Data.Temperature-22)*100)/13;
+            hFan_On(Loop_index, Zone_Data.FanSpeed);     
+        }
     }
+}
+
+static void ManualExecutionRoutine(void) {
+    while (Communication_GetCommand().Actuator != "Fixed Value TBD") {
+        Received_Command = Communication_GetCommand();
+        if (Received_Command.Actuator == LIGHT) {
+            // Light control
+            if (Received_Command.Value == OFF) {
+                hLed_Off(Received_Command.ZoneId);
+            }
+            else if ( Received_Command.Value == ON) {
+                hLed_On(Received_Command.ZoneId);
+            }
+            Zone_Data.LightState = Received_Command.Value;
+        }
+        // Fan control
+        else if (Received_Command.Actuator == FAN) {
+            Zone_Data.FanSpeed = Received_Command.Value;
+            hFan_On(Received_Command.ZoneId, Zone_Data.FanSpeed);
+        }
+        Communication_DelCommand(Received_Command);
+    }
+}
+
+void ZoneControl_Task(void) {
+    if (ModeControl_GetMode() == Automatic) {
+        AutoExecutionRoutine();
+    }
+    else if (ModeControl_GetMode() == Manual) {
+        ManualExecutionRoutine();
+    }
+    Communication_SendZoneData(Zone_Data);
 }
 
 #endif  /*ZoneControl_App*/
