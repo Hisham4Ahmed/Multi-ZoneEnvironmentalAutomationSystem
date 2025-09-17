@@ -11,7 +11,7 @@
 
 #ifndef _MULTIZONEAPP_INTERFACE_H_
 #define _MULTIZONEAPP_INTERFACE_H_
-
+#include <stdint.h>
 #include "../ZoneControl/ZoneControl_Interface.h"
 #include "../ModeControl/ModeControl_Interface.h"
 //#include "../Communication/Communication_Interface.h"
