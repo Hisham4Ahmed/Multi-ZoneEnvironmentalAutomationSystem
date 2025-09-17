@@ -26,7 +26,7 @@
 
 /**
  * @def MPCM_Bit
- * @brief Enables Multi-Processor Communication Mode
+ * @brief Enables multi processor communication mode
  */
 #define MPCM_Bit     0
 
