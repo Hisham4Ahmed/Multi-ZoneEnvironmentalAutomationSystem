@@ -19,13 +19,28 @@
 #include "../../MCAL/GIE/GIE.h"
 
 /**
- * @fn MultizoneApp_Init
- * @brief Initializes the Multizone application.
- * @details This function initializes all necessary peripherals, drivers, and 
- *         components for the Multizone application needed for operation it should be called once at system startup.
- * @note This function must be called before any other application functions.
+ * @fn uint8_t MultizoneApp_Init(void)
+ * @brief Initializes all system modules required for the Multizone application.
+ *
+ * @details This function performs ordered initialization of the following modules:
+ *          - ModeControl
+ *          - ZoneControl
+ *          - Communication
+ *          - LCDDisplay
+ *
+ *          Each module must set its internal `*_Initialized` flag to indicate success.
+ *          If any module fails to initialize, the function returns a corresponding error code.
+ *
+ * @retval 0 All modules initialized successfully.
+ * @retval 1 ModeControl failed to initialize.
+ * @retval 2 ZoneControl failed to initialize.
+ * @retval 3 Communication failed to initialize.
+ * @retval 4 LCDDisplay failed to initialize.
+ *
+ * @note This function must be called before executing the main application loop.
  */
-void MultizoneApp_Init();
+
+uint8_t MultizoneApp_Init();
 /**
  * @fn MultizoneApp_Run
  * @brief Runs the main loop of the Multizone application.
