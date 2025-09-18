@@ -28,6 +28,45 @@
 #define No_New_Command        0
 
 /**
+ * @defgroup String Comparison Results
+ * @def Matches
+ * @brief Indicates that two strings match
+ * @def NotMatches
+ * @brief Indicates that two strings do not match
+ */
+
+#define Matches 0
+#define NotMatches 1
+
+/**
+ * @defgroup Command String Indices and Characters
+ * @brief Definitions for parsing command strings
+ * @def Zone_Char_Index
+ * @brief Refers to the index of Character Z in recieved Command
+ * @def   ZoneId_Char
+ * @brief Refers to the Index of Zone Id (1~4) in recieved Command
+ * @def  Actuator_Start_Char
+ * @brief Refers to the index of the first Char of the actuator
+ * @def  Zones_Start 
+ * @brief refers to the Character of one '1' , which indicates the id of first zone
+ * @def Zones_End
+ * @brief refers to the Character of Four '4' , which indicates the id of Last zone
+ * @def  Zone_Char
+ * @brief Refers to the Character of 'Z' which refers to 
+ */
+
+#define Zone_Char_Index          0
+#define ZoneId_Char              1
+#define Actuator_Start_Char      2
+#define Zones_Start             '1'
+#define Zones_End               '4'
+#define Zone_char               'Z'
+
+
+
+
+
+/**
  * @enum Actuator_t
  * @brief Enumeration of supported actuator types
  * 
@@ -165,7 +204,7 @@ void BufferEnqueue(CommandBuffer_t *Buff, Command_t Command);
  *
  * @note Example: "123" -> 123
  */
-uint16_t Convert_Value_to_Integer(const char* str);
+uint16_t Convert_Value_to_Integer(const uint8_t* str);
 
 
 /**
@@ -177,12 +216,11 @@ uint16_t Convert_Value_to_Integer(const char* str);
  *
  * @param str1 Pointer to the first string.
  * @param str2 Pointer to the second string.
- * @return uint16_t 
- * @retval 0 if both strings are equal.
- * @retval Positive value if str1 is greater than str2.
- * @retval Negative value if str1 is less than str2.
+ * @return uint8_t comparison result
+ * @retval Matches if strings are identical.
+ * @retval NotMatches if strings differ.
  */
-uint16_t Compare_Strings(const char* str1, const char* str2);
+uint8_t Compare_Strings(const uint8_t* str1, const uint8_t* str2);
 
 /**
  * @fn Communication_ParseCommand
@@ -200,6 +238,8 @@ uint8_t Communication_ParseCommand(const uint8_t *str, Command_t *Cmd);
  * @param value The integer value to convert (0-255).
  * @param str Pointer to a character array where the resulting string will be stored.
  */
-void integer_to_string(uint8_t value , char* str);
+void integer_to_string(uint8_t value , uint8_t* str);
+
+
 
 #endif /* _COMMUNICATION_PRIVATE_H_ */

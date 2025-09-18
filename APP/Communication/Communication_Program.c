@@ -19,14 +19,14 @@
  */
 static Command_t ZonesBuffer[MaxZones];
 
-void BufferInit(CommandBuffer_t *Buffer)
+void BufferInit(CommandBuffer_t *Buffer) 
 {
     Buffer->Head = 0;
     Buffer->Tail = 0;
     Buffer->Count = 0;
 }
 
-void integer_to_string(uint8_t value , char* str)
+void integer_to_string(uint8_t value , uint8_t* str)
 {
     {
     uint8_t temp[3];    // max "255"
@@ -59,7 +59,7 @@ void integer_to_string(uint8_t value , char* str)
 
 void ClearBuffer(CommandBuffer_t *Buffer)
 {
-     for (uint16_t i = 0; i < CMD_BUFFER_SIZE; i++)
+     for (uint16_t i = 0; i < CMD_BUFFER_SIZE; i++) 
     {
         Buffer->Buffer[i].ZoneId  = 0;
         Buffer->Buffer[i].Actuator = NONE;
@@ -87,7 +87,7 @@ void BufferEnqueue(CommandBuffer_t *Buff, Command_t Command)
     }
 }
 
-uint16_t Convert_Value_to_Integer(const char* str)
+uint16_t Convert_Value_to_Integer(const uint8_t* str)
 {
     uint16_t Value = 0;
     while (*str>='0' && *str<='9')
@@ -100,47 +100,62 @@ uint16_t Convert_Value_to_Integer(const char* str)
    
 }
 
-uint16_t Compare_Strings(const char* str1, const char* str2)
+uint8_t Compare_Strings(const uint8_t* str1, const uint8_t* str2) 
 {
-    while (*str1 && (*str1 == *str2)) {
+    while (*str1==*str2)
+     {
+        if (*str1 == NullChar)
+         {
+            return Matches; // Both strings ended together
+        }
+        else
+        {
         str1++;
         str2++;
+        }
     }
-    return *(const unsigned char*)str1 - *(const unsigned char*)str2;
+    {
+       return NotMatches; // Mismatch found
+    }
+    
 }
 
-uint8_t Communication_ParseCommand(const uint8_t *str, Command_t *Cmd)
+uint8_t  Communication_ParseCommand(const uint8_t *str, Command_t *Cmd)
 {
     uint8_t i = 0;
     uint8_t j = 0;
     uint8_t temp[10];  // buffer to hold actuator substring ("FAN" or "LIGHT")
 
     // Check start: must be 'Z' and ID between 1..4
-    if (str[0] != 'Z' || str[1] < '1' || str[1] > '4')
+    if (str[Zone_Char_Index] != Zone_char || str[ZoneId_Char] < Zones_Start || str[ZoneId_Char] > Zones_End)
     {
         return 0;
     }
-    Cmd->ZoneId = str[1] - '0';  // Convert char → number
+    Cmd->ZoneId = str[ZoneId_Char] - '0';  // Convert char → number
 
     // Find '='
-    for (i = 2; str[i] != '=' && str[i] != NullChar; i++);
-    if (str[i] != '=') //->Note1: Brackets
-        return 0; // '=' not found
-
-    // Copy substring [2 .. i-1] into temp
-    for (j = 2; j < i; j++)
+    for (i = Actuator_Start_Char; str[i] != '=' && str[i] != NullChar; i++)
     {
-        temp[j - 2] = str[j];
+        // just increment i till it finds '=' or end of string
     }
-        temp[j - 2] = NullChar;  // null-terminate
+    if (str[i] != '=')
+     {
+        return 0; // '=' not found
+    }
+    // Copy substring [2 .. i-1] into temp
+    for (j = Actuator_Start_Char; j < i; j++)
+    {
+        temp[j - Actuator_Start_Char] = str[j];
+    }
+     
 
-    // Match actuator
-    if (Compare_Strings(temp, "FAN") == 0)
+    // Match actuator 
+    if (Compare_Strings(temp, "FAN") == Matches)
     {
      
         Cmd->Actuator = FAN;
     }
-        else if (Compare_Strings(temp, "LIGHT") == 0)
+        else if (Compare_Strings(temp, "LIGHT") == Matches)
         {
         Cmd->Actuator = LIGHT;
         }
@@ -158,16 +173,19 @@ uint8_t Communication_ParseCommand(const uint8_t *str, Command_t *Cmd)
         {
             return 0; // invalid speed
         }
+        else 
+        {
             return 1; // success
+        }
     }
     else if (Cmd->Actuator == LIGHT)
     {
-        if (Compare_Strings(&str[i], "ON") == 0)
+        if (Compare_Strings(&str[i], "ON") == Matches)
            
         {
              Cmd->Value = ON;
         }
-        else if (Compare_Strings(&str[i], "OFF") == 0)
+        else if (Compare_Strings(&str[i], "OFF") == Matches)
             {
                 Cmd->Value = OFF;
             }
@@ -250,7 +268,7 @@ void Communication_SendZoneData( ZoneData_t data) // zoneid
         hHC05_SendString(Temp_string);
 
         // Light state
-        hHC05_SendString(", Light=");
+        hHC05_SendString(", Led State="); //LED_STATE
         if (data.LightState)
             hHC05_SendString("ON");
         else
@@ -262,15 +280,17 @@ void Communication_SendZoneData( ZoneData_t data) // zoneid
         hHC05_SendString(Temp_string);
 
         // LDR Reading
-        hHC05_SendString(", LDR=");
+        hHC05_SendString(", Light State=");  // Light State
         if (data.LDRRead==Morning)
         {
             hHC05_SendString("Morning");
         }
         else
+        {
             hHC05_SendString("Evening");
-
+        }
         // New line
         hHC05_SendString("\r\n");
     }
 }
+
