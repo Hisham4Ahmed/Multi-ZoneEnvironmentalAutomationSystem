@@ -25,14 +25,14 @@
 /**
  * @fn hLDR_Init
  * @brief This Function is used to initialize LDR According to it's Zone
- * 
+ * @param ZoneNumber Zone number indicates which zone initialize 
  */
 void hLDR_Init(uint8_t ZoneNumber) ;
 
 /**
  * @fn hLDR_GetLightStatus
  * @brief Function Used to get the Status of ldr (Morning , Evening)
- * @param ZoneNumber 
+ * @param ZoneNumber Zone number indicates which zone to get the status from
  */
 uint8_t hLDR_GetLightStatus(uint8_t ZoneNumber);
 
