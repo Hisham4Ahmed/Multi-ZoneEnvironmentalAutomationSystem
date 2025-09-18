@@ -1,9 +1,10 @@
 /**
- * @file     DisplayTask_Program.c
- * @author   Your Name
- * @brief    Display Task Implementation - LCD Mode Display
- * @version   0.1
- * @date      2025-09-17
+ * @file      DisplayTask_Program.c
+ * @author    Dev. Hozifa Ahmed (hozifasedik@gmail.com)
+ * @author    Rev. Hesham Ahmed (Hisham4Ahmed@gmail.com)
+ * @brief     Display Task Implementation - LCD Mode Display
+ * @version   0.2
+ * @date      2025-09-18
  * 
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
@@ -23,8 +24,8 @@ void LCDDisplay_Init(void)
     uint8_t currentMode = ModeControl_GetMode();
     PreviousMode = currentMode;
     
-    hLCD_MoveCursor(1, 0);
-    if(currentMode == 0) {
+    hLCD_MoveCursor(Manual, Automatic);
+    if(currentMode == Automatic) {
         hLCD_WriteString("MODE: AUTO");
     } else {
         hLCD_WriteString("MODE: MANUAL");
@@ -38,9 +39,9 @@ void LCDDisplay_Task(void)
     // Only update if mode changed
     if(currentMode != PreviousMode) {
         hLCD_ClearFirstLine();
-        hLCD_MoveCursor(1, 0);
+        hLCD_MoveCursor(Manual, Automatic);
         
-        if(currentMode == 0) {
+        if(currentMode == Automatic) {
             hLCD_WriteString("MODE: AUTO");
         } else {
             hLCD_WriteString("MODE: MANUAL");

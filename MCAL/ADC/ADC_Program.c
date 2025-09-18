@@ -1,176 +1,135 @@
 /**
- * @file     ADC_Program.c
- * @author   Mohammed Atif
- * @author   Mohammed Diaa
- * @brief    ADC driver implementation for AVR microcontrollers (ATmega32).
- * @version  0.1
- * @date     2025-08-15
- *
- * This file provides the implementation of the ADC driver, including:
- * - Initialization of the ADC with user-defined configurations
- * - Single conversion mode function
- * - ADC disable function
- * - ADC Conversion Complete Interrupt Service Routine (ISR)
- * 
- * The functions are designed to work with configuration macros defined
- * in the corresponding header files.
- * 
- * @copyright Copyright (c) 2025 , Gestell Company 
+ * @file      ADC_Program.c
+ * @author    Dev. Mohammed Atif (medoatifatif@gmail.com)
+ * @author    Rev. Mohammed Diaa (Mohammeddiaato@gmail.com)
+ * @brief     ADC driver implementation for AVR microcontrollers.
+ * @details   Provides implementation of ADC initialization, conversion and control functions.
+ * @version   0.2
+ * @date      2025-08-15
+ * @copyright Copyright (c) 2025 , Gestell Company
  */
 
 #include "../../Common/Config.h"
 #if ADC_Driver
 
-
-
-
 #include "ADC_Interface.h"
 
 /**
- * @fn void mADC_Init(void)
- * @brief Initialize the ADC peripheral with user-defined configurations.
- *
- * This function sets up the ADC based on configuration macros:
- * - ADC interrupt enable/disable (ADC_INT_Enabled, ADC_INT_Disabled)
- * - Voltage reference source (Volt_Ref_Select)
- * - Operating mode (single conversion or auto trigger)
- * - Auto trigger source ( ADC_TriggerSrcSelection, only if auto trigger is enabled)
- * - Result adjustment (left/right justified)
- * - Prescaler selection (ADC_PrescalerSelection)
- * - Finally, the ADC is enabled.
- *
+ * @fn mADC_Init
+ * @brief Initializes ADC peripheral with configured settings
+ * @details Configures:
+ *          - Interrupt enable/disable based on ADC_Interrupt_Status
+ *          - Voltage reference from Volt_Ref_Select
+ *          - Operation mode (single/auto trigger)
+ *          - Auto trigger source (if applicable)
+ *          - Result adjustment (right-justified)
+ *          - Clock prescaler from ADC_PrescalerSelection
+ *          - Finally enables ADC
  * @return void
  */
-void mADC_Init() {
-    // ADC Interrupt 
+void mADC_Init(void) {
+    /* Configure interrupt setting */
     #if ADC_Interrupt_Status == Enabled 
         SetBit(ADCSRA_Reg, ADIE_Bit);
     #elif ADC_Interrupt_Status == Disabled 
         ClearBit(ADCSRA_Reg, ADIE_Bit);
     #endif
 
-    // Select Ref source
-        // REFSn bits in the ADMUX
-    ADMUX_Reg &= (ADMUX_Reg_REFSnBits_Mask);
+    /* Configure voltage reference */
+    ADMUX_Reg &= ADMUX_Reg_REFSnBits_Mask;
     ADMUX_Reg |= Volt_Ref_Select;
       
-    // Select Mode : single/auto trigger mode
-        // ADATE in ADCSRA
+    /* Configure operation mode */
     #if ADC_ModeSelect == SingleMode
         ClearBit(ADCSRA_Reg, ADATE_Bit);
     #elif ADC_ModeSelect == AutoTriggerMode 
         SetBit(ADCSRA_Reg, ADATE_Bit);
-        // Set Auto Trigger Source
-        SFIOR_Reg &= (SFIOR_RegBitMask);
+        /* Configure auto trigger source */
+        SFIOR_Reg &= SFIOR_RegBitMask;
         SFIOR_Reg |= (ADC_TriggerSrcSelection << 5);
     #endif
         
-    // Right/Left Adjust  
-        // ADLAR bit in ADMUX.
+    /* Configure result adjustment (right-justified) */
     ClearBit(ADMUX_Reg, ADLAR_Bit);
         
-    // Prescaler
-        //  ADPS bits in ADCSRA
-    ADCSRA_Reg &= (ADCSRA_RegBitMask);
+    /* Configure clock prescaler */
+    ADCSRA_Reg &= ADCSRA_RegBitMask;
     ADCSRA_Reg |= ADC_PrescalerSelection;    
     
-    // ADC Enable 
-        // ADEN in ADCSRA
+    /* Enable ADC */
     SetBit(ADCSRA_Reg, ADEN_Bit);
 }
 
 /**
- * @fn uint16_t mADC_SingleModeConversion(uint8_t Channel)
- * 
- * @brief Performs a single ADC conversion on a given channel.
- *
- * This function selects the desired ADC channel, starts a single 
- * conversion, waits until the conversion is complete, and then 
- * returns the digital result.
- *
- * @param Channel ADC input channel number (0–7).
- *                Only the lower 3 bits are considered.
- *
- * @return uint16_t 
- *         The digital value of the conversion (10-bit result).
- *
- * @note The function clears the ADC interrupt flag (ADIF) manually 
- *       if ADC interrupts are disabled.
- *
- * @warning The ADC must be initialized and enabled before calling 
- *          this function.
+ * @fn mADC_SingleModeConversion
+ * @brief Performs single conversion on specified channel
+ * @param Channel ADC channel number (0-7)
+ * @return uint16_t 10-bit conversion result
+ * @note Blocks until conversion completes
+ * @warning ADC must be initialized before calling
  */
 uint16_t mADC_SingleModeConversion(uint8_t Channel) {
-    // Select Channel (Must be set before starting conversion)
-        // MUX4:0 in ADMUX
-    Channel &= (ChannelBitMask);
-    ADMUX_Reg &= (ADMUX_Reg_MUXnBits_Mask); 
+    /* Select and configure channel */
+    Channel &= ChannelBitMask;
+    ADMUX_Reg &= ADMUX_Reg_MUXnBits_Mask; 
     ADMUX_Reg |= Channel;
-    // Start Conversion
-        // ADSC in ADCSRA
+    
+    /* Start conversion */
     SetBit(ADCSRA_Reg, ADSC_Bit);
 
+    /* Wait for conversion complete */
     while (GetBit(ADCSRA_Reg, ADIF_Bit) == FlagDown){}
     
-    // Clear flag
+    /* Clear interrupt flag if interrupts disabled */
     #if ADC_Interrupt_Status == Disabled
         ClearFlag(ADCSRA_Reg, ADIF_Bit);
     #endif
 
-    // Read ADCH and ADCL
+    /* Return conversion result */
     return ADCData_Reg;    
 }
 
 /**
- * @fn uint16_t mADC_ReadValue()
- * @brief Read the Converted Data from the ADC Data register
- *
+ * @fn     mADC_ReadValue
+ * @brief  Reads last converted value from data register
+ * @return uint16_t Last conversion result
+ * @note   Does not start new conversion
  */
-uint16_t mADC_ReadValue(){
+uint16_t mADC_ReadValue(void) {
     return ADCData_Reg;
 }
 
 /**
- * @fn void mADC_Disable(void)
- *
- * @brief Disable the ADC .
- *        Clears the ADEN_Bit in ADCSRA_Reg to disable the ADC.
- * 
- * @note The ADC does not consume power when ADEN is cleared, so it is
- *       recommended to disable the ADC before entering sleep modes
- *       to save power.
+ * @fn mADC_Disable
+ * @brief Disables ADC peripheral
+ * @details Reduces power consumption by disabling ADC
+ * @note Recommended before sleep modes
+ * @return void
  */
-void mADC_Disable() {
+void mADC_Disable(void) {
     ClearBit(ADCSRA_Reg, ADEN_Bit);
 }
 
 /**
- * @fn void mADC_Enable(void)
- *
- * @brief Enable the ADC .
- *        Sets the ADEN_Bit in ADCSRA_Reg to disable the ADC.
- * 
+ * @fn mADC_Enable
+ * @brief Enables ADC peripheral
+ * @details Powers up ADC for operation
+ * @note ADC must be initialized first
+ * @return void
  */
-void mADC_Enable() {
+void mADC_Enable(void) {
     SetBit(ADCSRA_Reg, ADEN_Bit);
 }
 
 /**
- * @fn void __vector_16(void)
- * @brief ADC Conversion Complete Interrupt Service Routine.
- *
- * This ISR is triggered when the ADC finishes a conversion.
- * It handles the ADC interrupt for channel readings or 
- * any user-defined ADC-related actions.
- *
- * @note This corresponds to vector 16 in the interrupt table.
+ * @fn __vector_16
+ * @brief ADC Conversion Complete ISR
+ * @details Handles ADC conversion complete interrupts
+ * @note Vector 16 in interrupt table
+ * @return void
  */
 void __vector_16(void) {
-    // Action
+    /* User-defined interrupt handling code here */
 }
-
-
-
-
 
 #endif /* ADC_Driver */
