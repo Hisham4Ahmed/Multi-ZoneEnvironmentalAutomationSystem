@@ -12,9 +12,14 @@
 #ifndef _BTN_PRIVATE_H_
 #define _BTN_PRIVATE_H_
 /**
- * @brief these macros are to declare the modes of the app if automatic or manual.
+ * @def   Automatic
+ * @brief This macro is used to indicate which workflow is used if auto mode or manual this is for  Automatic
  */
 #define Automatic 0
+/**
+ * @def   Automatic
+ * @brief This macro is used to indicate which workflow is used if auto mode or manual this is for  Manual    
+ */
 #define Manual    1 
 
 #endif /*_BTN_PRIVATE_H_*/
