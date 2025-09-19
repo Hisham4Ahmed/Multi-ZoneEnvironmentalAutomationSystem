@@ -15,11 +15,6 @@
 #define _T0_PRIVATE_H_
 
 
-/**
- * @defgroup Timer0_Bits Timer0 Bit Positions
- * @brief Bit positions for Timer0 control and interrupt registers.
- * @{
- */
 
 /**
  * @def CS00_Bit
@@ -87,14 +82,7 @@
  */
 #define OCF0_Bit 1
 
-/** @} */ // End of Timer0_Bits group
 
-
-/**
- * @defgroup Timer0_Prescaler Timer0 Prescaler Settings
- * @brief Prescaler values for Timer0 clock source selection.
- * @{
- */
 
 /**
  * @def Timer0Disabled
@@ -144,14 +132,7 @@
  */
 #define Timer0ExternalCLK_Rising 7
 
-/** @} */ // End of Timer0_Prescaler group
 
-
-/**
- * @defgroup Timer0_PWM_Modes Timer0 PWM Output Modes
- * @brief Output polarity options for Fast PWM mode.
- * @{
- */
 
 /**
  * @def Non_inverting
@@ -169,6 +150,5 @@
  */
 #define inverting 2
 
-/** @} */ // End of Timer0_PWM_Modes group
 
 #endif /*_T0_PRIVATE_H_*/

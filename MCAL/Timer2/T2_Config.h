@@ -18,55 +18,61 @@
 #include "../../Common/Macro.h"
 /**
  * @def Timer2_Prescaller
- * @brief Choosing Prescaller for Timer2
- * @details 
- *          NoClockSource   = 0
-            Prescaller_1    = 1
-            Prescaller_8    = 2
-            Prescaller_32   = 3
-            Prescaller_64   = 4
-            Prescaller_128  = 5
-            Prescaller_256  = 6
-            Prescaller_1024 = 7
+ * @brief Prescaler setting for Timer2.
+ *
+ * @details Defines the clock division factor applied to Timer2.
+ *          Example: Prescaller_64 divides system clock by 64.
  */
-#define Timer2_Prescaller  Prescaller_1
+#define Timer2_Prescaller Prescaller_1
 /**
- * @def Timer2_CompareOutputMode
- * @brief Choosing Mode for Timer2 
- * @details 
- *              NormalOperation =0
-                NonInverting    =2
-                Inverting       =3 
-
+ * @def CompareOutputMode
+ * @brief Output polarity configuration for Fast PWM mode.
+ *
+ * @details Determines waveform behavior:
+ *          - Inverting: Output clears on compare match, sets at BOTTOM.
+ *          - NonInverting: Output sets on compare match, clears at BOTTOM.
  */
-#define CompareOutputMode  NonInverting
+#define CompareOutputMode NonInverting
 /**
  * @def Timer2_WaveGenMode
- * @brief Choosing Mode for Timer2 
- * @details 
-                Normal          =0
-                PhaseCorrect    =1
-                CTC             =2
-                FastPwm         =3
-
+ * @brief Waveform generation mode selection for Timer2.
+ *
+ * @details Available modes:
+ *          - Normal        = 0
+ *          - PhaseCorrect  = 1
+ *          - CTC           = 2
+ *          - FastPwm       = 3 -> what we are covering
  */
-
-#define initialDutyCycle   50
+#define Timer2_WaveGenMode FastPwm
+/**
+ * @def initialDutyCycle
+ * @brief Initial duty cycle percentage for Timer2 PWM.
+ *
+ * @details Value range: 0–100 (%). Used to calculate OCR2 value.
+ */
+#define initialDutyCycle 50
 
 /**
- * @def   Timer2_NoClkMask
- * @def   Timer2_StopBitMask 
- * @brief Mask for the bits in TCCR2
+ * @def Timer2_NoClkMask
+ * @brief Bit mask to disable Timer2 clock source.
+ *
+ * @details Clears CS22:CS20 bits in TCCR2 to stop the timer.
  */
-
-#define Timer2_NoClkMask          0xF8
-
-#define Timer2_PWMStop              0xCF //5th and 4th bits cleared
+#define Timer2_NoClkMask 0xF8
 /**
- * @def Timer2_Top 
- * @brief The top value in the PWM
+ * @def Timer2_PWMStop
+ * @brief Bit mask to stop PWM output on Timer2.
+ *
+ * @details Clears COM21:COM20 bits in TCCR2 (bits 5 and 4).
  */
-#define Timer2_Top  255
+#define Timer2_PWMStop 0xCF
+/**
+ * @def Timer2_Top
+ * @brief Maximum count value for Timer2.
+ *
+ * @details For 8-bit Timer2, the top value is 255.
+ */
+#define Timer2_Top 255
 
 
 

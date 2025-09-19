@@ -14,7 +14,9 @@
 #include "Btn_Private.h"
 
 /**
+ * @def   StartingMode
  * @brief this macro indicates the starting mode when application starts.
+ * @note  we have auto and manual modes we start with manual
  */
 #define StartingMode Manual
 

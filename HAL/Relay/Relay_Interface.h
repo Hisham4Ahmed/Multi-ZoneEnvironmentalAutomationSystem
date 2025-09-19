@@ -21,29 +21,29 @@
 
 
 /**
- * @fn      void hRelay_Init(uint8_t ZoneNumber)
- * @brief   Initializes the relay for a given zone.
+ * @fn    void hRelay_Init
+ * @brief Initializes the relay for a given zone.
  * @param ZoneNumber Zone number to which the relay belongs.
  */
 void hRelay_Init(uint8_t ZoneNumber);
 
 /**
- * @fn      void hRelay_On(uint8_t ZoneNumber)
- * @brief   Turns ON the relay for a given zone.
+ * @fn    void hRelay_On
+ * @brief Turns ON the relay for a given zone.
  * @param ZoneNumber Zone number of the relay to be switched ON
  */
 void hRelay_On(uint8_t ZoneNumber);
 
 /**
- * @fn      void hRelay_Off(uint8_t ZoneNumber)
- * @brief   Turns OFF the relay for a given zone.
+ * @fn    void hRelay_Off
+ * @brief Turns OFF the relay for a given zone.
  * @param ZoneNumber Zone number of the relay to be switched OFF
  */
 void hRelay_Off(uint8_t ZoneNumber);
 
 /**
- * @fn      void hRelay_Toggle(uint8_t ZoneNumber)
- * @brief   Toggle the relay for a given zone.
+ * @fn    void hRelay_Toggle
+ * @brief Toggle the relay for a given zone.
  * @param ZoneNumber Zone number of the relay to be Toggled
  */
 void hRelay_Toggle(uint8_t ZoneNumber);
