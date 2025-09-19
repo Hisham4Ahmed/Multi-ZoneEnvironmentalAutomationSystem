@@ -62,10 +62,6 @@
 #define Zones_End               '4'
 #define Zone_char               'Z'
 
-
-
-
-
 /**
  * @enum Actuator_t
  * @brief Enumeration of supported actuator types
@@ -123,7 +119,7 @@ typedef struct {
  * @struct CommandBuffer_t
  * @brief Circular buffer structure for storing commands
  * 
- * @var Buffer
+ * @var CMDBuffer
  * @brief  Array of commands
  * 
  * @var Head
@@ -133,27 +129,20 @@ typedef struct {
  * @brief Index where next command will be added
  */
 typedef struct {
-    Command_t Buffer[CMD_BUFFER_SIZE];  
+    Command_t CMDBuffer[CMD_BUFFER_SIZE];  
     uint8_t Head;       
     uint8_t Tail;       
     uint8_t Count;      
 } CommandBuffer_t;
 
 
-
-
-/**
- * @fn BufferInit
- * @brief Initialize a command buffer
- * @param Buffer Pointer to the command buffer to initialize
- */
-void BufferInit(CommandBuffer_t *Buffer);
+// void CMDBufferInit(CommandBuffer_t *Buffer); --> need to be cleared
 
 /**
  * @fn ClearBuffer
  * @brief Reset a command buffer to its initial state.
  *
- * This function clears all stored commands in the buffer by resetting
+ * @details This function clears all stored commands in the buffer by resetting
  * each element to default values:
  * - ZoneId   = 0
  * - Actuator = NONE
@@ -194,7 +183,7 @@ void BufferEnqueue(CommandBuffer_t *Buff, Command_t Command);
  * @fn Convert_Value_to_Integer
  * @brief Convert a numeric string into an integer value.
  *
- * This function parses a null-terminated string containing digits ('0'–'9')
+ * @details This function parses a null-terminated string containing digits ('0'–'9')
  * and converts it into an unsigned 16-bit integer. Conversion stops when 
  * a non-digit character is encountered.
  *
@@ -211,7 +200,7 @@ uint16_t Convert_Value_to_Integer(const uint8_t* str);
  * @fn Compare_Strings
  * @brief Compare two strings.
  *
- * This function compares two null-terminated strings character by character 
+ * @details This function compares two null-terminated strings character by character 
  * based on their ASCII values.
  *
  * @param str1 Pointer to the first string.
@@ -225,9 +214,18 @@ uint8_t Compare_Strings(const uint8_t* str1, const uint8_t* str2);
 /**
  * @fn Communication_ParseCommand
  * @brief Parse a command string into a Command_t structure.
+ * @details This function validates and parses a command string received over communication, 
+ * it extracts zone, actuator, and value information.
+ * 
+ * The expected format is:
+ *   - For FAN:    "Z<ZoneId>FAN=<Speed>"
+ *       - Example: "Z1FAN=75" (Zone 1, FAN speed 75%)
+ *   - For LIGHT:  "Z<ZoneId>LIGHT=<ON|OFF>"
+ *       - Example: "Z2LIGHT=ON" (Zone 2, LIGHT turned ON)
  * @param str Pointer to the null-terminated command string to parse.
  * @param Cmd Pointer to the Command_t structured to store the parsed command.
- * @return uint8_t -> if success return 1, else return 0
+ * @return uint8_t 
+ * @retval if success return (1), else return (0)
  */
 uint8_t Communication_ParseCommand(const uint8_t *str, Command_t *Cmd);
 
@@ -240,6 +238,4 @@ uint8_t Communication_ParseCommand(const uint8_t *str, Command_t *Cmd);
  */
 void integer_to_string(uint8_t value , uint8_t* str);
 
-
-
-#endif /* _COMMUNICATION_PRIVATE_H_ */
+#endif /*  _NNCOMMUNICATION_PRIVATE_H_  */

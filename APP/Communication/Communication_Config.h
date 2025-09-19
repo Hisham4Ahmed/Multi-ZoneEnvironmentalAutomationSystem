@@ -19,10 +19,10 @@
 #define CMD_BUFFER_SIZE  10   
 
 /**
- * @def RX_MAX_STRING
- * @brief max number of chars in string 
+ * @def MaxCommandLength
+ * @brief max number of chars in Commandz
  */
-#define RX_MAX_STRING    32
+#define MAXCommandLength    9
 
 
 #endif /*_COMMUNICATION_CONFIG_H_*/

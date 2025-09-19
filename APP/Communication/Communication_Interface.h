@@ -31,7 +31,7 @@ void Communication_Init(void);
  * @fn Communication_Task
  * @brief Executes the main communication task for handling Bluetooth commands and zone data.
  *
- * This function performs the following:
+ * @details This function performs the following:
  *  - Receives a string from the HC05 Bluetooth module via hHC05_ReceiveString.
  *  - Parses the received string into a structured command using Communication_ParseCommand.
  *  - Check buffer mode, then Stores valid commands into the corresponding zone buffer.
@@ -45,7 +45,7 @@ void Communication_Task(void);
  * @fn Communication_GetCommand
  * @brief Retrieves the next available command from the global command buffer.
  *
- * This function checks the global command buffer 'ZonesBuffer'. If the buffer 
+ * @details This function checks the global command buffer 'ZonesBuffer'. If the buffer 
  * is not empty, it dequeues (FIFO) the oldest command, updates the buffer's 
  * head and count, and returns the command. 
  *
@@ -66,7 +66,7 @@ Command_t Communication_GetCommand(void);
  * @fn Communication_SendZoneData
  * @brief Sends zone data to the HC05 Bluetooth module.
  *
- * This function formats and transmits the data of a specific zone 
+ * @details This function formats and transmits the data of a specific zone 
  * (identified by its ZoneId) over the HC05 Bluetooth module. 
  * It sends zone information.
  * 
