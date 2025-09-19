@@ -1,8 +1,8 @@
 /**
- * @file     ModeControl_Program.c
- * @author   Developer: Mohammed Atif   "medoatifatif@gmail.com"
- * @author   Reviewer: Hesham Ahmed  (Hisham4Ahmed@gmail.com)
- * @brief    Mode control initialization and mode retrieval.
+ * @file      ModeControl_Program.c
+ * @author    Developer: Mohammed Atif   "medoatifatif@gmail.com"
+ * @author    Reviewer: Hesham Ahmed  (Hisham4Ahmed@gmail.com)
+ * @brief     Mode control initialization and mode retrieval.
  * @version   0.2
  * @date      2025-09-8
  * 
