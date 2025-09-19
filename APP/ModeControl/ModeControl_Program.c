@@ -9,9 +9,10 @@
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
 #include "ModeControl_Interface.h"
-
+static uint8_t ModeControl_Initialized=0;
 void ModeControl_Init(void) {
     hBtn_Init();
+    ModeControl_Initialized=1;
 }
 
 void ModeControl_Task(void) {

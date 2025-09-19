@@ -38,6 +38,7 @@
 #define DC_Driver           Enabled
 
 #define ModeControl_App     Enabled
+#define MultiZone_App       Enabled
 #define ZoneControl_App     Enabled
 
 /** @} */
