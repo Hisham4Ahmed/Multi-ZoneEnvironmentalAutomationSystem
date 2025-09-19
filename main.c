@@ -10,7 +10,7 @@
  * @brief       Create a system to automate environment control across multiple zones (e.g., two rooms) using sensors and actuators for each zone.
  * @version     0.1
  * @date        2025-09-19
- * @copyright Copyright (c) 2025 ,Gestell Company
+ * @copyright   Copyright (c) 2025 ,Gestell Company
  * 
  */
 #include "HAL/LCD/LCD_Interface.h"
