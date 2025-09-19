@@ -1,10 +1,10 @@
 /**
  * @file     Communication_Program.c
  * @author   Developer: Naira Mohammed (naira.mohammed.76@gmail.com)
- * @author   Developer: Ahmed Ashraf 
+ * @author   Developer: Ahmed Ashraf   (ahmedashraf2022222@gmail.com)
  * @brief    Implementation of Communication - Handles Bluetooth command processing and zone data management
  * @version   0.2
- * @date      2025-09-14
+ * @date      2025-09-19
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
 
@@ -19,7 +19,7 @@
  */
 static CommandBuffer_t ZonesBuffer[CMD_BUFFER_SIZE];
 /**
- * @fn BufferInit
+ * @fn CMDBufferInit
  * @brief Initialize a command buffer
  * @param Buffer Pointer to the command buffer to initialize
  */
