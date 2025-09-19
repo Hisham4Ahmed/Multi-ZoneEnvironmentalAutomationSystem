@@ -9,11 +9,14 @@
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
 
+#include "../../Common/Config.h"
+#if Display_App 
 #include "DisplayTask_Interface.h"
 #include "../../HAL/LCD/LCD_Interface.h"
 #include "../ModeControl/ModeControl_Interface.h"
 
 static uint8_t PreviousMode = 0xFF; // Initialize with invalid value
+static uint8_t LCDDisplay_Initialized=0;
 
 void LCDDisplay_Init(void)
 {
@@ -30,6 +33,7 @@ void LCDDisplay_Init(void)
     } else {
         hLCD_WriteString("MODE: MANUAL");
     }
+    LCDDisplay_Initialized=4;
 }
 
 void LCDDisplay_Task(void)
@@ -50,3 +54,8 @@ void LCDDisplay_Task(void)
         PreviousMode = currentMode;
     }
 }
+uint8_t LCDDisplay_IsInitialized()
+{
+    return  LCDDisplay_Initialized;
+}
+#endif 

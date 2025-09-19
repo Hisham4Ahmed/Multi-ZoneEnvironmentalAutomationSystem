@@ -21,5 +21,6 @@
  * @def  Full_Range : Support from -55C to 150C
  */
 #define Full_Range 0
-
 #endif /*_LM35_PRIVATE_H_*/
+
+

@@ -9,6 +9,9 @@
  * @copyright Copyright (c) 2025 , Gestell Company
  */
 
+#include "../../Common/Config.h"
+
+#if MultiZone_App  
 #include "MultiZoneApp_Interface.h"
 
 /**
@@ -21,30 +24,26 @@
  *              
  *              2- you can get the idea of these vars from the mode control app files it appears to have my point
  */
-extern uint8_t ModeControl_Initialized;
-extern uint8_t ZoneControl_Initialized;
-extern uint8_t Communication_Initialized;
-extern uint8_t LCDDisplay_Initialized;
 
 uint8_t MultizoneApp_Init()
 {
     ModeControl_Init();
-    if (ModeControl_Initialized == 0)
+    if (ModeControl_IsInitialized() == 0)
     {
         return 1;
     }
     ZoneControl_Init();
-    if (ZoneControl_Initialized == 0)
+    if (ZoneControl_IsInitialized() == 0)
     {
         return 2;
     }
     Communication_Init();
-    if (Communication_Initialized == 0)
+    if (Communication_IsInitialized() == 0)
     {
         return 3;
     }
     LCDDisplay_Init();
-    if (LCDDisplay_Initialized == 0)
+    if (LCDDisplay_IsInitialized() == 0)
     {
         return 4;
     }
@@ -63,12 +62,9 @@ void MultizoneApp_Run()
     {
         ModeControl_Task();
         Communication_Task();
-        if (Communication_HasError())
-        {
-            ModeControl_Task(); // to transform to manual mode to handle it manually
-        }
         ZoneControl_Task();
-
         LCDDisplay_Task();
     }
 }
+
+#endif

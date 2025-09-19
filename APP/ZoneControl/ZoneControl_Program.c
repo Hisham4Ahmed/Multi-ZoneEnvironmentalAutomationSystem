@@ -28,6 +28,10 @@
 #include "../../HAL/LED/LED_Interface.h"
 #include "../../HAL/DC/DC_Interface.h"
 
+
+static uint8_t ZoneControl_Initialized=0;
+
+
 /*for loop counter*/
 static uint8_t Zone_Index = MinZones;
 
@@ -45,6 +49,7 @@ void ZoneControl_Init(void) {
         hLed_Init(Zone_Index);
         hFan_Init(Zone_Index);
     }
+    ZoneControl_Initialized=2;
 }
 
 static void AutoExecutionRoutine(void) {
@@ -119,6 +124,11 @@ void ZoneControl_Task(void) {
         }
         Communication_SendZoneData(Zone_Data);
     }
+}
+
+uint8_t ZoneControl_IsInitialized()
+{
+    return ZoneControl_Initialized; 
 }
 
 #endif  /*ZoneControl_App*/

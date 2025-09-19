@@ -19,6 +19,7 @@
 #include "T2_Config.h"
 #include <stdint.h>
 
+
 /**
  * @fn    void mTimer2_InitFastPWMMode(void);
  * @brief Initializes Timer2 in Fast PWM mode.
