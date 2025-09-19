@@ -140,7 +140,7 @@ typedef struct {
  * @brief Initialize a command buffer
  * @param Buffer Pointer to the command buffer to initialize
  */
-static void CMDBufferInit(CommandBuffer_t *Buffer);
+void CMDBufferInit(CommandBuffer_t *Buffer);
 
 /**
  * @fn ClearBuffer
