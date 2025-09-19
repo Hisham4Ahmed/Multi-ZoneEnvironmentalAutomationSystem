@@ -18,34 +18,34 @@
 #include "../RegistersAddress.h"
 #include <stdint.h>
 
-/*-------------------------------------------------------------------------------------- */
-/** 
-* @fn       T0_FastPWM_Mode_Init
-* @brief    This Function is used to initialize Timer0 on Fast PWM Mode
-* @note     You can change the prescaler or duty cycle or output type from the interface 
-*/
-
-void T0_FastPWM_Mode_Init();
-
-/*------------------------------------------------*/
-
-/** 
-* @fn       mTimer0_ChangeDutyCycle
-* @brief    This Function is used to Change The Duty Cycle of the timer
-* @param    DutyCycle : The Value Of The Duty Cycle , options (0~100)
-* @param    ActionType: The Type Of Action That Will Be Performed When Changing The Duty Cycle
-                         and it's options are :
-                                    -inverting
-                                    -Non-inverting
-*
-*/ 
-
-void mTimer0_ChangeDutyCycle(uint8_t DutyCycle, uint8_t ActionType );
-
-
-
-
-
-
-
+/**
+ * @fn T0_FastPWM_Mode_Init
+ * @brief Initializes Timer0 in Fast PWM mode.
+ *
+ * @details Configures Timer0 registers for Fast PWM operation.
+ *          Uses predefined macros for prescaler, duty cycle, and output type.
+ *          This setup enables waveform generation with adjustable polarity and resolution.
+ *
+ * @note Modify `TimerPrescaller0`, `Timer0_InitDutyCycle`, and `FastPWM_OutputType`
+ *       in the configuration interface to customize behavior.
+ */
+void T0_FastPWM_Mode_Init(void);
+/**--------------------------------------------------------------*/
+/**
+ * @fn mTimer0_ChangeDutyCycle
+ * @brief Updates the duty cycle of Timer0 in Fast PWM mode.
+ *
+ * @details Recalculates and sets the OCR0 register based on the desired duty cycle.
+ *          Adjusts waveform polarity according to the selected action type.
+ *
+ * @param DutyCycle Duty cycle percentage (0–100).
+ * @param ActionType Output polarity mode.
+ *        - `Inverting`: Output clears on compare match.
+ *        - `Non_inverting`: Output sets on compare match.
+ *
+ * @return void
+ *
+ * @note This function assumes Timer0 is already initialized in Fast PWM mode.
+ */
+void mTimer0_ChangeDutyCycle(uint8_t DutyCycle, uint8_t ActionType);
 #endif /*_T0_INTERFACE_H_*/

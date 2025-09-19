@@ -1,25 +1,33 @@
 /**
  * @file     Communication_Program.c
  * @author   Developer: Naira Mohammed (naira.mohammed.76@gmail.com)
- * @author   Developer: Ahmed Ashraf 
+ * @author   Developer: Ahmed Ashraf   (ahmedashraf2022222@gmail.com)
  * @brief    Implementation of Communication - Handles Bluetooth command processing and zone data management
  * @version   0.2
- * @date      2025-09-14
+ * @date      2025-09-19
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
+#include "../../Common/Config.h"
+#if Communication_App 
 
 #include "Communication_Interface.h"
 #include "../../HAL/LDR/LDR_Interface.h"
 #include "Communication_Private.h"
 #include "Communication_Config.h"
 #include "../../Common/ZoneConfig.h"
+static uint8_t Communication_Initialized=0;
+
 /**
  * @var ZonesBuffer
- * @brief Command buffers for each zone 
+ * @brief one Command buffer for all zones
  */
-static Command_t ZonesBuffer[MaxZones];
-
-void BufferInit(CommandBuffer_t *Buffer) 
+static CommandBuffer_t ZonesBuffer[CMD_BUFFER_SIZE];
+/**
+ * @fn CMDBufferInit
+ * @brief Initialize a command buffer
+ * @param Buffer Pointer to the command buffer to initialize
+ */
+static void CMDBufferInit(CommandBuffer_t *Buffer) 
 {
     Buffer->Head = 0;
     Buffer->Tail = 0;
@@ -29,7 +37,7 @@ void BufferInit(CommandBuffer_t *Buffer)
 void integer_to_string(uint8_t value , uint8_t* str)
 {
     {
-    uint8_t temp[3];    // max "255"
+    uint8_t temp[3];   
     uint8_t i = 0;
     uint8_t j;
 
@@ -59,11 +67,12 @@ void integer_to_string(uint8_t value , uint8_t* str)
 
 void ClearBuffer(CommandBuffer_t *Buffer)
 {
-     for (uint16_t i = 0; i < CMD_BUFFER_SIZE; i++) 
+    uint8_t i = 0;
+     for (i = 0; i < CMD_BUFFER_SIZE; i++) 
     {
-        Buffer->Buffer[i].ZoneId  = 0;
-        Buffer->Buffer[i].Actuator = NONE;
-        Buffer->Buffer[i].Value    = OFF;
+        Buffer->CMDBuffer[i].ZoneId  = 0;
+        Buffer->CMDBuffer[i].Actuator = NONE;
+        Buffer->CMDBuffer[i].Value    = OFF;
     }
 }
 
@@ -77,14 +86,11 @@ uint8_t BufferIsEmpty(CommandBuffer_t *Buffer)
     return (Buffer->Count == 0);
 }
 
-void BufferEnqueue(CommandBuffer_t *Buff, Command_t Command)
-{
-    if (!BufferIsFull(Buff))
-    {
-        Buff->Buffer[Buff->Tail] = Command;
-        Buff->Tail = (Buff->Tail + 1) % CMD_BUFFER_SIZE;
-        Buff->Count++;
-    }
+void BufferEnqueue(CommandBuffer_t *Buffer, Command_t Command)
+{    
+    Buffer->CMDBuffer[Buffer->Tail] = Command;
+    Buffer->Tail = (Buffer->Tail + 1) % CMD_BUFFER_SIZE;
+    Buffer->Count++;
 }
 
 uint16_t Convert_Value_to_Integer(const uint8_t* str)
@@ -96,28 +102,24 @@ uint16_t Convert_Value_to_Integer(const uint8_t* str)
         str++;
     }
     return Value;
-
-   
 }
 
 uint8_t Compare_Strings(const uint8_t* str1, const uint8_t* str2) 
 {
     while (*str1==*str2)
-     {
+    {
         if (*str1 == NullChar)
-         {
+        {
             return Matches; // Both strings ended together
         }
         else
         {
-        str1++;
-        str2++;
+            str1++;
+            str2++;
         }
     }
-    {
-       return NotMatches; // Mismatch found
-    }
     
+    return NotMatches; // Mismatch found    
 }
 
 uint8_t  Communication_ParseCommand(const uint8_t *str, Command_t *Cmd)
@@ -139,7 +141,7 @@ uint8_t  Communication_ParseCommand(const uint8_t *str, Command_t *Cmd)
         // just increment i till it finds '=' or end of string
     }
     if (str[i] != '=')
-     {
+    {
         return 0; // '=' not found
     }
     // Copy substring [2 .. i-1] into temp
@@ -155,10 +157,10 @@ uint8_t  Communication_ParseCommand(const uint8_t *str, Command_t *Cmd)
      
         Cmd->Actuator = FAN;
     }
-        else if (Compare_Strings(temp, "LIGHT") == Matches)
-        {
-        Cmd->Actuator = LIGHT;
-        }
+    else if (Compare_Strings(temp, "LIGHT") == Matches)
+    {
+    Cmd->Actuator = LIGHT;
+    }
     else
     {
         return 0; // Invalid actuator
@@ -186,32 +188,32 @@ uint8_t  Communication_ParseCommand(const uint8_t *str, Command_t *Cmd)
              Cmd->Value = ON;
         }
         else if (Compare_Strings(&str[i], "OFF") == Matches)
-            {
-                Cmd->Value = OFF;
-            }
+        {
+            Cmd->Value = OFF;
+        }
         else
-            {
-                return 0; // invalid light command
+        {
+            return 0; // invalid light command
         }
         return 1; // success
     }
-
-  
 }
 
 void Communication_Init(void)
 {
    hHC05_Init();
-   BufferInit(ZonesBuffer);
+   CMDBufferInit(ZonesBuffer);
+   Communication_Initialized=3;
+
 }
 
 void Communication_Task(void)  
 {
-    uint8_t RxBuffer[RX_MAX_STRING]= {0};
+    uint8_t CommandBuffer[MAXCommandLength]= {0};
     Command_t Command;
-    hHC05_ReceiveString(RxBuffer,RX_MAX_STRING);
+    hHC05_ReceiveString(CommandBuffer,MAXCommandLength);
     //parse the received string and check validity
-    if(Communication_ParseCommand(RxBuffer,&Command))
+    if(Communication_ParseCommand(CommandBuffer,&Command))
     {
         //store it in zones buffer
         uint8_t Zone=Command.ZoneId;
@@ -222,6 +224,7 @@ void Communication_Task(void)
         else
         {
             ClearBuffer(ZonesBuffer);
+            CMDBufferInit(ZonesBuffer);
             BufferEnqueue(ZonesBuffer , Command);
         }
     }
@@ -237,7 +240,7 @@ Command_t Communication_GetCommand(void)
     CommandBuffer_t *Buff = ZonesBuffer;
     if (!BufferIsEmpty(Buff))
     {
-        Command = Buff->Buffer[Buff->Head];
+        Command = Buff->CMDBuffer[Buff->Head];
         Buff->Head = (Buff->Head + 1) % CMD_BUFFER_SIZE;
         Buff->Count--;
         return Command;
@@ -293,3 +296,11 @@ void Communication_SendZoneData( ZoneData_t data) // zoneid
         hHC05_SendString("\r\n");
     }
 }
+uint8_t Communication_IsInitialized()
+{
+    return Communication_Initialized;
+    
+}
+
+
+#endif

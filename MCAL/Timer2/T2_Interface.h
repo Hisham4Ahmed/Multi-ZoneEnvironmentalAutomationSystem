@@ -19,9 +19,11 @@
 #include "T2_Config.h"
 #include <stdint.h>
 
+
 /**
  * @fn    void mTimer2_InitFastPWMMode(void);
  * @brief Initializes Timer2 in Fast PWM mode.
+ * @warning must be called before any interaction with fastPWM functions
  */
 void mTimer2_InitFastPWMMode(void);
  
@@ -29,18 +31,21 @@ void mTimer2_InitFastPWMMode(void);
  * @fn    void mTimer2_ChangeDutyCycle(uint8_t DutyCycle );    
  * @brief Changes the duty cycle of the Timer2 Fast PWM output.
  * @param DutyCycle The desired duty cycle percentage (0-100).
+ * @note used to control speed Timer2 pins connented with the DC motor
  */
 void mTimer2_ChangeDutyCycle(uint8_t DutyCycle );
  
 /**
  * @fn    void mTimer2_FastPWMStop(void);
  * @brief Stops the Fast PWM operation on Timer2.
+ * @note  can be used to stop PWM
  */
 
 void mTimer2_FastPWMStop(void);
 /**
  * @fn    void mTimer2_TimerStop(void);
  * @brief Stops the Timer2 operation by making it with no clock
+ * @note can be used to stop all the timer operation resulting to be a normal pin
  */
 void mTimer2_TimerStop(void);
 

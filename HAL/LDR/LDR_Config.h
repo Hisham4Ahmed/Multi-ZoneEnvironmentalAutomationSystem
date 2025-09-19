@@ -12,49 +12,55 @@
 #ifndef _LDR_CONFIG_H_
 #define _LDR_CONFIG_H_
 
+/*------------------- LDR Configuration --------------------------*/
+
+
 /**
- * @param: Fixed Resistance Used Must Be 10K ohm , Vcc Must be 5V , there's 2 ways of connection
- * @param : these are the parameters of LDR R1 ------> R in 0.1 lux must be equal 127410 ohm , Gamma = 0.8582
- * @note   if these parameters was changed , all you need to do is to measure volt in milivolt from adc 
- *          multiplied by Vcc (in mili volts) UL / 1023 and change the edge point from the config 
- * 
- * @note   you can measure adc read using voltameter or by printing ADC*5000UL/1023 on lcd 
- * 
+ * @def     LDR_Connection_Type
+ * @brief   Selects the wiring method used for LDR voltage divider
  * @details
- * 1 -    this is called With_Vcc in this driver
+ * Two supported connection types:
  * 
- *               Vcc
- *                |
- *               LDR 
- *                |----- ADC
- *                R->10K ohm               
- *                |
- *               GND 
- * ---------------------------------------------------
- * 2- this is called With_GND in this driver 
+ * 1. With_Vcc — LDR connected to Vcc, resistor to GND:
  * 
- *               Vcc
- *                |
- *                R->10K ohm 
- *                |----- ADC
- *               LDR              
- *                |
- *               GND 
+ *     Vcc
+ *      |
+ *     LDR
+ *      |----- ADC
+ *     R = 10K ohm
+ *      |
+ *     GND
  * 
- * -------------------------------------------------------
  * 
+ * 2. With_GND — Resistor connected to Vcc, LDR to GND:
+ * 
+ *     Vcc
+ *      |
+ *     R = 10K ohm
+ *      |----- ADC
+ *     LDR
+ *      |
+ *     GND
+ * 
+ * @note Read these notes:
+ *              1- Fixed resistance must be 10K ohm, Vcc must be 5V
+ *              2- LDR parameters: R at 0.1 lux = 127410 ohm, Gamma = 0.8582
+ *              3- If parameters change, measure voltage in millivolts from ADC,
+ *                 multiply by Vcc (in mV) × UL / 1023, and adjust edge point in config
+ *              4- ADC reading can be verified using a voltmeter or printed as:
+ *                 `ADC * 5000UL / 1023` on LCD
  */
 #define LDR_Connection_Type            With_Vcc
 
 /**
- * @def LDR_With_Vcc_Edge_point 
+ * @def   LDR_With_Vcc_Edge_point 
  * @brief How Many miliVolts are going to adc when LDR is in With_Vcc
  */
 
 #define LDR_With_Vcc_Edge_point        1808  //1808-> in proteus , 1793 -> in simulide
 
 /**
- * @def LDR_With_GND_Edge_point 
+ * @def   LDR_With_GND_Edge_point 
  * @brief How Many miliVolts are going to adc when LDR is in With_GND
  */
 

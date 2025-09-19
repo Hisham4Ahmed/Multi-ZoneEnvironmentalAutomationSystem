@@ -31,23 +31,49 @@
  */
 typedef enum
 {
-  Normal        = 0, /**< Normal counting mode */
-  PhaseCorrect  = 1, /**< Phase Correct PWM mode */
-  CTC           = 2, /**< Clear Timer on Compare Match mode */
-  FastPwm       = 3  /**< Fast PWM mode */
+  /**
+   * @var 
+   * @brief Normal counting mode 
+   * */
+  Normal        = 0,
+  /**
+   * @var 
+   * @brief Phase Correct PWM mode */
+  
+  
+  PhaseCorrect  = 1,
+  /**
+   * @var 
+   * @brief Clear Timer on Compare Match mode */
+  
+  
+  CTC           = 2,
+  /**
+   * @var 
+   * @brief Fast PWM mode */
+  
+  
+  FastPwm       = 3  
 } Timer2_WaveGenModes;
 
 /**
- * @def CS22_Bit
- * @def CS21_Bit
  * @def CS20_Bit
- * @brief Bit positions for Clock Select in Timer2.
- * 
- * These bits determine the prescaler value applied to the system clock for Timer2.
+ * @brief Clock Select bit 0 for Timer0 (prescaler configuration).
  */
-#define CS22_Bit     2 /**< Clock Select bit 2 */
-#define CS21_Bit     1 /**< Clock Select bit 1 */
-#define CS20_Bit     0 /**< Clock Select bit 0 */
+#define CS20_Bit  0
+
+/**
+ * @def CS21_Bit
+ * @brief Clock Select bit 1 for Timer0 (prescaler configuration).
+ */
+#define CS21_Bit  1
+
+/**
+ * @def CS22_Bit
+ * @brief Clock Select bit 2 for Timer0 (prescaler configuration).
+ */
+#define CS22_Bit  2
+
 
 /**
  * @enum Timer2_Prescaller_Set
@@ -57,37 +83,90 @@ typedef enum
  */
 typedef enum
 {
-    NoClockSource   = 0, /**< Timer stopped (no clock source) */
-    Prescaller_1    = 1, /**< No prescaling (direct clock) */
-    Prescaller_8    = 2, /**< Clock divided by 8 */
-    Prescaller_32   = 3, /**< Clock divided by 32 */
-    Prescaller_64   = 4, /**< Clock divided by 64 */
-    Prescaller_128  = 5, /**< Clock divided by 128 */
-    Prescaller_256  = 6, /**< Clock divided by 256 */
-    Prescaller_1024 = 7  /**< Clock divided by 1024 */
+  /**
+   * @var
+   * @brief   Timer stopped (no clock source) 
+   * */
+  
+    NoClockSource   = 0,
+    /**
+     * @var
+     * @brief   No prescaling (direct clock) 
+     * */
+    
+    Prescaller_1    = 1,
+    /**
+     * @var
+     * @brief   Clock divided by 8 
+     * */
+    
+    Prescaller_8    = 2,
+    /**
+     * @var
+     * @brief   Clock divided by 32 
+     * */
+    
+    Prescaller_32   = 3,
+    /**
+     * @var
+     * @brief   Clock divided by 64 
+     * */
+    
+    Prescaller_64   = 4,
+    /**
+     * @var
+     * @brief   Clock divided by 128 
+     * */
+    
+    Prescaller_128  = 5,
+    /**
+     * @var
+     * @brief   Clock divided by 256 
+     * */
+    
+    Prescaller_256  = 6,
+    /**
+     * @var
+     * @brief   Clock divided by 1024 
+     * */
+    
+    Prescaller_1024 = 7 
 } Timer2_Prescaller_Set;
 
 /**
- * @def COM21_Bit
- * @def COM20_Bit
- * @brief Bit positions for Compare Output Mode in Timer2.
- * 
- * These bits control the behavior of the OC2 pin during compare match events.
+ * @def COM00_Bit
+ * @brief Compare Output Mode bit 0 for Timer2.
  */
-#define COM21_Bit   5 /**< Compare Output Mode bit 1 */
-#define COM20_Bit   4 /**< Compare Output Mode bit 0 */
+#define COM20_Bit 4
+
+/**
+ * @def COM21_Bit
+ * @brief Compare Output Mode bit 1 for Timer2.
+ */
+#define COM21_Bit 5
 
 /**
  * @enum Timer2_COM_FastPWM
  * @brief Compare Output Modes for Fast PWM in Timer2.
- * 
- * These modes define how the OC2 pin behaves during Fast PWM operation.
+ * @details These modes define how the OC2 pin behaves during Fast PWM operation.
  */
 typedef enum
 {
-   NormalOperation = 0, /**< Normal port operation, OC2 disconnected */
-   NonInverting    = 2, /**< Clear OC2 on compare match, set at BOTTOM */
-   Inverting       = 3  /**< Set OC2 on compare match, clear at BOTTOM */
+  /**
+   * @var
+   * @brief  Normal port operation, OC2 disconnected 
+   * */
+   NormalOperation = 0, 
+  /**
+   * @var
+   * @brief  Clear OC2 on compare match, set at BOTTOM 
+   * */
+   NonInverting    = 2, 
+  /**
+   * @var
+   * @brief  Set OC2 on compare match, clear at BOTTOM 
+   * */
+   Inverting       = 3  
 } Timer2_COM_FastPWM;
 
 
