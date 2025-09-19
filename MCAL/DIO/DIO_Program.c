@@ -1,8 +1,9 @@
 /**
  * @file     DIO_Program.c
- * @author   Hozifa Ahmed
- * @author   Naira Mohamed
+ * @author   Dev. Hozifa Ahmed (hozifasedik@gmail.com)
+ * @author   Rev. Naira Mohamed (naira.mohammed.76@gmail.com)
  * @brief    Digital Input/Output Driver Implementation
+ * @details  Provides implementation for DIO pin and port control functions
  * @version  0.2
  * @date     2025-08-21
  * 
@@ -22,7 +23,13 @@
 
 /**
  * @brief  Configure single pin direction
+ * @param  GroupName      Port group
+ * @param  PinNumber      Pin number
+ * @param  DirectionState Direction (input/output)
+ * @return void
+ * @note Valid pin numbers are 0-7, invalid pins are ignored
  */
+
 void DIO_Direction_Pin(uint8_t GroupName , uint8_t PinNumber , uint8_t DirectionState)
 {
     if (PinNumber >= Pin0 && PinNumber <= Pin7)
@@ -51,18 +58,24 @@ void DIO_Direction_Pin(uint8_t GroupName , uint8_t PinNumber , uint8_t Direction
         }
         else
         {
-            /* Do nothing */
+           /* Invalid direction state - do nothing */
         }
     }
     else
     {
-        /* Do nothing */
+         /* Invalid pin number - do nothing */
     }
 }
 
 /**
  * @brief  Write logic value to single pin
+ * @param  GroupName   Port group
+ * @param  PinNumber   Pin number
+ * @param  OutputType  Output value (high/low)
+ * @return void
+ * @note Valid pin numbers are 0-7, invalid pins are ignored
  */
+
 void DIO_Write_Pin(uint8_t GroupName ,  uint8_t PinNumber , uint8_t OutputType)
 {
     if (PinNumber >= Pin0 && PinNumber <= Pin7)
@@ -91,18 +104,25 @@ void DIO_Write_Pin(uint8_t GroupName ,  uint8_t PinNumber , uint8_t OutputType)
         }
         else
         {
-            /* Do nothing */
+           /* Invalid output type - do nothing */
         }
     }
     else
     {
-        /* Do nothing */
+         /* Invalid pin number - do nothing */
     }
 }
 
 /**
  * @brief  Read logic value from single pin
+ * @param  GroupName   Port group
+ * @param  PinNumber   Pin number
+ * @return uint8_t     Pin value (0 or 1)
+ * @retval 0 Pin is in low state
+ * @retval 1 Pin is in high state
+ * @note Returns 0 for invalid pin numbers or groups
  */
+
 uint8_t DIO_Read_Pin(uint8_t GroupName, uint8_t PinNumber)
 {
     uint8_t InputValue = 0;
@@ -119,14 +139,19 @@ uint8_t DIO_Read_Pin(uint8_t GroupName, uint8_t PinNumber)
     }
     else
     {
-        /* Do nothing */
+        /* Invalid pin number - return 0 */
     }
     return InputValue;
 }
 
 /**
  * @brief  Toggle pin logic value
+ * @param  GroupName   Port group
+ * @param  PinNumber   Pin number
+ * @return void
+ * @note Valid pin numbers are 0-7, invalid pins are ignored
  */
+
 void DIO_Toggle_Pin(uint8_t GroupName , uint8_t PinNumber)
 {
     if (PinNumber >= Pin0 && PinNumber <= Pin7)
@@ -142,7 +167,7 @@ void DIO_Toggle_Pin(uint8_t GroupName , uint8_t PinNumber)
     }
     else
     {
-        /* Do nothing */
+        /* Invalid pin number - do nothing */
     }
 }
 
@@ -150,7 +175,12 @@ void DIO_Toggle_Pin(uint8_t GroupName , uint8_t PinNumber)
 
 /**
  * @brief  Set direction for whole port
+ * @param  GroupName        Port group
+ * @param  DirectionValue   Port direction value
+ * @return void
+ * @note DirectionValue: 0x00 = all inputs, 0xFF = all outputs
  */
+
 void DIO_Direction_Group(uint8_t GroupName , uint8_t DirectionValue)
 {
     switch (GroupName)
@@ -165,7 +195,12 @@ void DIO_Direction_Group(uint8_t GroupName , uint8_t DirectionValue)
 
 /**
  * @brief  Write value to whole port
+ * @param  GroupName     Port group
+ * @param  OutputValue   Port output value
+ * @return void
+ * @note OutputValue: 0x00 = all low, 0xFF = all high
  */
+
 void DIO_Write_Group(uint8_t GroupName ,  uint8_t OutputValue)
 {
     switch (GroupName)
@@ -180,7 +215,11 @@ void DIO_Write_Group(uint8_t GroupName ,  uint8_t OutputValue)
 
 /**
  * @brief  Read value from whole port
+ * @param  GroupName   Port group
+ * @return uint8_t     Port input value
+ * @note Returns 0 for invalid port groups
  */
+
 uint8_t DIO_Read_Group(uint8_t GroupName)
 {
     uint8_t InputValue = 0;
