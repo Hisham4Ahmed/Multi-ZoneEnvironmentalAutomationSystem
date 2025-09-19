@@ -13,44 +13,84 @@
 #ifndef _LCD_PRIVATE_H_
 #define _LCD_PRIVATE_H_
 
-
-
-
 /*------------------- LCD Commands --------------------------*/
+/**
+ * @defgroup    LCD_Command_Macros
+ * @brief       LCD instruction set macros for control operations
+ * @{
+ */
 
+/** @brief Clear display and reset cursor */
 #define LCD_CLEAR_DISPLAY        0x01
-#define LCD_RETURN_HOME         0x02
-#define LCD_ENTRY_MODE          0x06
 
-#define LCD_DISPLAY_OFF         0x08
-#define LCD_DISPLAY_ON          0x0E
+/** @brief Return cursor to home position */
+#define LCD_RETURN_HOME          0x02
 
-#define LCD_CURSOR_OFF          0x0C
-#define LCD_CURSOR_ON           0x0E
+/** @brief Set entry mode: increment cursor, no display shift */
+#define LCD_ENTRY_MODE           0x06
 
-#define LCD_CURSOR_BLINK        0x0F
+/** @brief Turn off display */
+#define LCD_DISPLAY_OFF          0x08
 
+/** @brief Turn on display with cursor */
+#define LCD_DISPLAY_ON           0x0E
 
+/** @brief Display ON, cursor OFF */
+#define LCD_CURSOR_OFF           0x0C
 
-/*-----------------------Line Addresses----------------------*/
+/** @brief Display ON, cursor ON */
+#define LCD_CURSOR_ON            0x0E
+
+/** @brief Display ON, cursor blinking */
+#define LCD_CURSOR_BLINK         0x0F
+
+/** @} */
+
+/*----------------------- Line Addresses ----------------------*/
 /**
- * @def LCD line addresses
+ * @defgroup    LCD_Line_Addresses
+ * @brief       DDRAM address mapping for LCD lines
+ * @{
  */
-#define FirstLine 1
-#define SecondLine 2
-#define FirstLineAddress  0x00
-#define SecondLineAddress 0x40
-#define SetDDRAMCommand   0x80
-/*------------------------------LCD Magic Numbers--------------------------------------*/
-/**
- * @def LCD Magic Numbers
- * @brief These macros are used to manipulate the LCD data port & Initialize the LCD in 4-bit mode
- */
-#define Higher_Nibble_Mask 0xF0
-#define Lower_Nibble_Mask  0x0F
 
-#define _8bit_Mode 0x38
-#define _2Line_Mode 0x28
-#define _4bit_Mode 0x32
+/** @brief Logical identifier for first line */
+#define FirstLine                1
+
+/** @brief Logical identifier for second line */
+#define SecondLine               2
+
+/** @brief DDRAM address for first line start */
+#define FirstLineAddress         0x00
+
+/** @brief DDRAM address for second line start */
+#define SecondLineAddress        0x40
+
+/** @brief Base command for setting DDRAM address */
+#define SetDDRAMCommand          0x80
+
+/** @} */
+/*------------------------------ LCD Magic Numbers --------------------------------------*/
+/**
+ * @defgroup    LCD_Magic_Numbers
+ * @brief       Bit masks and initialization values used for LCD data manipulation and setup
+ * @{
+ */
+
+/** @brief Mask to extract the higher nibble from a byte */
+#define Higher_Nibble_Mask       0xF0
+
+/** @brief Mask to extract the lower nibble from a byte */
+#define Lower_Nibble_Mask        0x0F
+
+/** @brief Command to initialize LCD in 8-bit mode */
+#define _8bit_Mode               0x38
+
+/** @brief Command to initialize LCD in 4-bit mode with 2-line display */
+#define _2Line_Mode              0x28
+
+/** @brief Command to switch from 8-bit to 4-bit mode during initialization */
+#define _4bit_Mode               0x32
+
+/** @} */ 
 
 #endif /*_LCD_PRIVATE_H_*/

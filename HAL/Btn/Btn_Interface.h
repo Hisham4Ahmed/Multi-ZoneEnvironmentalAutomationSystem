@@ -16,26 +16,35 @@
 #include "Btn_Private.h"
 
 /**
- * @brief this macro is to toggle modes when button is pressed
+ * @def     Toggle
+ * @brief   Toggles the value of the given mode variable 
+ * @param   Mode Variable to be toggled 
+ * @return  The toggled value of Mode 
  */
 #define Toggle(Mode)  Mode^=1
 
 /**
- * @fn this function is to get the status of the button, 
- *       if pressed, it will return 0
- *       if Not pressed, it will return 1
+ * @fn      uint8_t hBtn_GetStatus(void);
+ * @brief   this function is to get the status of the button, 
+ * @details 
+ *          Status got are like:
+ *          if pressed, it will return 0
+ *          if Not pressed, it will return 1
  */
 uint8_t hBtn_GetStatus(void);
 
 /**
- * @fn This function includes the action to happen when interrupt occurs.
- *     When interrupt, the mode will toggle from auto to manual or vice versa.
+ * @fn      void hBtn_ISRAction();
+ * @brief   ISR action of button when pressed.
+ * @details This function includes the action to happen when interrupt occurs.         
+ *          When interrupt, the mode will toggle from auto to manual or vice versa.
  */
-void hBtn_ISRAction();
+
 
 /**
- * @fn  this function is to initialize button hardware.
- * @note  In this function:
+ * @fn       void hBtn_Init();
+ * @brief    this function is to initialize button hardware.
+ * @details  what this function do:
  *           1) Make button pin as input
  *           2) Enable internal pull up
  *           3) Register EXTI0 callback with sense control "Falling Edge"
