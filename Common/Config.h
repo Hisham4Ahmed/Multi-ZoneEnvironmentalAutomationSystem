@@ -31,15 +31,17 @@
 #define Btn_Driver          Enabled
 #define HC05_Driver         Enabled
 #define LCD_Driver          Enabled
-#define LDR_Driver          Disabled
+#define LDR_Driver          Enabled
 #define LED_Driver          Enabled
-#define LM35_Driver         Disabled
+#define LM35_Driver         Enabled
 #define Relay_Driver        Enabled
 #define DC_Driver           Enabled
 
-#define ModeControl_App     Enabled
-#define MultiZone_App       Enabled
-#define ZoneControl_App     Enabled
+#define ModeControl_App           Enabled
+#define MultiZone_App             Enabled
+#define ZoneControl_App           Enabled
+#define Display_App               Enabled
+#define Communication_App         Enabled
 
 /** @} */
 

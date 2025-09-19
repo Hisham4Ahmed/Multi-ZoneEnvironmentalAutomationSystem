@@ -7,12 +7,16 @@
  * @date      2025-09-19
  * @copyright Copyright (c) 2025 , Gestell Company 
  */
+#include "../../Common/Config.h"
+#if Communication_App 
 
 #include "Communication_Interface.h"
 #include "../../HAL/LDR/LDR_Interface.h"
 #include "Communication_Private.h"
 #include "Communication_Config.h"
 #include "../../Common/ZoneConfig.h"
+static uint8_t Communication_Initialized=0;
+
 /**
  * @var ZonesBuffer
  * @brief one Command buffer for all zones
@@ -199,6 +203,8 @@ void Communication_Init(void)
 {
    hHC05_Init();
    CMDBufferInit(ZonesBuffer);
+   Communication_Initialized=3;
+
 }
 
 void Communication_Task(void)  
@@ -290,3 +296,11 @@ void Communication_SendZoneData( ZoneData_t data) // zoneid
         hHC05_SendString("\r\n");
     }
 }
+uint8_t Communication_IsInitialized()
+{
+    return Communication_Initialized;
+    
+}
+
+
+#endif
