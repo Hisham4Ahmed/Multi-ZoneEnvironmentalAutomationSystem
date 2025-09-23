@@ -21,7 +21,7 @@ static uint8_t Communication_Initialized=0;
  * @var ZonesBuffer
  * @brief one Command buffer for all zones
  */
-static CommandBuffer_t ZonesBuffer[CMD_BUFFER_SIZE];
+static CommandBuffer_t ZonesBuffer;
 /**
  * @fn CMDBufferInit
  * @brief Initialize a command buffer
@@ -149,7 +149,7 @@ uint8_t  Communication_ParseCommand(const uint8_t *str, Command_t *Cmd)
     {
         temp[j - Actuator_Start_Char] = str[j];
     }
-     
+        temp[i - Actuator_Start_Char]=NullChar;
 
     // Match actuator 
     if (Compare_Strings(temp, "FAN") == Matches)
@@ -182,7 +182,7 @@ uint8_t  Communication_ParseCommand(const uint8_t *str, Command_t *Cmd)
     }
     else if (Cmd->Actuator == LIGHT)
     {
-        if (Compare_Strings(&str[i], "ON") == Matches)
+        if (Compare_Strings(&str[i], "ON ") == Matches)
            
         {
              Cmd->Value = ON;
@@ -202,7 +202,7 @@ uint8_t  Communication_ParseCommand(const uint8_t *str, Command_t *Cmd)
 void Communication_Init(void)
 {
    hHC05_Init();
-   CMDBufferInit(ZonesBuffer);
+   CMDBufferInit(&ZonesBuffer);
    Communication_Initialized=3;
 
 }
@@ -217,15 +217,15 @@ void Communication_Task(void)
     {
         //store it in zones buffer
         uint8_t Zone=Command.ZoneId;
-        if(!BufferIsFull(ZonesBuffer))
+        if(!BufferIsFull(&ZonesBuffer))
         {
-            BufferEnqueue(ZonesBuffer , Command);
+            BufferEnqueue(&ZonesBuffer , Command);
         }
         else
         {
-            ClearBuffer(ZonesBuffer);
-            CMDBufferInit(ZonesBuffer);
-            BufferEnqueue(ZonesBuffer , Command);
+            ClearBuffer(&ZonesBuffer);
+            CMDBufferInit(&ZonesBuffer);
+            BufferEnqueue(&ZonesBuffer , Command);
         }
     }
     else 
@@ -237,7 +237,7 @@ void Communication_Task(void)
 Command_t Communication_GetCommand(void)
 {
     Command_t Command = {0};
-    CommandBuffer_t *Buff = ZonesBuffer;
+    CommandBuffer_t *Buff = &ZonesBuffer;
     if (!BufferIsEmpty(Buff))
     {
         Command = Buff->CMDBuffer[Buff->Head];
