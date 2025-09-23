@@ -14,7 +14,7 @@
 
 /**
  * @def CMD_BUFFER_SIZE
- * @brief max number of commands per zone
+ * @brief max number of commands in command buffer
  */
 #define CMD_BUFFER_SIZE  10   
 
@@ -22,7 +22,6 @@
  * @def MaxCommandLength
  * @brief max number of chars in Commandz
  */
-#define MAXCommandLength    9
-
+#define MAXCommandLength    12
 
 #endif /*_COMMUNICATION_CONFIG_H_*/
