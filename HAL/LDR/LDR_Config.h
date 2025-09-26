@@ -50,7 +50,7 @@
  *              4- ADC reading can be verified using a voltmeter or printed as:
  *                 `ADC * 5000UL / 1023` on LCD
  */
-#define LDR_Connection_Type            With_Vcc
+#define LDR_Connection_Type            With_GND
 
 /**
  * @def   LDR_With_Vcc_Edge_point 
