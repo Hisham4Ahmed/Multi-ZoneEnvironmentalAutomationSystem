@@ -33,4 +33,12 @@ enum BufferState {
     PartiallyFull
 };
 
+/**
+ * @def Timeout_Limit
+ * @brief this is the timeout limit for receiving data from HC05 module.
+ *       if the timeout counter reaches this limit, the receiving function will stop waiting for data.
+ *       it's about 1 second delay.
+ * 
+ */
+#define Timeout_Limit 800000
 #endif /*_HC05_PRIVATE_H_*/
