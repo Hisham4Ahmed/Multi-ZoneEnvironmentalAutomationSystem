@@ -15,6 +15,7 @@
 #include "Communication_Private.h"
 #include "Communication_Config.h"
 #include "../../Common/ZoneConfig.h"
+#include "../ModeControl/ModeControl_Interface.h"
 static uint8_t Communication_Initialized=0;
 
 /**
@@ -208,7 +209,8 @@ void Communication_Init(void)
 }
 
 void Communication_Task(void)  
-{
+{ if (ModeControl_GetMode() == Manual) 
+    {// only in manual mode we receive commands
     uint8_t CommandBuffer[MAXCommandLength]= {0};
     Command_t Command;
     hHC05_ReceiveString(CommandBuffer,MAXCommandLength);
@@ -232,6 +234,11 @@ void Communication_Task(void)
     {
         //Non valid command
     }
+}
+else 
+{
+    // in automatic mode we do not receive commands
+}
 }
 
 Command_t Communication_GetCommand(void)
@@ -261,6 +268,7 @@ void Communication_SendZoneData( ZoneData_t data) // zoneid
         uint8_t Temp_string[4];  // enough for "255"
 
         // Zone header
+        hHC05_SendString("\r\n"); // added for better zone data sending
         hHC05_SendChar('Z');
         hHC05_SendChar(data.ZoneId + '0'); 
         hHC05_SendChar(':');
