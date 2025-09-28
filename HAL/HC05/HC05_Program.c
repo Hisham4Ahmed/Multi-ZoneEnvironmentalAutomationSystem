@@ -81,9 +81,16 @@ void hHC05_ReceiveString(uint8_t *String, uint16_t maxLen)
 
     while (Counter < maxLen - 1)   
     {
+        uint32_t Timeout = 2400000;  // clk speed = 0.125us , timeout = 3 sec
         
-        while (GetBufferState() == Empty)
-        {
+        while (GetBufferState() == Empty) 
+        { 
+            --Timeout;
+            if (Timeout == 0) 
+            {
+                String[Counter] = NullChar;  
+                return; // Exit if timeout occurs
+            }
             
         }
 
